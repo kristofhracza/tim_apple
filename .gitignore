@@ -1,0 +1,7 @@
+External*Dependecies\
+Debug/
+x64/
+.vs/
+.git/
+
+imgui.ini

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33712.159
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tim_apple", "tim_apple.vcxproj", "{E6CBDC8B-C819-4A41-85B1-27203F206E29}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6CBDC8B-C819-4A41-85B1-27203F206E29}.Debug|x64.ActiveCfg = Debug|x64
+		{E6CBDC8B-C819-4A41-85B1-27203F206E29}.Debug|x64.Build.0 = Debug|x64
+		{E6CBDC8B-C819-4A41-85B1-27203F206E29}.Debug|x86.ActiveCfg = Debug|Win32
+		{E6CBDC8B-C819-4A41-85B1-27203F206E29}.Debug|x86.Build.0 = Debug|Win32
+		{E6CBDC8B-C819-4A41-85B1-27203F206E29}.Release|x64.ActiveCfg = Release|x64
+		{E6CBDC8B-C819-4A41-85B1-27203F206E29}.Release|x64.Build.0 = Release|x64
+		{E6CBDC8B-C819-4A41-85B1-27203F206E29}.Release|x86.ActiveCfg = Release|Win32
+		{E6CBDC8B-C819-4A41-85B1-27203F206E29}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BA245855-1478-4589-815A-D7EB18E8634B}
+	EndGlobalSection
+EndGlobal

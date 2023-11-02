@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="util\MemMan.hpp" />
+    <ClInclude Include="imgui\imconfig.h" />
+    <ClInclude Include="imgui\imgui.h" />
+    <ClInclude Include="imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="imgui\imgui_impl_win32.h" />
+    <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="imgui\imstb_rectpack.h" />
+    <ClInclude Include="imgui\imstb_textedit.h" />
+    <ClInclude Include="imgui\imstb_truetype.h" />
+    <ClInclude Include="gui\overlay.hpp" />
+    <ClInclude Include="util\Vectors.h" />
+    <ClInclude Include="util\attributes.hpp" />
+    <ClInclude Include="features\entry.hpp" />
+    <ClInclude Include="gui\menu.hpp" />
+    <ClInclude Include="util\config.hpp" />
+    <ClInclude Include="features\esp.hpp" />
+    <ClInclude Include="features\aim.hpp" />
+    <ClInclude Include="features\include.hpp" />
+    <ClInclude Include="util\utilFunctions.hpp" />
+    <ClInclude Include="util\weaponInfo.hpp" />
+    <ClInclude Include="features\misc.hpp" />
+    <ClInclude Include="json\json.hpp" />
+    <ClInclude Include="json\jsonOps.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="timapple.cpp" />
+    <ClCompile Include="imgui\imgui.cpp" />
+    <ClCompile Include="imgui\imgui_demo.cpp" />
+    <ClCompile Include="imgui\imgui_draw.cpp" />
+    <ClCompile Include="imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui\imgui_tables.cpp" />
+    <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="gui\overlay.cpp" />
+    <ClCompile Include="util\attributes.cpp" />
+    <ClCompile Include="features\entry.cpp" />
+    <ClCompile Include="gui\menu.cpp" />
+    <ClCompile Include="features\esp.cpp" />
+    <ClCompile Include="features\aim.cpp" />
+    <ClCompile Include="features\misc.cpp" />
+    <ClCompile Include="json\jsonOps.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+    <None Include="imgui.ini" />
+    <None Include=".gitignore" />
+    <None Include="x64\Release\client.dll.json" />
+    <None Include="offset_download.ps1" />
+  </ItemGroup>
+</Project>
