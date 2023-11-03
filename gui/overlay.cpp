@@ -95,7 +95,7 @@ void overlayESP::initWindow(int nShowCmd) {
 
 void overlayESP::renderLoop(MemoryManagement::moduleData client) {
 	bool state = true;
-	bool menutoggle = false;
+	bool menutoggle = true;
 
 	while (state){
 		if (GetAsyncKeyState(VK_INSERT) & 1){
