@@ -4,8 +4,6 @@
 
 #include "../util/utilFunctions.hpp"
 
-#include <iostream>
-
 void mainLoop(bool state, MemoryManagement::moduleData client) {
 
 	// Classes
@@ -69,7 +67,6 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		C_CSPlayerPawn.getPawnHealth();
 
 		CGameSceneNode.value = C_CSPlayerPawn.getCGameSceneNode();
-
 
 
 		// Checks

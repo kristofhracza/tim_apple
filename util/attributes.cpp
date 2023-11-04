@@ -97,6 +97,11 @@ uintptr_t C_CSPlayerPawn::getPawnTeam() {
 	return pawnTeam;
 }
 
+int C_CSPlayerPawn::getEntitySpotted() {
+	spotted = MemMan.ReadMem<DWORD_PTR>(playerPawn + clientDLL::C_CSPlayerPawnBase_["m_entitySpottedState"]["value"] + clientDLL::EntitySpottedState_t_["m_bSpottedByMask"]["value"]);
+	return spotted;
+}
+
 
 
 
@@ -154,10 +159,22 @@ void LocalPlayer::noFlash() {
 	MemMan.WriteMem<float>(playerPawn + clientDLL::C_CSPlayerPawnBase_["m_flFlashDuration"]["value"], 0.f);
 }
 
+int LocalPlayer::getEntitySpotted() {
+	spotted = MemMan.ReadMem<DWORD_PTR>(playerPawn + clientDLL::C_CSPlayerPawnBase_["m_entitySpottedState"]["value"] + clientDLL::EntitySpottedState_t_["m_bSpottedByMask"]["value"]);
+	return spotted;
+}
 
 
 
 uintptr_t CGameSceneNode::getBoneArray() {
 	boneArray = MemMan.ReadMem<uintptr_t>(value + clientDLL::CSkeletonInstance_["m_modelState"]["value"] + clientDLL::CGameSceneNode_["m_vecOrigin"]["value"]);
 	return boneArray;
+}
+
+
+
+
+bool SharedFunctions::spottedCheck(C_CSPlayerPawn C_CSPlayerPawn, LocalPlayer localPlayer) {
+	if (C_CSPlayerPawn.getEntitySpotted() & (1 << (localPlayer.playerPawn)) || localPlayer.getEntitySpotted() & (1 << (C_CSPlayerPawn.playerPawn))) return 1;
+	return 0;
 }

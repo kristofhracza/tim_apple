@@ -32,6 +32,7 @@ namespace clientDLL {
 	inline nlohmann::json C_EconEntity_ = clientDLLOffsets["C_EconEntity"]["data"];
 	inline nlohmann::json CSkeletonInstance_ = clientDLLOffsets["CSkeletonInstance"]["data"];
 	inline nlohmann::json CGameSceneNode_ = clientDLLOffsets["CGameSceneNode"]["data"];
+	inline nlohmann::json EntitySpottedState_t_ = clientDLLOffsets["EntitySpottedState_t"]["data"];
 };
 
 
@@ -130,8 +131,8 @@ public:
 	uint16_t weaponID;
 	uint16_t getWeaponID();
 
-	DWORD_PTR spotted;
-	DWORD_PTR getEntitySpotted();
+	int spotted;
+	int getEntitySpotted();
 
 	// CGameSceneNode
 	uintptr_t CGameSceneNode;
@@ -189,4 +190,14 @@ public:
 	int getShotsFired();
 
 	void noFlash();
+
+	int spotted;
+	int getEntitySpotted();
+};
+
+
+// This is unrelated to all the other classes, but this is the most convenient way to share functions between features
+class SharedFunctions {
+public:
+	static bool spottedCheck(C_CSPlayerPawn C_CSPlayerPawn, LocalPlayer localPlayer);
 };

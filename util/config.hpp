@@ -6,6 +6,7 @@
 
 struct espConfig {
 	bool state = false;
+	bool checkSpotted;
 
 	bool boundBox;
 	float colours[3] = { 1.f,1.f,1.f };
@@ -33,6 +34,7 @@ inline espConfig espConf = {};
 
 struct aimConfig {
 	bool state = false;
+	bool checkSpotted;
 	float smoothing = 1.f;
 
 	float fov = 2;
@@ -58,6 +60,7 @@ struct miscConfig{
 	bool bunnyHop;
 	bool flash;
 	bool trigger;
+	bool checkSpottedTrigger;
 };
 inline miscConfig miscConf;
 
