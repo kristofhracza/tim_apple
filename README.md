@@ -33,7 +33,6 @@ Run the `offset_download.ps1` in the same folder as you're executable is
 ## To-Do
 *These features will be implemented when I have the time...*
 ### Features
-- Change ESP colour depending on visibility
 - Dropped item ESP
 - Proper UTF-8 names
 ### Code
