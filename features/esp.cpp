@@ -4,15 +4,17 @@
 #include "../util/weaponInfo.hpp"
 
 void esp::makeHealthBar(float health) {
-	float healthRed = (float)(health * -0.01 + 1);
-	float healthGreen = (float)(health * 0.01);
+	int healthBarYOffset = ((int)(sharedData::height * health * 0.01f));
+
+	float red = (255 - (health * 2.55f)) - 100;
+	float green = (health * 2.55f) / 100;
 
 	ImGui::GetBackgroundDrawList()->AddRectFilled({ sharedData::headPosToScreen.x - (sharedData::width + 2), sharedData::originalPosToScreen.y - sharedData::height}, { sharedData::headPosToScreen.x - (sharedData::width + 5.5f), sharedData::originalPosToScreen.y }, ImColor(0.f, 0.f, 0.f, 0.3f));
+	ImGui::GetBackgroundDrawList()->AddRectFilled({ sharedData::headPosToScreen.x - (sharedData::width + 2), sharedData::originalPosToScreen.y - healthBarYOffset }, { sharedData::headPosToScreen.x - (sharedData::width + 5.5f), sharedData::originalPosToScreen.y }, ImColor(red, green, 0.f, 1.f));
 	if (espConf.hpCounter) {
-		ImGui::GetBackgroundDrawList()->AddText({ sharedData::headPosToScreen.x - (sharedData::width + 25) + 1, sharedData::originalPosToScreen.y - (((int)(sharedData::height * health * 0.01f))) - 5 + 1 }, ImColor(1.0f, 1.0f, 1.0f, 1.0f) & IM_COL32_A_MASK, std::to_string((int)health).c_str());
-		ImGui::GetBackgroundDrawList()->AddText({ sharedData::headPosToScreen.x - (sharedData::width + 25), sharedData::originalPosToScreen.y - (((int)(sharedData::height * health * 0.01f))) - 5 }, ImColor(1.0f, 1.0f, 1.0f, 1.0f), std::to_string((int)health).c_str());
+		ImGui::GetBackgroundDrawList()->AddText({ sharedData::headPosToScreen.x - (sharedData::width + 25) + 1, sharedData::originalPosToScreen.y - healthBarYOffset - 5 + 1 }, ImColor(1.0f, 1.0f, 1.0f, 1.0f) & IM_COL32_A_MASK, std::to_string((int)health).c_str());
+		ImGui::GetBackgroundDrawList()->AddText({ sharedData::headPosToScreen.x - (sharedData::width + 25), sharedData::originalPosToScreen.y - healthBarYOffset - 5 }, ImColor(1.0f, 1.0f, 1.0f, 1.0f), std::to_string((int)health).c_str());
 	}
-	ImGui::GetBackgroundDrawList()->AddRectFilled({ sharedData::headPosToScreen.x - (sharedData::width + 2), sharedData::originalPosToScreen.y - ((int)(sharedData::height * health * 0.01f)) }, { sharedData::headPosToScreen.x - (sharedData::width + 5.5f), sharedData::originalPosToScreen.y }, ImColor(healthRed, healthGreen, 0.f, 1.f));
 }
 
 
