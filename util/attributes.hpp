@@ -90,7 +90,7 @@ public:
 	uintptr_t entity_list;
 	uintptr_t listEntry;
 	uintptr_t moduleBase;
-
+	
 	C_CSPlayerPawn(uintptr_t base) {
 		moduleBase = base;
 		entity_list = MemMan.ReadMem<uintptr_t>(base + offsets::clientDLL["dwEntityList"]["value"]);
@@ -99,6 +99,7 @@ public:
 
 	uintptr_t playerPawn;
 	uintptr_t getPlayerPawn();
+	uintptr_t getPlayerPawnByCrossHairID(int crossHairEntity);
 
 	Vector3 origin;
 	Vector3 getOrigin();

@@ -50,6 +50,12 @@ uintptr_t C_CSPlayerPawn::getPlayerPawn() {
 	return playerPawn;
 }
 
+uintptr_t C_CSPlayerPawn::getPlayerPawnByCrossHairID(int crossHairEntity) {
+	uintptr_t crosshairEntityEntry = MemMan.ReadMem<uintptr_t>(entity_list + static_cast<uintptr_t>(0x8) * (crossHairEntity >> 9) + 16);
+	playerPawn = MemMan.ReadMem<uintptr_t>(crosshairEntityEntry + 120 * (crossHairEntity & 0x1FF));
+	return playerPawn;
+}
+
 Vector3 C_CSPlayerPawn::getOrigin() {
 	origin = MemMan.ReadMem<Vector3>(playerPawn + clientDLL::C_BasePlayerPawn_["m_vOldOrigin"]["value"]);
 	return origin;

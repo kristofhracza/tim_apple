@@ -13,6 +13,7 @@ Simple CS2 external cheat
 	- Distance
 - Aimbot
 - Recoil control system
+- Trigger bot
 - Bunny hop
 - Anti flash
 
@@ -35,7 +36,6 @@ Run the `offset_download.ps1` in the same folder as you're executable is
 - Entity visibility check
 - Change ESP colour depending on visibility
 - Dropped item ESP
-- Trigger Bot
 - Proper UTF-8 names
 ### Code
 - Proper implementation of the item and weapon classes

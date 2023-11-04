@@ -199,8 +199,17 @@ void imGuiMenu::aimRender() {
 
 void imGuiMenu::miscRender() {
 	if (tabCount == 3) {
+		ImGui::BeginChild("Aim", ImVec2(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt), true);
+		ImGui::PushFont(imGuiMenu::titleText);
+		ImGui::Text("Aim");
+		ImGui::PopFont();
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Checkbox("Trigger Bot", &miscConf.trigger);
+		ImGui::EndChild();
 
-		ImGui::BeginChild("Movement", ImVec2(0, ImGui::GetWindowSize().y / 2), true);
+		verticalSplitter(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt);
+
+		ImGui::BeginChild("Movement", ImVec2(0, imGuiMenu::heightSeparatorInt), true);
 		ImGui::PushFont(imGuiMenu::titleText);
 		ImGui::Text("Movement");
 		ImGui::PopFont();

@@ -57,6 +57,7 @@ inline aimConfig aimConf;
 struct miscConfig{
 	bool bunnyHop;
 	bool flash;
+	bool trigger;
 };
 inline miscConfig miscConf;
 

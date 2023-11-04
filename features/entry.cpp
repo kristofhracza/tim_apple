@@ -47,6 +47,11 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		localPlayer.noFlash();
 	}
 
+	// Tigger
+	if (miscConf.trigger) {
+		misc::triggerBot(localPlayer, client.base);
+	}
+
 
 	// Main loop
 	for (int i = 0; i < 64; i++) {
