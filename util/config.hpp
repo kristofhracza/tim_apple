@@ -60,7 +60,6 @@ struct miscConfig{
 	bool bunnyHop;
 	bool flash;
 	bool trigger;
-	bool checkSpottedTrigger;
 };
 inline miscConfig miscConf;
 

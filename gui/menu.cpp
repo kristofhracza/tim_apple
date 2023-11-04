@@ -107,6 +107,8 @@ void imGuiMenu::espRender() {
 		ImGui::Text("Feature options");
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Checkbox("Visibility check", &espConf.checkSpotted);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("HP counter", &espConf.hpCounter);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("Box width", &espConf.width, 1.f, 5.f);
@@ -137,6 +139,8 @@ void imGuiMenu::aimRender() {
 		ImGui::Checkbox("Aimbot", &aimConf.state);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Fov circle", &aimConf.fovCircle);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Checkbox("Visibility check", &aimConf.checkSpotted);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("FOV", &aimConf.fov, 1.f, 25.f);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));

@@ -82,7 +82,14 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 			esp::sharedData::entityOrigin = C_CSPlayerPawn.getOrigin();
 			esp::sharedData::distance = (int)(utils::getDistance(esp::sharedData::localOrigin, esp::sharedData::entityOrigin)) / 100;
 
-			esp::boundingBox(C_CSPlayerPawn.getOrigin(), viewMatrix, CCSPlayerController.getPawnName(), C_CSPlayerPawn.pawnHealth, CGameSceneNode.getBoneArray());
+			if (espConf.checkSpotted) {
+				if (SharedFunctions::spottedCheck(C_CSPlayerPawn, localPlayer)) {
+					esp::boundingBox(C_CSPlayerPawn.getOrigin(), viewMatrix, CCSPlayerController.getPawnName(), C_CSPlayerPawn.pawnHealth, CGameSceneNode.getBoneArray());
+				}
+			}
+			else {
+				esp::boundingBox(C_CSPlayerPawn.getOrigin(), viewMatrix, CCSPlayerController.getPawnName(), C_CSPlayerPawn.pawnHealth, CGameSceneNode.getBoneArray());
+			}
 		}
 
 		// Aim
@@ -90,7 +97,14 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 			localPlayer.getCameraPos();
 			localPlayer.getViewAngles();
 
-			aim::aimBot(localPlayer, baseViewAngles, baseViewAnglesAddy, CGameSceneNode.getBoneArray());
+			if (aimConf.checkSpotted) {
+				if (SharedFunctions::spottedCheck(C_CSPlayerPawn, localPlayer)) {
+					aim::aimBot(localPlayer, baseViewAngles, baseViewAnglesAddy, CGameSceneNode.getBoneArray());
+				}
+			}
+			else {
+				aim::aimBot(localPlayer, baseViewAngles, baseViewAnglesAddy, CGameSceneNode.getBoneArray());
+			}
 		}
 	}
 }
