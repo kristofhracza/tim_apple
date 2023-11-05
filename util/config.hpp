@@ -59,7 +59,13 @@ inline aimConfig aimConf;
 struct miscConfig{
 	bool bunnyHop;
 	bool flash;
+
 	bool trigger;
+	bool isHot;
+	int hotSelect = 0;
+	int hot;
+	std::vector<std::string> hotKey = { "Shift","Left mouse key","Alt" };
+	std::map <std::string, int> hotKeyMap = { {"Shift",VK_SHIFT},{"Left mouse key",VK_LBUTTON}, {"Alt",VK_MENU} };
 };
 inline miscConfig miscConf;
 

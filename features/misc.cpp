@@ -18,8 +18,20 @@ void misc::triggerBot(LocalPlayer localPlayer,DWORD_PTR base) {
 	C_CSPlayerPawn crossHairPawn(base);
 	crossHairPawn.getPlayerPawnByCrossHairID(crossHairEntity);
 
-	if (crossHairEntity != -1 && crossHairPawn.getPawnHealth() > 0 && crossHairPawn.getPawnHealth() <= 100) {
-		mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-		mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
-	};
+	bool isValidEntity = (crossHairEntity != -1 && crossHairPawn.getPawnHealth() > 0 && crossHairPawn.getPawnHealth() <= 100);
+
+	if (miscConf.isHot) {
+		if (GetAsyncKeyState(miscConf.hotKeyMap[miscConf.hotKey[miscConf.hotSelect]])) {
+			if (isValidEntity) {
+				mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+				mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+			};
+		}
+	}
+	else {
+		if (isValidEntity) {
+			mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+			mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+		};
+	}
 }

@@ -209,6 +209,25 @@ void imGuiMenu::miscRender() {
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Trigger Bot", &miscConf.trigger);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Checkbox("Hot key state", &miscConf.isHot);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		if (miscConf.isHot) {
+			if (ImGui::BeginCombo("Hot key", miscConf.hotKey[miscConf.hotSelect].c_str())) {
+				for (int i = 0; i < miscConf.hotKey.size(); ++i) {
+					const bool isSelected = (miscConf.hot == i);
+
+					if (ImGui::Selectable(miscConf.hotKey[i].c_str(), isSelected)) {
+						miscConf.hotSelect = i;
+					}
+
+					if (isSelected) {
+						ImGui::SetItemDefaultFocus();
+					}
+				}
+				ImGui::EndCombo();
+			}
+		}
 		ImGui::EndChild();
 
 		verticalSplitter(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt);

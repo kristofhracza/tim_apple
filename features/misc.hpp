@@ -2,6 +2,8 @@
 
 #include "include.hpp"
 
+#include "../util/config.hpp"
+
 namespace misc {
 
 	inline namespace sharedData {
