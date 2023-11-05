@@ -14,7 +14,7 @@ void misc::bunnyHop(DWORD_PTR base, int flags) {
 void misc::triggerBot(LocalPlayer localPlayer,DWORD_PTR base) {
 	int crossHairEntity = MemMan.ReadMem<int>(localPlayer.getPlayerPawn() + clientDLL::C_CSPlayerPawnBase_["m_iIDEntIndex"]["value"]);
 	if (!crossHairEntity) return;
-
+	
 	C_CSPlayerPawn crossHairPawn(base);
 	crossHairPawn.getPlayerPawnByCrossHairID(crossHairEntity);
 

@@ -30,13 +30,6 @@ Run the `offset_download.ps1` in the same folder as you're executable is
 1. Download [client.dll.json](https://github.com/a2x/cs2-dumper/blob/main/generated/client.dll.json) and [offsets.json](https://github.com/a2x/cs2-dumper/blob/main/generated/offsets.json)    
 2. Place these files in the same folder as the executable file `tim_apple.exe` is     
 
-## To-Do
-*These features will be implemented when I have the time...*
-### Features
-- Dropped item ESP
-- Proper UTF-8 names
-### Code
-- Proper implementation of the item and weapon classes
 
 ## Known bugs
 - Bone ESP lines go through the screen sometimes
