@@ -56,8 +56,8 @@ struct aimConfig {
 	int hotSelectTrigger = 0;
 	int hotTrigger;
 
-	std::vector<std::string> hotKey = {"Shift","Left mouse key","Alt"};
-	std::map <std::string, int> hotKeyMap = { {"Shift",VK_SHIFT},{"Left mouse key",VK_LBUTTON}, {"Alt",VK_MENU}};
+	std::vector<std::string> hotKey = {"SHIFT","ALT","CTRL","Left mouse","Right mouse"};
+	std::map <std::string, int> hotKeyMap = { {"SHIFT",VK_SHIFT}, {"ALT",VK_MENU},{"CTRL",VK_CONTROL},{"Left mouse",VK_LBUTTON},{"Right mouse",VK_RBUTTON}};
 };
 inline aimConfig aimConf;
 
