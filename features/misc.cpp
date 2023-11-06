@@ -14,11 +14,14 @@ void misc::bunnyHop(DWORD_PTR base, int flags) {
 void misc::triggerBot(LocalPlayer localPlayer,DWORD_PTR base) {
 	int crossHairEntity = MemMan.ReadMem<int>(localPlayer.getPlayerPawn() + clientDLL::C_CSPlayerPawnBase_["m_iIDEntIndex"]["value"]);
 	if (!crossHairEntity) return;
-	
-	C_CSPlayerPawn crossHairPawn(base);
-	crossHairPawn.getPlayerPawnByCrossHairID(crossHairEntity);
 
-	bool isValidEntity = (crossHairEntity != -1 && crossHairPawn.getPawnHealth() > 0 && crossHairPawn.getPawnHealth() <= 100);
+	C_CSPlayerPawn crossHairPawn(base);
+	CCSPlayerController crossHairEntityController(base);
+
+	crossHairPawn.getPlayerPawnByCrossHairID(crossHairEntity);
+	crossHairEntityController.value = crossHairPawn.playerPawn;
+
+	bool isValidEntity = (crossHairEntity != -1 && crossHairPawn.getPawnHealth() > 0 && crossHairPawn.getPawnHealth() <= 100 && crossHairEntityController.getPawnTeam() != localPlayer.getTeam());
 
 	if (miscConf.isHot) {
 		if (GetAsyncKeyState(miscConf.hotKeyMap[miscConf.hotKey[miscConf.hotSelect]])) {
