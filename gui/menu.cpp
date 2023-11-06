@@ -155,6 +155,27 @@ void imGuiMenu::aimRender() {
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Recoil Control", &aimConf.rcs);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Checkbox("Trigger Bot", &aimConf.trigger);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Checkbox("Trigger bot hot key", &aimConf.isHotTrigger);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		if (aimConf.isHotTrigger) {
+			if (ImGui::BeginCombo("Hot key", aimConf.hotKey[aimConf.hotSelectTrigger].c_str())) {
+				for (int i = 0; i < aimConf.hotKey.size(); ++i) {
+					const bool isSelected = (aimConf.hotTrigger == i);
+
+					if (ImGui::Selectable(aimConf.hotKey[i].c_str(), isSelected)) {
+						aimConf.hotSelectTrigger = i;
+					}
+
+					if (isSelected) {
+						ImGui::SetItemDefaultFocus();
+					}
+				}
+				ImGui::EndCombo();
+			}
+		}
 		ImGui::EndChild();
 
 		horizontalSplitter(HEIGHT);
@@ -179,15 +200,15 @@ void imGuiMenu::aimRender() {
 			ImGui::EndCombo();
 		}
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Hot key state", &aimConf.isHot);
+		ImGui::Checkbox("Aim bot hot key", &aimConf.isHotAim);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		if (aimConf.isHot) {
-			if (ImGui::BeginCombo("Hot key", aimConf.hotKey[aimConf.hotSelect].c_str())) {
+		if (aimConf.isHotAim) {
+			if (ImGui::BeginCombo("Hot key", aimConf.hotKey[aimConf.hotSelectAim].c_str())) {
 				for (int i = 0; i < aimConf.hotKey.size(); ++i) {
-					const bool isSelected = (aimConf.hot == i);
+					const bool isSelected = (aimConf.hotAim == i);
 
 					if (ImGui::Selectable(aimConf.hotKey[i].c_str(), isSelected)) {
-						aimConf.hotSelect = i;
+						aimConf.hotSelectAim = i;
 					}
 
 					if (isSelected) {
@@ -203,35 +224,6 @@ void imGuiMenu::aimRender() {
 
 void imGuiMenu::miscRender() {
 	if (tabCount == 3) {
-		ImGui::BeginChild("Aim", ImVec2(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt), true);
-		ImGui::PushFont(imGuiMenu::titleText);
-		ImGui::Text("Aim");
-		ImGui::PopFont();
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Trigger Bot", &miscConf.trigger);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Hot key state", &miscConf.isHot);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		if (miscConf.isHot) {
-			if (ImGui::BeginCombo("Hot key", miscConf.hotKey[miscConf.hotSelect].c_str())) {
-				for (int i = 0; i < miscConf.hotKey.size(); ++i) {
-					const bool isSelected = (miscConf.hot == i);
-
-					if (ImGui::Selectable(miscConf.hotKey[i].c_str(), isSelected)) {
-						miscConf.hotSelect = i;
-					}
-
-					if (isSelected) {
-						ImGui::SetItemDefaultFocus();
-					}
-				}
-				ImGui::EndCombo();
-			}
-		}
-		ImGui::EndChild();
-
-		verticalSplitter(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt);
-
 		ImGui::BeginChild("Movement", ImVec2(0, imGuiMenu::heightSeparatorInt), true);
 		ImGui::PushFont(imGuiMenu::titleText);
 		ImGui::Text("Movement");

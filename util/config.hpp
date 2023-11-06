@@ -34,6 +34,9 @@ inline espConfig espConf = {};
 
 struct aimConfig {
 	bool state = false;
+	bool rcs;
+	bool trigger;
+
 	bool checkSpotted;
 	float smoothing = 1.f;
 
@@ -45,13 +48,16 @@ struct aimConfig {
 	std::vector<std::string> bones = { "Head", "Neck","Chest", "Crotch"};
 	std::map <std::string, int> boneMap = { {"Head",6},{"Neck",5},{"Chest",4},{"Crotch",0}};
 
-	bool isHot;
-	int hotSelect = 0;
-	int hot;
+	bool isHotAim;
+	int hotSelectAim = 0;
+	int hotAim;
+
+	bool isHotTrigger;
+	int hotSelectTrigger = 0;
+	int hotTrigger;
+
 	std::vector<std::string> hotKey = {"Shift","Left mouse key","Alt"};
 	std::map <std::string, int> hotKeyMap = { {"Shift",VK_SHIFT},{"Left mouse key",VK_LBUTTON}, {"Alt",VK_MENU}};
-
-	bool rcs;
 };
 inline aimConfig aimConf;
 
@@ -59,13 +65,6 @@ inline aimConfig aimConf;
 struct miscConfig{
 	bool bunnyHop;
 	bool flash;
-
-	bool trigger;
-	bool isHot;
-	int hotSelect = 0;
-	int hot;
-	std::vector<std::string> hotKey = { "Shift","Left mouse key","Alt" };
-	std::map <std::string, int> hotKeyMap = { {"Shift",VK_SHIFT},{"Left mouse key",VK_LBUTTON}, {"Alt",VK_MENU} };
 };
 inline miscConfig miscConf;
 

@@ -46,8 +46,8 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 	}
 
 	// Tigger
-	if (miscConf.trigger) {
-		misc::triggerBot(localPlayer, client.base);
+	if (aimConf.trigger) {
+		aim::triggerBot(localPlayer, client.base);
 	}
 
 

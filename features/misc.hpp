@@ -11,5 +11,4 @@ namespace misc {
 	};
 
 	void bunnyHop(DWORD_PTR base, int flags);
-	void triggerBot(LocalPlayer localPlayer, DWORD_PTR base);
 }
