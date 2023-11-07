@@ -1,7 +1,5 @@
 #include "esp.hpp"
 
-#include "../util/utilFunctions.hpp"
-#include "../util/weaponInfo.hpp"
 
 void esp::makeHealthBar(float health) {
 	int healthBarYOffset = ((int)(sharedData::height * health * 0.01f));
@@ -9,10 +7,10 @@ void esp::makeHealthBar(float health) {
 	float red = (255 - (health * 2.55f)) - 100;
 	float green = (health * 2.55f) / 100;
 
-	ImGui::GetBackgroundDrawList()->AddRectFilled({ sharedData::headPosToScreen.x - (sharedData::width + 2), sharedData::originalPosToScreen.y - sharedData::height}, { sharedData::headPosToScreen.x - (sharedData::width + 5.5f), sharedData::originalPosToScreen.y }, ImColor(0.f, 0.f, 0.f, 0.3f));
-	ImGui::GetBackgroundDrawList()->AddRectFilled({ sharedData::headPosToScreen.x - (sharedData::width + 2), sharedData::originalPosToScreen.y - healthBarYOffset }, { sharedData::headPosToScreen.x - (sharedData::width + 5.5f), sharedData::originalPosToScreen.y }, ImColor(red, green, 0.f, 1.f));
+	ImGui::GetBackgroundDrawList()->AddRectFilled({ sharedData::headPosToScreen.x - (sharedData::width + 2), sharedData::originalPosToScreen.y - sharedData::height}, { sharedData::headPosToScreen.x - (sharedData::width + 4.5f), sharedData::originalPosToScreen.y }, ImColor(0.f, 0.f, 0.f, 0.3f));
+	ImGui::GetBackgroundDrawList()->AddRectFilled({ sharedData::headPosToScreen.x - (sharedData::width + 2), sharedData::originalPosToScreen.y - healthBarYOffset }, { sharedData::headPosToScreen.x - (sharedData::width + 4.5f), sharedData::originalPosToScreen.y }, ImColor(red, green, 0.f, 1.f));
 	if (espConf.hpCounter) {
-		ImGui::GetBackgroundDrawList()->AddText({ sharedData::headPosToScreen.x - (sharedData::width + 25), sharedData::originalPosToScreen.y - healthBarYOffset - 5 }, ImColor(1.0f, 1.0f, 1.0f, 1.0f), std::to_string((int)health).c_str());
+		ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::espNameText, (sideESPText - utils::fixFontSize(sharedData::distance)), { sharedData::headPosToScreen.x - (sharedData::width + 10), sharedData::originalPosToScreen.y - healthBarYOffset - 12.f }, ImColor(1.0f, 1.0f, 1.0f, 1.0f), std::to_string((int)health).c_str());
 	}
 }
 
@@ -49,7 +47,7 @@ void esp::makeName(std::string name) {
 	float horizontalOffset = textSize.x / 2.f;
 	float verticalOffset = textSize.y;
 
-	ImGui::GetBackgroundDrawList()->AddText({ sharedData::headPosToScreen.x - horizontalOffset, sharedData::headPosToScreen.y - verticalOffset }, ImColor(1.0f, 1.0f, 1.0f, 1.0f), name.c_str());
+	ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::espNameText,(normalESPText - utils::fixFontSize(sharedData::distance)), {sharedData::headPosToScreen.x - horizontalOffset, sharedData::headPosToScreen.y - verticalOffset}, ImColor(1.0f, 1.0f, 1.0f, 1.0f), name.c_str());
 }
 
 
@@ -61,16 +59,17 @@ void esp::makeWeaponname() {
 	float horizontalOffset = textSize.x / 2.f;
 	float verticalOffset = textSize.y - (sharedData::height + 15);
 
-	ImGui::GetBackgroundDrawList()->AddText({ sharedData::headPosToScreen.x - horizontalOffset, sharedData::headPosToScreen.y - verticalOffset }, ImColor(1.0f, 1.0f, 1.0f, 1.0f), name.c_str());
+	ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::espNameText, (normalESPText - utils::fixFontSize(sharedData::distance)), { sharedData::headPosToScreen.x - horizontalOffset, sharedData::headPosToScreen.y - verticalOffset }, ImColor(1.0f, 1.0f, 1.0f, 1.0f), name.c_str());
 }
 
 void esp::makeDistance() {
-	ImVec2 textSize = ImGui::CalcTextSize(std::to_string(sharedData::distance).c_str());
+	std::string distanceText = std::format("[{} m]", std::to_string(sharedData::distance));
+	ImVec2 textSize = ImGui::CalcTextSize(distanceText.c_str());
 
 	float horizontalOffset = textSize.x / 2.f;
 	float verticalOffset = textSize.y;
 
-	ImGui::GetBackgroundDrawList()->AddText({ sharedData::headPosToScreen.x - horizontalOffset, sharedData::headPosToScreen.y - verticalOffset - 12}, ImColor(1.0f, 1.0f, 1.0f, 1.0f), std::to_string(sharedData::distance).c_str());
+	ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::espNameText, (sideESPText - utils::fixFontSize(sharedData::distance)), { sharedData::headPosToScreen.x - horizontalOffset, sharedData::headPosToScreen.y - verticalOffset - 12}, ImColor(1.0f, 1.0f, 1.0f, 1.0f), distanceText.c_str());
 }
 
 

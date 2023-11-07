@@ -14,6 +14,7 @@ namespace imGuiMenu {
 	inline ImFont* normalText;
 	inline ImFont* titleText;
 	inline ImFont* highlightText;
+	inline ImFont* espNameText;
 
 	void menuBar();
 	void renderMenu(bool state);

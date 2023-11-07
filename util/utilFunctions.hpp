@@ -17,4 +17,13 @@ inline namespace utils {
 		std::wstring::size_type pos = std::wstring(buffer).find_last_of(L"\\/");
 		return std::wstring(buffer).substr(0, pos);
 	}
+
+	inline float fixFontSize(float size) {
+		int returnSize = 1;
+
+		if (size > 4.f) returnSize = 4.f;
+		if (size < 1.f) returnSize = 1.f;
+	
+		return returnSize;
+	}
 }
