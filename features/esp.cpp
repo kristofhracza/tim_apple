@@ -68,7 +68,7 @@ void esp::makeDistance() {
 }
 
 
-void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name, int health, uintptr_t boneArray) {
+void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name, int health, uintptr_t boneArray, bool isSpotted) {
 	if (origin.IsZero()) return;
 
 	Vector3 originalPosToScreen = origin.worldToScreen(viewMatrix);
@@ -92,7 +92,10 @@ void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name
 
 	if (originalPosToScreen.z >= 0.01f) {
 		if (espConf.boundBox) {
-			ImGui::GetBackgroundDrawList()->AddRect({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, ImColor(espConf.colours[0], espConf.colours[1], espConf.colours[2]), 0, 0, 1.f);
+			ImColor colour;
+			isSpotted == true ? colour = ImColor(espConf.spottedColours[0], espConf.spottedColours[1], espConf.spottedColours[2]) : colour = ImColor(espConf.notSpottedColours[0], espConf.notSpottedColours[1], espConf.notSpottedColours[2]);
+
+			ImGui::GetBackgroundDrawList()->AddRect({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, colour, 0, 0, 1.f);
 		}
 		
 		if (espConf.isHealthBar) {

@@ -84,11 +84,11 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 
 			if (espConf.checkSpotted) {
 				if (SharedFunctions::spottedCheck(C_CSPlayerPawn, localPlayer)) {
-					esp::boundingBox(C_CSPlayerPawn.getOrigin(), viewMatrix, CCSPlayerController.getPawnName(), C_CSPlayerPawn.pawnHealth, CGameSceneNode.getBoneArray());
+					esp::boundingBox(C_CSPlayerPawn.getOrigin(), viewMatrix, CCSPlayerController.getPawnName(), C_CSPlayerPawn.pawnHealth, CGameSceneNode.getBoneArray(),1);
 				}
 			}
 			else {
-				esp::boundingBox(C_CSPlayerPawn.getOrigin(), viewMatrix, CCSPlayerController.getPawnName(), C_CSPlayerPawn.pawnHealth, CGameSceneNode.getBoneArray());
+				esp::boundingBox(C_CSPlayerPawn.getOrigin(), viewMatrix, CCSPlayerController.getPawnName(), C_CSPlayerPawn.pawnHealth, CGameSceneNode.getBoneArray(),SharedFunctions::spottedCheck(C_CSPlayerPawn, localPlayer));
 			}
 		}
 

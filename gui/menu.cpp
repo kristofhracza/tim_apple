@@ -121,7 +121,9 @@ void imGuiMenu::espRender() {
 		ImGui::Text("Colours");
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::ColorEdit3("Box colour", (float*)&espConf.colours);
+		ImGui::ColorEdit3("Box colour (spotted)", (float*)&espConf.spottedColours);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::ColorEdit3("Box colour (not spotted)", (float*)&espConf.notSpottedColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::ColorEdit3("Skeleton colour", (float*)&espConf.skeletonColours);
 		ImGui::EndChild();
