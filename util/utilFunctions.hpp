@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <vector>
+#include <tuple>
 
 #include "Vectors.h"
 
@@ -18,12 +20,27 @@ inline namespace utils {
 		return std::wstring(buffer).substr(0, pos);
 	}
 
-	inline float fixFontSize(float size) {
-		int returnSize = 1;
 
-		if (size > 4.f) returnSize = 4.f;
-		if (size < 1.f) returnSize = 1.f;
-	
-		return returnSize;
+	inline namespace espF {
+		inline float fixFontSize(float size) {
+			int returnSize = 1;
+
+			if (size > 4.f) returnSize = 4.f;
+			if (size < 1.f) returnSize = 1.f;
+
+			return returnSize;
+		}
+
+		inline float getFontSize(float fontSize,int distance) {
+			return (fontSize - utils::fixFontSize(distance));
+		}
+
+		inline std::tuple<float,float> getTextOffsets(float x,float y, float horizontalDivide,float verticalDivide = 1) {
+			float horizontalOffset = x / horizontalDivide;
+			float verticalOffset = y - verticalDivide;
+
+			std::tuple<float,float> coords = { horizontalOffset, verticalOffset };
+			return coords;
+		}
 	}
 }
