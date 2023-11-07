@@ -98,7 +98,7 @@ void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name
 
 	if (originalPosToScreen.z >= 0.01f) {
 		if (espConf.boundBox) {
-			ImGui::GetBackgroundDrawList()->AddRect({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, ImColor(espConf.colours[0], espConf.colours[1], espConf.colours[2]), 0, 0, 2.f);
+			ImGui::GetBackgroundDrawList()->AddRect({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, ImColor(espConf.colours[0], espConf.colours[1], espConf.colours[2]), 0, 0, 1.f);
 		}
 		
 		if (espConf.isHealthBar) {
