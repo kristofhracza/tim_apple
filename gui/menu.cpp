@@ -107,13 +107,23 @@ void imGuiMenu::espRender() {
 		ImGui::Text("Feature options");
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::PushFont(imGuiMenu::subTitleText);
+		ImGui::Text("Main options");
+		ImGui::PopFont();
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Visibility check", &espConf.checkSpotted);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::PushFont(imGuiMenu::subTitleText);
+		ImGui::Text("Health options");
+		ImGui::PopFont();
 		ImGui::Checkbox("HP counter", &espConf.hpCounter);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::SliderFloat("Box width", &espConf.width, 1.f, 5.f);
+		ImGui::PushFont(imGuiMenu::subTitleText);
+		ImGui::Text("Box options");
+		ImGui::PopFont();
+		ImGui::SliderFloat("Width", &espConf.width, 1.f, 5.f);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::SliderFloat("Box thickness", &espConf.boundBoxThickness, 1.f, 3.f);
+		ImGui::SliderFloat("Thickness", &espConf.boundBoxThickness, 1.f, 3.f);
 		ImGui::EndChild();
 
 		horizontalSplitter(HEIGHT);
@@ -123,10 +133,18 @@ void imGuiMenu::espRender() {
 		ImGui::Text("Colours");
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::ColorEdit3("Box colour (spotted)", (float*)&espConf.spottedColours);
+		ImGui::PushFont(imGuiMenu::subTitleText);
+		ImGui::Text("Box colours");
+		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::ColorEdit3("Box colour (not spotted)", (float*)&espConf.notSpottedColours);
+		ImGui::ColorEdit3("Spotted (base)", (float*)&espConf.spottedColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::ColorEdit3("Not spotted", (float*)&espConf.notSpottedColours);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::PushFont(imGuiMenu::subTitleText);
+		ImGui::Text("Skeleton colours");
+		ImGui::PopFont();
 		ImGui::ColorEdit3("Skeleton colour", (float*)&espConf.skeletonColours);
 		ImGui::EndChild();
 	}

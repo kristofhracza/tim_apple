@@ -85,7 +85,8 @@ void overlayESP::initWindow(int nShowCmd) {
 	ImGuiIO& io = ImGui::GetIO();
 	io.Fonts->AddFontDefault();
 	imGuiMenu::normalText= io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Verdana.ttf", 15.f);
-	imGuiMenu::titleText = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\verdanab.ttf", 15.f);
+	imGuiMenu::titleText = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\verdanab.ttf", 16.f);
+	imGuiMenu::subTitleText = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\verdanab.ttf", 15.f);
 	imGuiMenu::highlightText = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\verdanai.ttf", 13.f);
 	imGuiMenu::espNameText = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\verdanab.ttf", 15.f);
 	ImGui::StyleColorsDark();
