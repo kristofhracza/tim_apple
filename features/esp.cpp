@@ -95,7 +95,7 @@ void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name
 			ImColor colour;
 			isSpotted == true ? colour = ImColor(espConf.spottedColours[0], espConf.spottedColours[1], espConf.spottedColours[2]) : colour = ImColor(espConf.notSpottedColours[0], espConf.notSpottedColours[1], espConf.notSpottedColours[2]);
 
-			ImGui::GetBackgroundDrawList()->AddRect({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, colour, 0, 0, 1.f);
+			ImGui::GetBackgroundDrawList()->AddRect({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, colour, 0, 0, espConf.boundBoxThickness);
 		}
 		
 		if (espConf.isHealthBar) {

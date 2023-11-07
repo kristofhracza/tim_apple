@@ -112,6 +112,8 @@ void imGuiMenu::espRender() {
 		ImGui::Checkbox("HP counter", &espConf.hpCounter);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("Box width", &espConf.width, 1.f, 5.f);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::SliderFloat("Box thickness", &espConf.boundBoxThickness, 1.f, 3.f);
 		ImGui::EndChild();
 
 		horizontalSplitter(HEIGHT);
