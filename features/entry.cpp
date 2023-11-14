@@ -25,8 +25,8 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 	// Aimbot FOV circle
 	if (aimConf.fovCircle) {
 		ImVec2 p = ImGui::GetWindowPos();
-		float screenMidX = GetSystemMetrics(SM_CXSCREEN) / 2;
-		float screenMidY = GetSystemMetrics(SM_CYSCREEN) / 2;
+		float screenMidX = GetSystemMetrics(SM_CXSCREEN) / 2.f;
+		float screenMidY = GetSystemMetrics(SM_CYSCREEN) / 2.f;
 
 		ImGui::GetBackgroundDrawList()->AddCircle({ screenMidX ,screenMidY }, (aimConf.fov * 10), ImColor(1.f, 1.f, 1.f, 1.f), 0, 1.f);
 	}
@@ -84,7 +84,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 
 			if (espConf.checkSpotted) {
 				if (SharedFunctions::spottedCheck(C_CSPlayerPawn, localPlayer)) {
-					esp::boundingBox(C_CSPlayerPawn.getOrigin(), viewMatrix, CCSPlayerController.getPawnName(), C_CSPlayerPawn.pawnHealth, CGameSceneNode.getBoneArray(),1);
+					esp::boundingBox(C_CSPlayerPawn.getOrigin(), viewMatrix, CCSPlayerController.getPawnName(), C_CSPlayerPawn.pawnHealth, CGameSceneNode.getBoneArray(),true);
 				}
 			}
 			else {

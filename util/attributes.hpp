@@ -96,7 +96,7 @@ public:
 	C_CSPlayerPawn(uintptr_t base) {
 		moduleBase = base;
 		entity_list = MemMan.ReadMem<uintptr_t>(base + offsets::clientDLL["dwEntityList"]["value"]);
-		listEntry = MemMan.ReadMem<uintptr_t>(entity_list + static_cast<uintptr_t>(0x8) * ((value & 0x7FFF) >> 9) + 16);
+		listEntry = MemMan.ReadMem<uintptr_t>(entity_list + 0x8 * ((value & 0x7FFF) >> 9) + 0x10);
 	}
 
 	uintptr_t playerPawn;

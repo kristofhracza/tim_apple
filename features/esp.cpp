@@ -4,13 +4,13 @@
 void esp::makeHealthBar(float health) {
 	int healthBarYOffset = ((int)(sharedData::height * health * 0.01f));
 
-	float red = (255 - (health * 2.55f)) - 100;
-	float green = (health * 2.55f) / 100;
+	float red = (255.f - (health * 2.55f)) - 100.f;
+	float green = (health * 2.55f) / 100.f;
 
-	ImGui::GetBackgroundDrawList()->AddRectFilled({ sharedData::headPosToScreen.x - (sharedData::width + 2), sharedData::originalPosToScreen.y - sharedData::height}, { sharedData::headPosToScreen.x - (sharedData::width + 4.5f), sharedData::originalPosToScreen.y }, ImColor(0.f, 0.f, 0.f, 0.3f));
-	ImGui::GetBackgroundDrawList()->AddRectFilled({ sharedData::headPosToScreen.x - (sharedData::width + 2), sharedData::originalPosToScreen.y - healthBarYOffset }, { sharedData::headPosToScreen.x - (sharedData::width + 4.5f), sharedData::originalPosToScreen.y }, ImColor(red, green, 0.f, 1.f));
+	ImGui::GetBackgroundDrawList()->AddRectFilled({ sharedData::headPosToScreen.x - (sharedData::width + 2.f), sharedData::originalPosToScreen.y - sharedData::height}, { sharedData::headPosToScreen.x - (sharedData::width + 4.5f), sharedData::originalPosToScreen.y }, ImColor(0.f, 0.f, 0.f, 0.3f));
+	ImGui::GetBackgroundDrawList()->AddRectFilled({ sharedData::headPosToScreen.x - (sharedData::width + 2.f), sharedData::originalPosToScreen.y - healthBarYOffset }, { sharedData::headPosToScreen.x - (sharedData::width + 4.5f), sharedData::originalPosToScreen.y }, ImColor(red, green, 0.f, 1.f));
 	if (espConf.hpCounter) {
-		ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::espNameText, getFontSize(sideESPText,distance), {sharedData::headPosToScreen.x - (sharedData::width + 10), sharedData::originalPosToScreen.y - healthBarYOffset - 12.f}, ImColor(1.0f, 1.0f, 1.0f, 1.0f), std::to_string((int)health).c_str());
+		ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::espNameText, getFontSize(sideESPText,distance), {sharedData::headPosToScreen.x - (sharedData::width + 10.f), sharedData::originalPosToScreen.y - healthBarYOffset - 12.f}, ImColor(1.0f, 1.0f, 1.0f, 1.0f), std::to_string((int)health).c_str());
 	}
 }
 
@@ -20,7 +20,7 @@ void esp::makeSkeleton(view_matrix_t viewMatrix, uintptr_t boneArray) {
 	Vector3 previous, current;
 
 	for (std::vector<int> currentGroup : boneGroups::allGroups) {
-		previous = { 0,0,0 };
+		previous = { 0.f,0.f,0.f };
 
 		for (int currentBone : currentGroup) {
 			current = MemMan.ReadMem<Vector3>(boneArray + currentBone * 32);
@@ -86,7 +86,7 @@ void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name
 
 	float height = originalPosToScreen.y - headPosToScreen.y;
 	float width = height * espConf.width;
-	width = width / 10;
+	width = width / 10.f;
 	sharedData::height = height;
 	sharedData::width = width;
 
@@ -95,7 +95,7 @@ void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name
 			ImColor colour;
 			isSpotted == true ? colour = ImColor(espConf.spottedColours[0], espConf.spottedColours[1], espConf.spottedColours[2]) : colour = ImColor(espConf.notSpottedColours[0], espConf.notSpottedColours[1], espConf.notSpottedColours[2]);
 
-			ImGui::GetBackgroundDrawList()->AddRect({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, colour, 0, 0, espConf.boundBoxThickness);
+			ImGui::GetBackgroundDrawList()->AddRect({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, colour, 0.f, 0.f, espConf.boundBoxThickness);
 		}
 		
 		if (espConf.isHealthBar) {
@@ -115,7 +115,7 @@ void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name
 		}
 
 		if (espConf.snapLines) {
-			ImGui::GetBackgroundDrawList()->AddLine({ headPosToScreen.x - (width / 2), originalPosToScreen.y }, { (float)GetSystemMetrics(SM_CXSCREEN) / 2, (float)GetSystemMetrics(SM_CYSCREEN) }, ImColor(1.0f, 1.0f, 1.0f, 1.0f));
+			ImGui::GetBackgroundDrawList()->AddLine({ headPosToScreen.x - (width / 2.f), originalPosToScreen.y }, { (float)GetSystemMetrics(SM_CXSCREEN) / 2, (float)GetSystemMetrics(SM_CYSCREEN) }, ImColor(1.0f, 1.0f, 1.0f, 1.0f));
 		}
 
 		if (espConf.distance) {

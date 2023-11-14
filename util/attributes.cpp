@@ -2,12 +2,12 @@
 
 
 uintptr_t Classes::getListEntry(int id) {
-	listEntry = MemMan.ReadMem<uintptr_t>(entity_list + (8 * (id & 0x7FFF) >> 9) + 16);
+	listEntry = MemMan.ReadMem<uintptr_t>(entity_list + (0x8 * (id & 0x7FFF) >> 9) + 0x10);
 	return listEntry;
 }
 
 uintptr_t Classes::getCCSPlayerControllerBase(int id) {
-	CCSPlayerController_ = MemMan.ReadMem<uintptr_t>(listEntry + 120 * (id & 0x1FF));
+	CCSPlayerController_ = MemMan.ReadMem<uintptr_t>(listEntry + 0x78 * (id & 0x1FF));
 	return CCSPlayerController_;
 }
 
@@ -46,13 +46,13 @@ std::string CCSPlayerController::getPawnName() {
 
 
 uintptr_t C_CSPlayerPawn::getPlayerPawn() {
-	playerPawn = MemMan.ReadMem<uintptr_t>(listEntry + 120 * (value & 0x1FF));
+	playerPawn = MemMan.ReadMem<uintptr_t>(listEntry + 0x78 * (value & 0x1FF));
 	return playerPawn;
 }
 
 uintptr_t C_CSPlayerPawn::getPlayerPawnByCrossHairID(int crossHairEntity) {
-	uintptr_t crosshairEntityEntry = MemMan.ReadMem<uintptr_t>(entity_list + static_cast<uintptr_t>(0x8) * (crossHairEntity >> 9) + 16);
-	playerPawn = MemMan.ReadMem<uintptr_t>(crosshairEntityEntry + 120 * (crossHairEntity & 0x1FF));
+	uintptr_t crosshairEntityEntry = MemMan.ReadMem<uintptr_t>(entity_list + 0x8 * (crossHairEntity >> 9) + 0x10);
+	playerPawn = MemMan.ReadMem<uintptr_t>(crosshairEntityEntry + 0x78 * (crossHairEntity & 0x1FF));
 	return playerPawn;
 }
 
