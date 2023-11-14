@@ -32,8 +32,8 @@ uintptr_t CCSPlayerController::getPawnTeam() {
 std::string CCSPlayerController::getPawnName() {
 	pawnNameAddress = MemMan.ReadMem<uintptr_t>(value + clientDLL::CCSPlayerController_["m_sSanitizedPlayerName"]["value"]);
 	if (pawnNameAddress) {
-		char buf[256] = {};
-		MemMan.ReadRawMem(pawnNameAddress, buf, sizeof(buf));
+		char buf[MAX_PATH] = {};
+		MemMan.ReadRawMem(pawnNameAddress, buf, MAX_PATH);
 		pawnName = std::string(buf);
 	}
 	else {
