@@ -4,16 +4,19 @@ Simple CS2 external cheat
 ![Preview](screenshots/preview.png)
 
 ## Features
-- Customizable ESP
-	- Health bar (optional HP counter with numbers)
-	- Player name
-	- Weapon name
-	- Skeleton
-	- Snap lines
-	- Distance
+*Most features have visibility check*
+### ESP
+- Health bar
+- Player name
+- Weapon name
+- Skeleton
+- Snap lines
+- Distance
+### Aim
 - Aimbot
 - Recoil control system
 - Trigger bot
+### Misc
 - Bunny hop
 - Anti flash
 
@@ -21,7 +24,9 @@ Simple CS2 external cheat
 Open `tim_apple.sln` in Visual Studio 2022, set build configuration to `Release | x64`.      
 Press Build solution and you should receive `tim_apple.exe` file.      
 
-Press the `INSERT` key to toggle the menu.
+## Usage
+Press the `INSERT` key to toggle the menu.     
+Press the `END` key to end the cheat.
 
 ## Offsets
 ### Script 
@@ -33,7 +38,6 @@ Run the `offset_download.ps1` in the same folder as you're executable is
 
 ## Known bugs
 - Bone ESP lines go through the screen sometimes
-- RCS doesn't always work with aimbot
 
 ## Credits
 - [ocornut/imgui](https://github.com/ocornut/imgui)
