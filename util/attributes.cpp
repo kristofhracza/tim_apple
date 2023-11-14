@@ -178,3 +178,13 @@ bool SharedFunctions::spottedCheck(C_CSPlayerPawn C_CSPlayerPawn, LocalPlayer lo
 	if (C_CSPlayerPawn.getEntitySpotted() & (1 << (localPlayer.playerPawn)) || localPlayer.getEntitySpotted() & (1 << (C_CSPlayerPawn.playerPawn))) return 1;
 	return 0;
 }
+
+bool SharedFunctions::inGame(DWORD_PTR base) {
+	uintptr_t gameRules = MemMan.ReadMem<uintptr_t>(base + offsets::clientDLL["dwGameRules"]["value"]);
+
+	bool warmup = MemMan.ReadMem<bool>(gameRules + clientDLL::C_CSGameRules_["m_bWarmupPeriod"]["value"]);
+	bool match = MemMan.ReadMem<bool>(gameRules + clientDLL::C_CSGameRules_["m_bHasMatchStarted"]["value"]);
+	bool freeze = MemMan.ReadMem<bool>(gameRules + clientDLL::C_CSGameRules_["m_bFreezePeriod"]["value"]);
+
+	return match;
+}

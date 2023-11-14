@@ -33,6 +33,7 @@ namespace clientDLL {
 	inline nlohmann::json CSkeletonInstance_ = clientDLLOffsets["CSkeletonInstance"]["data"];
 	inline nlohmann::json CGameSceneNode_ = clientDLLOffsets["CGameSceneNode"]["data"];
 	inline nlohmann::json EntitySpottedState_t_ = clientDLLOffsets["EntitySpottedState_t"]["data"];
+	inline nlohmann::json C_CSGameRules_= clientDLLOffsets["C_CSGameRules"]["data"];
 };
 
 
@@ -200,4 +201,5 @@ public:
 class SharedFunctions {
 public:
 	static bool spottedCheck(C_CSPlayerPawn C_CSPlayerPawn, LocalPlayer localPlayer);
+	static bool inGame(DWORD_PTR base);
 };
