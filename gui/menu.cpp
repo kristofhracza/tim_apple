@@ -102,10 +102,11 @@ void imGuiMenu::espRender() {
 
 		verticalSplitter(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt);
 
-		ImGui::BeginChild("Feature options", ImVec2(0, imGuiMenu::heightSeparatorInt), true);
+		ImGui::BeginChild("Feature options", ImVec2(0, imGuiMenu::heightSeparatorInt + 20), true);
 		ImGui::PushFont(imGuiMenu::titleText);
 		ImGui::Text("Feature options");
 		ImGui::PopFont();
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::PushFont(imGuiMenu::subTitleText);
 		ImGui::Text("Main options");
@@ -116,11 +117,13 @@ void imGuiMenu::espRender() {
 		ImGui::PushFont(imGuiMenu::subTitleText);
 		ImGui::Text("Health options");
 		ImGui::PopFont();
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("HP counter", &espConf.hpCounter);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::PushFont(imGuiMenu::subTitleText);
 		ImGui::Text("Box options");
 		ImGui::PopFont();
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("Width", &espConf.width, 1.f, 5.f);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("Thickness", &espConf.boundBoxThickness, 1.f, 3.f);
@@ -144,6 +147,7 @@ void imGuiMenu::espRender() {
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::PushFont(imGuiMenu::subTitleText);
 		ImGui::Text("Skeleton colours");
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::PopFont();
 		ImGui::ColorEdit3("Skeleton colour", (float*)&espConf.skeletonColours);
 		ImGui::EndChild();
