@@ -42,24 +42,6 @@ namespace offsets {
 };
 
 
-class Classes {
-public:
-	MemoryManagement::moduleData moduleData;
-	uintptr_t entity_list;
-
-	Classes(MemoryManagement::moduleData module) {
-		moduleData = module;
-		entity_list = MemMan.ReadMem<uintptr_t>(moduleData.base + offsets::clientDLL["dwEntityList"]["value"]);
-	}
-
-	uintptr_t listEntry;
-	uintptr_t getListEntry(int id);
-	
-	// CCSPlayerController
-	uintptr_t CCSPlayerController_;
-	uintptr_t getCCSPlayerControllerBase(int id);
-};
-
 
 class CCSPlayerController{
 public:
