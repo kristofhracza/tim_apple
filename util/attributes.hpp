@@ -63,11 +63,18 @@ public:
 
 class CCSPlayerController{
 public:
-	uintptr_t value;
+	uintptr_t entityList;
+	int id;
 
-	CCSPlayerController(uintptr_t playerController) {
-		value = playerController;
+	CCSPlayerController(uintptr_t base) {
+		entityList = MemMan.ReadMem<uintptr_t>(base + offsets::clientDLL["dwEntityList"]["value"]);
 	}
+
+	uintptr_t listEntry;
+	uintptr_t getListEntry();
+
+	uintptr_t value;
+	uintptr_t getController();
 
 	int pawnHealth;
 	int getPawnHealth();
@@ -88,16 +95,14 @@ public:
 class C_CSPlayerPawn {
 public:
 	std::uint32_t value;
+	uintptr_t entityList;
 
-	uintptr_t entity_list;
-	uintptr_t listEntry;
-	uintptr_t moduleBase;
-	
 	C_CSPlayerPawn(uintptr_t base) {
-		moduleBase = base;
-		entity_list = MemMan.ReadMem<uintptr_t>(base + offsets::clientDLL["dwEntityList"]["value"]);
-		listEntry = MemMan.ReadMem<uintptr_t>(entity_list + 0x8 * ((value & 0x7FFF) >> 9) + 0x10);
+		entityList = MemMan.ReadMem<uintptr_t>(base + offsets::clientDLL["dwEntityList"]["value"]);
 	}
+
+	uintptr_t listEntry;
+	uintptr_t getListEntry();
 
 	uintptr_t playerPawn;
 	uintptr_t getPlayerPawn();

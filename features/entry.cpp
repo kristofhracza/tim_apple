@@ -5,9 +5,7 @@
 #include "../util/utilFunctions.hpp"
 
 void mainLoop(bool state, MemoryManagement::moduleData client) {
-
 	// Classes
-	Classes					Classes(client);
 	CCSPlayerController		CCSPlayerController(client.base);
 	C_CSPlayerPawn			C_CSPlayerPawn(client.base);
 	CGameSceneNode			CGameSceneNode;
@@ -18,7 +16,6 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 	view_matrix_t viewMatrix = MemMan.ReadMem<view_matrix_t>(client.base + offsets::clientDLL["dwViewMatrix"]["value"]);
 	Vector3 baseViewAngles = MemMan.ReadMem<Vector3>(client.base + offsets::clientDLL["dwViewAngles"]["value"]);
 	DWORD_PTR baseViewAnglesAddy = client.base + offsets::clientDLL["dwViewAngles"]["value"];
-
 
 	// NOTE: Cheats that only need local player / visuals that don't relate to gameplay
 	localPlayer.getPlayerPawn();
@@ -54,26 +51,25 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 	// Main loop
 	for (int i = 0; i < 64; i++) {
 
-		// Class and value initialisations
-		Classes.getListEntry(i);
-		
-		CCSPlayerController.value = Classes.getCCSPlayerControllerBase(i);
+		// Player controller
+		CCSPlayerController.id = i;
+		CCSPlayerController.getListEntry();
+		CCSPlayerController.getController();
 		if (CCSPlayerController.value == 0) continue;
 
-		C_CSPlayerPawn.value = CCSPlayerController.getC_CSPlayerPawn();
-		
 		// Player pawn
+		C_CSPlayerPawn.value = CCSPlayerController.getC_CSPlayerPawn();
+		C_CSPlayerPawn.getListEntry();
 		C_CSPlayerPawn.getPlayerPawn();
 		C_CSPlayerPawn.getPawnHealth();
 
+		// Game scene node
 		CGameSceneNode.value = C_CSPlayerPawn.getCGameSceneNode();
-
-
+		
 		// Checks
 		if ((C_CSPlayerPawn.getPawnHealth() <= 0 || C_CSPlayerPawn.getPawnHealth() > 100) || localPlayer.getTeam() == CCSPlayerController.getPawnTeam()) {
 			continue;
 		}
-
 
 		// ESP
 		if (espConf.state) {

@@ -1,18 +1,16 @@
 #include "attributes.hpp"
 
 
-uintptr_t Classes::getListEntry(int id) {
-	listEntry = MemMan.ReadMem<uintptr_t>(entity_list + (0x8 * (id & 0x7FFF) >> 9) + 0x10);
+
+uintptr_t CCSPlayerController::getListEntry() {
+	listEntry = MemMan.ReadMem<uintptr_t>(entityList + (0x8 * (id & 0x7FFF) >> 9) + 0x10);
 	return listEntry;
 }
 
-uintptr_t Classes::getCCSPlayerControllerBase(int id) {
-	CCSPlayerController_ = MemMan.ReadMem<uintptr_t>(listEntry + 0x78 * (id & 0x1FF));
-	return CCSPlayerController_;
+uintptr_t CCSPlayerController::getController() {
+	value = MemMan.ReadMem<uintptr_t>(listEntry + 0x78 * (id & 0x1FF));
+	return value;
 }
-
-
-
 
 int CCSPlayerController::getPawnHealth() {
 	pawnHealth = MemMan.ReadMem<int>(value + clientDLL::CCSPlayerController_["m_iPawnHealth"]["value"]);
@@ -44,6 +42,10 @@ std::string CCSPlayerController::getPawnName() {
 
 
 
+uintptr_t C_CSPlayerPawn::getListEntry() {
+	listEntry = MemMan.ReadMem<uintptr_t>(entityList + 0x8 * ((value & 0x7FFF) >> 9) + 0x10);
+	return listEntry;
+}
 
 uintptr_t C_CSPlayerPawn::getPlayerPawn() {
 	playerPawn = MemMan.ReadMem<uintptr_t>(listEntry + 0x78 * (value & 0x1FF));
@@ -51,7 +53,7 @@ uintptr_t C_CSPlayerPawn::getPlayerPawn() {
 }
 
 uintptr_t C_CSPlayerPawn::getPlayerPawnByCrossHairID(int crossHairEntity) {
-	uintptr_t crosshairEntityEntry = MemMan.ReadMem<uintptr_t>(entity_list + 0x8 * (crossHairEntity >> 9) + 0x10);
+	uintptr_t crosshairEntityEntry = MemMan.ReadMem<uintptr_t>(entityList + 0x8 * (crossHairEntity >> 9) + 0x10);
 	playerPawn = MemMan.ReadMem<uintptr_t>(crosshairEntityEntry + 0x78 * (crossHairEntity & 0x1FF));
 	return playerPawn;
 }
