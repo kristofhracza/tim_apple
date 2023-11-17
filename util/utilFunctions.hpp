@@ -31,8 +31,23 @@ inline namespace utils {
 			return returnSize;
 		}
 
+		// This is with size being 5 !!!
+		inline float fixJointSize(float size) {
+			int returnSize = 1;
+
+			if (size > 3.f) returnSize = 3.f;
+			if (size > 7.f) returnSize = 4.f;
+			if (size < 1.f) returnSize = 2.f;
+
+			return returnSize;
+		}
+
 		inline float getFontSize(float fontSize,int distance) {
 			return (fontSize - utils::fixFontSize(distance));
+		}
+
+		inline float getJointSize(float joinSize, int distance) {
+			return (joinSize - utils::fixJointSize(distance));
 		}
 
 		inline std::tuple<float,float> getTextOffsets(float x,float y, float horizontalDivide,float verticalDivide = 1) {

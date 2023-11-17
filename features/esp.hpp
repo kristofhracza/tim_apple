@@ -25,7 +25,7 @@ namespace esp {
 	};
 
 	inline float normalESPText = 15.f;
-	inline float sideESPText = 13.f;
+	inline float sideESPText = 12.f;
 
 	void makeHealthBar(float health);
 	void makeSkeleton(view_matrix_t viewMatrix, uintptr_t boneArray);

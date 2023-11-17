@@ -95,6 +95,8 @@ void imGuiMenu::espRender() {
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Skeleton", &espConf.skeleton);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Checkbox("Joints", &espConf.joint);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Snap lines", &espConf.snapLines);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Distance", &espConf.distance);
@@ -132,24 +134,22 @@ void imGuiMenu::espRender() {
 		horizontalSplitter(HEIGHT);
 
 		ImGui::BeginChild("Colours", ImVec2(0, 0), true);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::PushFont(imGuiMenu::titleText);
 		ImGui::Text("Colours");
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::PushFont(imGuiMenu::subTitleText);
-		ImGui::Text("Box colours");
-		ImGui::PopFont();
+		ImGui::ColorEdit3("Box Spotted", (float*)&espConf.spottedColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::ColorEdit3("Spotted (base)", (float*)&espConf.spottedColours);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::ColorEdit3("Not spotted", (float*)&espConf.notSpottedColours);
+		ImGui::ColorEdit3("Box not spotted", (float*)&espConf.notSpottedColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::PushFont(imGuiMenu::subTitleText);
-		ImGui::Text("Skeleton colours");
+		ImGui::ColorEdit3("Atrributes colour", (float*)&espConf.attributeColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::PopFont();
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::ColorEdit3("Skeleton colour", (float*)&espConf.skeletonColours);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::ColorEdit3("Joint colours", (float*)&espConf.jointColours);
 		ImGui::EndChild();
 	}
 }

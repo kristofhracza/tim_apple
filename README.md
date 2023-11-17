@@ -37,7 +37,6 @@ Run the `offset_download.ps1` in the same folder as you're executable is
 
 
 ## To-Do
-- Enhance ESP
 - Add item ESP
 - Add weapon icons
 - Add mouse_event to; aimbot,rcs

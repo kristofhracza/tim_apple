@@ -24,8 +24,13 @@ struct espConfig {
 	bool hpCounter;
 	float health[3];
 
+	float attributeColours[3] = { 1.f,1.f,1.f };
+
 	bool skeleton;
 	float skeletonColours[3] = { 1.f,1.f,1.f };
+
+	bool joint;
+	float jointColours[3] = { 1.f,1.f,1.f };
 
 	bool snapLines;
 
