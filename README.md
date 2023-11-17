@@ -36,8 +36,13 @@ Run the `offset_download.ps1` in the same folder as you're executable is
 2. Place these files in the same folder as the executable file `tim_apple.exe` is     
 
 
-## Known bugs
-- Bone ESP lines go through the screen sometimes
+## To-Do
+- Enhance ESP
+- Add item ESP
+- Add weapon icons
+- Add mouse_event to; aimbot,rcs
+- Make GUI nicer and more usable
+- Config file system
 
 ## Credits
 - [ocornut/imgui](https://github.com/ocornut/imgui)
