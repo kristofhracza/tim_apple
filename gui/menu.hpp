@@ -1,7 +1,7 @@
 #include "../imgui/imgui.h"
 
 namespace imGuiMenu {
-	inline float WIDTH = 700.f;
+	inline float WIDTH = 550.f;
 	inline float HEIGHT = 650.f;
 
 	inline int tabCount = 1;

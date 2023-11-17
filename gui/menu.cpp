@@ -9,12 +9,12 @@ void imGuiMenu::setStyle() {
 	ImGuiStyle* style = &ImGui::GetStyle();
 
 	// Sizes
-	style->FramePadding = ImVec2(7,7);
+	style->FramePadding = ImVec2(5,5);
 	style->FrameBorderSize = 1.f;
 	style->FrameRounding = 0.f;
 
 	style->WindowPadding = ImVec2(6, 6);
-
+	
 	style->GrabRounding = 0.f;
 	style->GrabMinSize = 20.f;
 
@@ -78,7 +78,7 @@ void imGuiMenu::horizontalSplitter(float height) {
 void imGuiMenu::espRender() {
 	if (tabCount == 1) {
 
-		ImGui::BeginChild("Features", ImVec2(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt + 20), true);
+		ImGui::BeginChild("Features", ImVec2(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt), true);
 		ImGui::PushFont(imGuiMenu::titleText);
 		ImGui::Text("Attributes");
 		ImGui::PopFont();
@@ -97,14 +97,14 @@ void imGuiMenu::espRender() {
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Joints", &espConf.joint);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Snap lines", &espConf.snapLines);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Distance", &espConf.distance);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Checkbox("Snap lines", &espConf.snapLines);
 		ImGui::EndChild();
 
 		verticalSplitter(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt);
 
-		ImGui::BeginChild("Feature options", ImVec2(0, imGuiMenu::heightSeparatorInt + 20), true);
+		ImGui::BeginChild("Feature options", ImVec2(0, imGuiMenu::heightSeparatorInt), true);
 		ImGui::PushFont(imGuiMenu::titleText);
 		ImGui::Text("Feature options");
 		ImGui::PopFont();
@@ -139,13 +139,11 @@ void imGuiMenu::espRender() {
 		ImGui::Text("Colours");
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::ColorEdit3("Box Spotted", (float*)&espConf.spottedColours);
+		ImGui::ColorEdit3("Box spotted", (float*)&espConf.spottedColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::ColorEdit3("Box not spotted", (float*)&espConf.notSpottedColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::ColorEdit3("Atrributes colour", (float*)&espConf.attributeColours);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::ColorEdit3("Skeleton colour", (float*)&espConf.skeletonColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
@@ -291,7 +289,7 @@ void imGuiMenu::menuBar() {
 
 void imGuiMenu::renderMenu(bool state) {
 	ImGui::PushFont(normalText);
-	ImGui::SetNextWindowSize({500,450}, ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize({WIDTH,HEIGHT}, ImGuiCond_FirstUseEver);
 	ImGui::Begin("Tim Apple", &state, ImGuiWindowFlags_MenuBar);
 	
 	// Config
