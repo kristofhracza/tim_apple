@@ -73,8 +73,8 @@ struct Vector3 {
 		float screen_x = GetSystemMetrics(SM_CXSCREEN) * 0.5f;
 		float screen_y = GetSystemMetrics(SM_CYSCREEN) * 0.5f;
 
-		screen_x += 0.5f * _x * 1920 + 0.5f;
-		screen_y -= 0.5f * _y * 1080 + 0.5f;
+		screen_x += 0.5f * _x * GetSystemMetrics(SM_CXSCREEN) + 0.5f;
+		screen_y -= 0.5f * _y * GetSystemMetrics(SM_CYSCREEN) + 0.5f;
 
 		return { screen_x, screen_y, w };
 	}
