@@ -64,9 +64,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		C_CSPlayerPawn.getPawnHealth();
 
 		// Checks
-		if ((C_CSPlayerPawn.getPawnHealth() <= 0 || C_CSPlayerPawn.getPawnHealth() > 100) || localPlayer.getTeam() == CCSPlayerController.getPawnTeam()) {
-			continue;
-		}
+		if ((C_CSPlayerPawn.getPawnHealth() <= 0 || C_CSPlayerPawn.getPawnHealth() > 100) || localPlayer.getTeam() == CCSPlayerController.getPawnTeam() || strcmp(CCSPlayerController.getPawnName().c_str(), "DemoRecorder") == 0) continue;
 
 		// Game scene node
 		CGameSceneNode.value = C_CSPlayerPawn.getCGameSceneNode();
