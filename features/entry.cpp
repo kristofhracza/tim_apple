@@ -9,7 +9,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 	CCSPlayerController		CCSPlayerController(client.base);
 	C_CSPlayerPawn			C_CSPlayerPawn(client.base);
 	CGameSceneNode			CGameSceneNode;
-	LocalPlayer				localPlayer(client);
+	LocalPlayer				localPlayer(client.base);
 
 
 	// Shared variables (between features)
@@ -63,13 +63,13 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		C_CSPlayerPawn.getPlayerPawn();
 		C_CSPlayerPawn.getPawnHealth();
 
-		// Game scene node
-		CGameSceneNode.value = C_CSPlayerPawn.getCGameSceneNode();
-		
 		// Checks
 		if ((C_CSPlayerPawn.getPawnHealth() <= 0 || C_CSPlayerPawn.getPawnHealth() > 100) || localPlayer.getTeam() == CCSPlayerController.getPawnTeam()) {
 			continue;
 		}
+
+		// Game scene node
+		CGameSceneNode.value = C_CSPlayerPawn.getCGameSceneNode();
 
 		// ESP
 		if (espConf.state) {

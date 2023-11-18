@@ -139,12 +139,12 @@ public:
 
 class LocalPlayer {
 public:
-	MemoryManagement::moduleData moduleData;
 	uintptr_t localPlayer;
+	uintptr_t base;
 
-	LocalPlayer(MemoryManagement::moduleData module) {
-		moduleData = module;
-		localPlayer = MemMan.ReadMem<uintptr_t>(moduleData.base + offsets::clientDLL["dwLocalPlayerController"]["value"]);
+	LocalPlayer(uintptr_t baseAddy) {
+		base = baseAddy;
+		localPlayer = MemMan.ReadMem<uintptr_t>(base + offsets::clientDLL["dwLocalPlayerController"]["value"]);
 	}
 
 	uintptr_t playerPawn;

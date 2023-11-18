@@ -108,7 +108,7 @@ int C_CSPlayerPawn::getEntitySpotted() {
 
 
 uintptr_t LocalPlayer::getPlayerPawn() {
-	playerPawn = MemMan.ReadMem<uintptr_t>(moduleData.base + offsets::clientDLL["dwLocalPlayerPawn"]["value"]);
+	playerPawn = MemMan.ReadMem<uintptr_t>(base + offsets::clientDLL["dwLocalPlayerPawn"]["value"]);
 	return playerPawn;
 }
 
