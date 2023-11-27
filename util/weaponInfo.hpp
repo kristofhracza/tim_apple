@@ -116,3 +116,68 @@ inline const char* getWeaponFromID(uint16_t id) {
         return "Unknown";
     }
 }
+
+// Big thanks to FoxHvh https://www.unknowncheats.me/forum/members/4389301.html
+// Thread: https://www.unknowncheats.me/forum/counter-strike-2-a/608799-weapon-icon-esp.html
+inline const char* gunIcon(const std::string& weapon){
+    std::map<std::string, const char*> gunIcons = {
+        {"nova", "T"},
+        {"ak47", "A"},
+        {"awp", "C"},
+        {"m4a4", "M"},
+        {"deagle", "F"},
+        {"mp9", "R"},
+        {"famas", "H"},
+        {"ump45", "b"},
+        {"glock", "D"},
+        {"knife_ct", "]"},
+        {"knife_t", "["},
+        {"deagle", "A"},
+        {"elite", "B"},
+        {"fiveseven", "C"},
+        {"revolver", "J"},
+        {"hkp2000", "E"},
+        {"p250", "F"},
+        {"usp_silencer", "G"},
+        {"tec9", "H"},
+        {"cz75a", "I"},
+        {"mac10", "K"},
+        {"ump45", "L"},
+        {"bizon", "M"},
+        {"mp7", "N"},
+        {"mp9", "R"},
+        {"p90", "O"},
+        {"galilar", "Q"},
+        {"famas", "R"},
+        {"m4a1_silencer", "T"},
+        {"m4a1", "S"},
+        {"aug", "U"},
+        {"sg556", "V"},
+        {"ak47", "W"},
+        {"g3sg1", "X"},
+        {"scar20", "Y"},
+        {"awp", "Z"},
+        {"ssg08", "a"},
+        {"xm1014", "b"},
+        {"sawedoff", "c"},
+        {"mag7", "d"},
+        {"nova", "e"},
+        {"negev", "f"},
+        {"m249", "g"},
+        {"taser", "h"},
+        {"flashbang", "i"},
+        {"hegrenade", "j"},
+        {"smokegrenade", "k"},
+        {"molotov", "l"},
+        {"decoy", "m"},
+        {"incgrenade", "n"},
+        {"c4", "o"},
+   };
+
+    auto it = gunIcons.find(weapon);
+    if (it != gunIcons.end()) {
+        return it->second;
+    }
+
+    return "";
+}

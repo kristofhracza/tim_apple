@@ -22,6 +22,7 @@ namespace esp {
 		inline Vector3 entityOrigin;
 		inline uint64_t weaponID;
 		inline int distance;
+		inline std::string weaponName;
 	};
 
 	inline float normalESPText = 15.f;

@@ -1,5 +1,6 @@
 #include "esp.hpp"
 
+#include <filesystem>
 
 void esp::makeHealthBar(float health) {
 	int healthBarYOffset = ((int)(sharedData::height * health * 0.01f));
@@ -43,12 +44,12 @@ void esp::makeSkeleton(view_matrix_t viewMatrix, uintptr_t boneArray) {
 			ImGui::GetBackgroundDrawList()->AddLine({ previousScreenPos.x,previousScreenPos.y }, { currentScreenPos.x,currentScreenPos.y }, skeletonColour,1.5f);
 
 			if (espConf.joint) ImGui::GetBackgroundDrawList()->AddCircleFilled({ currentScreenPos.x,currentScreenPos.y }, getJointSize(5.f, distance), jointColour);
-
+			
 			previous = current;
 		}
 	}
 }
- 
+
 
 void esp::makeName(std::string name) {
 	ImVec2 textSize = ImGui::CalcTextSize(name.c_str());
@@ -59,12 +60,23 @@ void esp::makeName(std::string name) {
 
 
 void esp::makeWeaponname() {
-	std::string name = getWeaponFromID(weaponID);
-	ImVec2 textSize = ImGui::CalcTextSize(name.c_str());
+	std::string name;
+	if (strcmp(sharedData::weaponName.c_str(), "") == 0 || !std::filesystem::exists(timAppleSystem::weaponIconsTTF)) {
+		name = getWeaponFromID(sharedData::weaponID);
+		ImVec2 textSize = ImGui::CalcTextSize(name.c_str());
 
-	auto [horizontalOffset, verticalOffset] = getTextOffsets(textSize.x, textSize.y, 2.f, (sharedData::height + 15.f));
+		auto [horizontalOffset, verticalOffset] = getTextOffsets(textSize.x, textSize.y, 2.f, (sharedData::height + 15.f));
 
-	ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::espNameText, getFontSize(normalESPText, distance), { sharedData::headPosToScreen.x - horizontalOffset, sharedData::headPosToScreen.y - verticalOffset }, ImColor(espConf.attributeColours[0], espConf.attributeColours[1], espConf.attributeColours[2]), name.c_str());
+		ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::espNameText, getFontSize(normalESPText, distance), { sharedData::headPosToScreen.x - horizontalOffset, sharedData::headPosToScreen.y - verticalOffset }, ImColor(espConf.attributeColours[0], espConf.attributeColours[1], espConf.attributeColours[2]), name.c_str());
+	}
+	else {
+		name = gunIcon(weaponName);
+		ImVec2 textSize = ImGui::CalcTextSize(name.c_str());
+
+		auto [horizontalOffset, verticalOffset] = getTextOffsets(textSize.x, textSize.y, 2.f, (sharedData::height + 15.f));
+
+		ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::weaponIcons, getFontSize(normalESPText, distance), { sharedData::headPosToScreen.x - horizontalOffset, sharedData::headPosToScreen.y - verticalOffset }, ImColor(espConf.attributeColours[0], espConf.attributeColours[1], espConf.attributeColours[2]), name.c_str());
+	}
 }
 
 void esp::makeDistance() {

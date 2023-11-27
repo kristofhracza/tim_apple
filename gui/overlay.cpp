@@ -4,6 +4,7 @@
 #include "../util/Vectors.h"
 #include "../util/MemMan.hpp"
 #include "../util/attributes.hpp"
+#include "../util/config.hpp"
 
 #include "../features/entry.hpp"
 
@@ -89,6 +90,8 @@ void overlayESP::initWindow(int nShowCmd) {
 	imGuiMenu::subTitleText = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\verdanab.ttf", 15.f);
 	imGuiMenu::highlightText = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\verdanai.ttf", 13.f);
 	imGuiMenu::espNameText = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\verdanab.ttf", 15.f);
+	imGuiMenu::weaponIcons = io.Fonts->AddFontFromFileTTF(timAppleSystem::weaponIconsTTF.c_str(), 20.f);
+
 	ImGui::StyleColorsDark();
 
 	ImGui_ImplWin32_Init(window);

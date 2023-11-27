@@ -102,3 +102,7 @@ inline namespace boneGroups {
 	inline std::vector<int> rightLeg = { bones::crotch,bones::kneeRight,bones::ankleRight};
 	inline std::vector<std::vector<int>> allGroups = {mid,leftArm,righttArm,leftLeg,rightLeg};
 };
+
+inline namespace timAppleSystem {
+	inline std::string weaponIconsTTF = ".\\fonts\\weaponIcons.ttf";
+}

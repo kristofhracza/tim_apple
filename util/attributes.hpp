@@ -9,6 +9,8 @@
 
 #include "../json/jsonOps.hpp"
 
+#include "weaponInfo.hpp"
+
 struct C_UTL_VECTOR
 {
 	DWORD_PTR count = 0;
@@ -34,6 +36,7 @@ namespace clientDLL {
 	inline nlohmann::json CGameSceneNode_ = clientDLLOffsets["CGameSceneNode"]["data"];
 	inline nlohmann::json EntitySpottedState_t_ = clientDLLOffsets["EntitySpottedState_t"]["data"];
 	inline nlohmann::json C_CSGameRules_= clientDLLOffsets["C_CSGameRules"]["data"];
+	inline nlohmann::json CCSWeaponBaseVData_ = clientDLLOffsets["CCSWeaponBaseVData"]["data"];
 };
 
 
@@ -108,16 +111,11 @@ public:
 	uintptr_t pawnTeam;
 	uintptr_t getPawnTeam();
 
-
-	/*
-	TODO: Define classes to properly get weapon data
-		C_CSWeaponBase (look at offsets for inheritance)
-		uint16_t getC_CSWeaponBase();
-		uint16_t C_CSWeaponBase;
-	*/
 	uint64_t C_CSWeaponBase;
 	uint16_t weaponID;
+	std::string weaponName;
 	uint16_t getWeaponID();
+	std::string getWeaponName();
 
 	int spotted;
 	int getEntitySpotted();

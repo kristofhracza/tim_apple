@@ -72,6 +72,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		// ESP
 		if (espConf.state) {
 			esp::sharedData::weaponID = C_CSPlayerPawn.getWeaponID();
+			esp::sharedData::weaponName = C_CSPlayerPawn.getWeaponName();
 			esp::sharedData::localOrigin = localPlayer.getOrigin();
 			esp::sharedData::entityOrigin = C_CSPlayerPawn.getOrigin();
 			esp::sharedData::distance = (int)(utils::getDistance(esp::sharedData::localOrigin, esp::sharedData::entityOrigin)) / 100;

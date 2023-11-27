@@ -89,6 +89,25 @@ uint16_t C_CSPlayerPawn::getWeaponID() {
 	return weaponID;
 }
 
+std::string C_CSPlayerPawn::getWeaponName() {
+	C_CSWeaponBase = MemMan.ReadMem<uint64_t>(playerPawn + clientDLL::C_CSPlayerPawnBase_["m_pClippingWeapon"]["value"]);
+	uint64_t weaponData = MemMan.ReadMem<uint64_t>(C_CSWeaponBase + clientDLL::C_BaseEntity_["m_nSubclassID"]["value"] + 0x8);
+	uint64_t weaponNameAddress = MemMan.ReadMem<uint64_t>(weaponData + clientDLL::CCSWeaponBaseVData_["m_szName"]["value"]);
+
+	if (!weaponNameAddress) {
+		weaponName = "NULL";
+	}
+	else {
+		char buf[MAX_PATH] = {};
+		MemMan.ReadRawMem(weaponNameAddress, buf, MAX_PATH);
+		weaponName = std::string(buf);
+		if (weaponName.compare(0, 7, "weapon_") == 0) {
+			weaponName = weaponName.substr(7, weaponName.length());
+		}
+	}
+	return weaponName;
+}
+
 int C_CSPlayerPawn::getPawnHealth() {
 	pawnHealth = MemMan.ReadMem<int>(playerPawn + clientDLL::C_BaseEntity_["m_iHealth"]["value"]);
 	return pawnHealth;

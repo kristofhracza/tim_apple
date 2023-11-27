@@ -87,9 +87,9 @@ void imGuiMenu::espRender() {
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Bounding Box", &espConf.boundBox);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Show player name", &espConf.isPawnName);
+		ImGui::Checkbox("Player name", &espConf.isPawnName);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Reveal gun", &espConf.isPawnGun);
+		ImGui::Checkbox("Weapon name", &espConf.isPawnGun);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Health bar", &espConf.isHealthBar);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
