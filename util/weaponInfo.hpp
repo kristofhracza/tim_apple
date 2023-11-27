@@ -122,7 +122,7 @@ inline const char* getWeaponFromID(uint16_t id) {
 inline const char* gunIcon(const std::string& weapon){
     std::map<std::string, const char*> gunIcons = {
         {"nova", "T"},
-        {"ak47", "A"},
+        {"ak47", "W"},
         {"m4a4", "M"},
         {"deagle", "F"},
         {"mp9", "R"},
