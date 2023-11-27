@@ -75,7 +75,7 @@ void esp::makeWeaponname() {
 
 		auto [horizontalOffset, verticalOffset] = getTextOffsets(textSize.x, textSize.y, 2.f, (sharedData::height + 15.f));
 
-		ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::weaponIcons, getFontSize(normalESPText, distance), { sharedData::headPosToScreen.x - horizontalOffset, sharedData::headPosToScreen.y - verticalOffset }, ImColor(espConf.attributeColours[0], espConf.attributeColours[1], espConf.attributeColours[2]), name.c_str());
+		ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::weaponIcons, getFontSize(normalESPText, distance), { sharedData::headPosToScreen.x - horizontalOffset - textSize.x, sharedData::headPosToScreen.y - verticalOffset }, ImColor(espConf.attributeColours[0], espConf.attributeColours[1], espConf.attributeColours[2]), name.c_str());
 	}
 }
 

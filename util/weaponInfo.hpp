@@ -123,7 +123,6 @@ inline const char* gunIcon(const std::string& weapon){
     std::map<std::string, const char*> gunIcons = {
         {"nova", "T"},
         {"ak47", "A"},
-        {"awp", "C"},
         {"m4a4", "M"},
         {"deagle", "F"},
         {"mp9", "R"},
@@ -146,7 +145,8 @@ inline const char* gunIcon(const std::string& weapon){
         {"bizon", "M"},
         {"mp7", "N"},
         {"mp9", "R"},
-        {"p90", "O"},
+        {"mp5sd","x"},
+        {"p90", "P"},
         {"galilar", "Q"},
         {"famas", "R"},
         {"m4a1_silencer", "T"},
@@ -172,6 +172,7 @@ inline const char* gunIcon(const std::string& weapon){
         {"decoy", "m"},
         {"incgrenade", "n"},
         {"c4", "o"},
+        {"defuse kit", "r" },
    };
 
     auto it = gunIcons.find(weapon);
