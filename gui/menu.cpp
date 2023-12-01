@@ -166,6 +166,8 @@ void imGuiMenu::aimRender() {
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Visibility check", &aimConf.checkSpotted);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Checkbox("Safe mode", &aimConf.safe);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("FOV", &aimConf.fov, 1.f, 25.f);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("Smoothing", &aimConf.smoothing, 1.f, 5.f);

@@ -43,10 +43,14 @@ Run the `offset_download.ps1` in the same folder as you're executable is
 2. Add the file `weaponIcons.ttf` in the folder.
 *(If the program cannot see the file, weapon names will be displayed instead)*
 
+### Is this cheat read-only?
+It can be if you use the features that don't write to the game's memory.     
+Namely: All ESP, Bunny Hop and Trigger Bot
+
 ## To-Do
 - Add item ESP
-- Add mouse_event to; aimbot,rcs
 - Config file system
+- Add mouse_event to; aimbot,rcs
 
 ## Credits
 - [ocornut/imgui](https://github.com/ocornut/imgui)
