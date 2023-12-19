@@ -132,6 +132,9 @@ public:
 
 	uintptr_t boneArray;
 	uintptr_t getBoneArray();
+
+	Vector3 origin;
+	Vector3 getOrigin();
 };
 
 

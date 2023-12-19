@@ -192,6 +192,10 @@ uintptr_t CGameSceneNode::getBoneArray() {
 	return boneArray;
 }
 
+Vector3 CGameSceneNode::getOrigin() {
+	origin = MemMan.ReadMem<Vector3>(value + clientDLL::CGameSceneNode_["m_vecAbsOrigin"]["value"]);
+	return origin;
+}
 
 
 
