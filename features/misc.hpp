@@ -3,6 +3,7 @@
 #include "include.hpp"
 
 #include "../util/config.hpp"
+#include "../gui/menu.hpp"
 
 namespace misc {
 
@@ -11,4 +12,5 @@ namespace misc {
 	};
 
 	void bunnyHop(DWORD_PTR base, int flags);
+	void droppedItem(C_CSPlayerPawn C_CSPlayerPawn, CGameSceneNode CGameSceneNode, view_matrix_t viewMatrix);
 }

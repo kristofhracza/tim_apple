@@ -123,6 +123,11 @@ int C_CSPlayerPawn::getEntitySpotted() {
 	return spotted;
 }
 
+int C_CSPlayerPawn::getOwner() {
+	owner = MemMan.ReadMem<DWORD_PTR>(playerPawn + clientDLL::C_BaseEntity_["m_hOwnerEntity"]["value"]);
+	return owner;
+}
+
 
 
 

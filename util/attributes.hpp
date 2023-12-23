@@ -120,6 +120,9 @@ public:
 	int spotted;
 	int getEntitySpotted();
 
+	int owner;
+	int getOwner();
+
 	// CGameSceneNode
 	uintptr_t CGameSceneNode;
 	uintptr_t getCGameSceneNode();

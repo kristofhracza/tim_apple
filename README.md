@@ -1,5 +1,5 @@
 # :apple: Tim Apple
-Simple CS2 external cheat
+CS2 external cheat
 
 ![Preview](screenshots/preview.png)
 
@@ -35,6 +35,7 @@ Run the `offset_download.ps1` in the same folder as you're executable is
 ### Misc
 - Bunny hop
 - Anti flash
+- Dropped item ESP
 
 ## FAQ
 ### How to use the weapon icon font file

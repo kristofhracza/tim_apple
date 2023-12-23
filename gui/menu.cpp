@@ -264,6 +264,8 @@ void imGuiMenu::miscRender() {
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Anti flash", &miscConf.flash);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Checkbox("Dropped Item ESP", &miscConf.itemESP);
 		ImGui::EndChild();
 	}
 }
