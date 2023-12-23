@@ -35,7 +35,7 @@ Run the `offset_download.ps1` in the same folder as you're executable is
 ### Misc
 - Bunny hop
 - Anti flash
-- Dropped item ESP
+- Dropped item ESP **(PERFORMANCE ISSUES)**
 
 ## FAQ
 ### How to use the weapon icon font file
