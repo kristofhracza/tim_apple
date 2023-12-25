@@ -32,6 +32,7 @@ Run the `offset_download.ps1` in the same folder as you're executable is
 - Aimbot
 - Recoil control system
 - Trigger bot
+- Player lock
 ### Misc
 - Bunny hop
 - Anti flash
