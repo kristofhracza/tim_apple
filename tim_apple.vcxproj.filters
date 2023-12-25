@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
-    <None Include="imgui.ini" />
     <None Include=".gitignore" />
     <None Include="x64\Release\client.dll.json" />
     <None Include="offset_download.ps1" />

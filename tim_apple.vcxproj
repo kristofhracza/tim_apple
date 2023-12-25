@@ -174,7 +174,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
-    <None Include="imgui.ini" />
     <None Include="offset_download.ps1" />
     <None Include="README.md" />
     <None Include="x64\Release\client.dll.json" />

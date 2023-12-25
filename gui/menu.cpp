@@ -126,6 +126,11 @@ void imGuiMenu::espRender() {
 		ImGui::Text("Box options");
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Checkbox("Colour fill", &espConf.filledBox);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::SliderFloat("Fill alpha", &espConf.filledBoxAlpha, 0.f, 1.f);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("Width", &espConf.width, 1.f, 5.f);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("Thickness", &espConf.boundBoxThickness, 1.f, 3.f);
@@ -144,6 +149,8 @@ void imGuiMenu::espRender() {
 		ImGui::ColorEdit3("Box not spotted", (float*)&espConf.notSpottedColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::ColorEdit3("Atrributes colour", (float*)&espConf.attributeColours);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::ColorEdit3("Corner colours", (float*)&espConf.cornerColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::ColorEdit3("Skeleton colour", (float*)&espConf.skeletonColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));

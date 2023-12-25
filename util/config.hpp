@@ -9,9 +9,12 @@ struct espConfig {
 	bool checkSpotted;
 
 	bool boundBox;
+	bool filledBox;
+	float filledBoxAlpha = 0.25f;
 	float boundBoxThickness = 1.f;
 	float spottedColours[3] = { 1.f,1.f,1.f };
 	float notSpottedColours[3] = { 1.f,1.f,1.f };
+	float cornerColours[3] = { 1.f,1.f,1.f };
 	float width = 2.5f;
 
 	bool isPawnName;
