@@ -5,15 +5,15 @@
 #include <map>
 
 struct espConfig {
-	bool state = false;
+	bool state = true;
 	bool checkSpotted;
 
-	bool boundBox;
-	bool filledBox;
-	float filledBoxAlpha = 0.25f;
+	bool boundBox = true;
+	bool filledBox = true;
+	float filledBoxAlpha = 0.35f;
 	float boundBoxThickness = 1.f;
-	float spottedColours[3] = { 1.f,1.f,1.f };
-	float notSpottedColours[3] = { 1.f,1.f,1.f };
+	float spottedColours[3] = { 0.71f,1.f,0.f };
+	float notSpottedColours[3] = { 0.f,0.96f,1.f };
 	float cornerColours[3] = { 1.f,1.f,1.f };
 	float width = 2.5f;
 
@@ -29,7 +29,7 @@ struct espConfig {
 
 	float attributeColours[3] = { 1.f,1.f,1.f };
 
-	bool skeleton;
+	bool skeleton = true;
 	float skeletonColours[3] = { 1.f,1.f,1.f };
 
 	bool joint;
@@ -50,7 +50,7 @@ struct aimConfig {
 	bool checkSpotted;
 	float smoothing = 1.f;
 
-	float fov = 2;
+	float fov = 2.5;
 	bool fovCircle;
 
 	int bone;
