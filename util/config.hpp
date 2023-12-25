@@ -23,7 +23,7 @@ struct espConfig {
 	bool isPawnGun;
 	std::string pawnGun;
 
-	bool isHealthBar true;
+	bool isHealthBar =  true;
 	bool hpCounter;
 	float health[3];
 
