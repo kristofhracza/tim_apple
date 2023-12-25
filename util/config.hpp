@@ -23,7 +23,7 @@ struct espConfig {
 	bool isPawnGun;
 	std::string pawnGun;
 
-	bool isHealthBar;
+	bool isHealthBar true;
 	bool hpCounter;
 	float health[3];
 
@@ -66,7 +66,7 @@ struct aimConfig {
 	int hotSelectTrigger = 0;
 	int hotTrigger;
 
-	bool playerLock;
+	bool playerLock = true;
 
 	std::vector<std::string> hotKey = {"SHIFT","ALT","CTRL","Left mouse","Right mouse"};
 	std::map <std::string, int> hotKeyMap = { {"SHIFT",VK_SHIFT}, {"ALT",VK_MENU},{"CTRL",VK_CONTROL},{"Left mouse",VK_LBUTTON},{"Right mouse",VK_RBUTTON}};
