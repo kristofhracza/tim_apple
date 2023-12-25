@@ -190,6 +190,11 @@ int LocalPlayer::getEntitySpotted() {
 	return spotted;
 }
 
+bool LocalPlayer::getIsScoped() {
+	isScoped = MemMan.ReadMem<DWORD_PTR>(playerPawn + clientDLL::C_CSPlayerPawnBase_["m_bIsScoped"]["value"]);
+	return isScoped;
+}
+
 
 
 uintptr_t CGameSceneNode::getBoneArray() {

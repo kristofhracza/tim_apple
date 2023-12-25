@@ -13,9 +13,10 @@ void aim::aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, DWORD_PTR base
 	newAngle.y = newAngle.y / aimConf.smoothing;
 
 	if (newAngle.IsZero()) {
+		lockedPlayer = 0;
 		return;
 	}
-
+	
 	if (aimConf.isHotAim) {
 		if (GetAsyncKeyState(aimConf.hotKeyMap[aimConf.hotKey[aimConf.hotSelectAim]])) {
 			MemMan.WriteMem<Vector3>(baseViewAnglesAddy, baseViewAngles + newAngle);

@@ -185,6 +185,9 @@ public:
 
 	int spotted;
 	int getEntitySpotted();
+
+	bool isScoped;
+	bool getIsScoped();
 };
 
 

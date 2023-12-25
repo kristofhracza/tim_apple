@@ -65,7 +65,9 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		C_CSPlayerPawn.getPawnHealth();
 
 		// Checks
+		if (aim::lockedPlayer == C_CSPlayerPawn.playerPawn && C_CSPlayerPawn.getPawnHealth() <= 0) aim::lockedPlayer = 0;;
 		if ((C_CSPlayerPawn.getPawnHealth() <= 0 || C_CSPlayerPawn.getPawnHealth() > 100) || localPlayer.getTeam() == CCSPlayerController.getPawnTeam() || strcmp(CCSPlayerController.getPawnName().c_str(), "DemoRecorder") == 0) continue;
+
 
 		// Game scene node
 		CGameSceneNode.value = C_CSPlayerPawn.getCGameSceneNode();
@@ -90,6 +92,15 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 
 		// Aim
 		if (aimConf.state) {
+
+			// Player lock
+			if (aimConf.playerLock) {
+				if (aim::lockedPlayer == 0) aim::lockedPlayer = C_CSPlayerPawn.playerPawn;
+				if (aim::lockedPlayer != C_CSPlayerPawn.playerPawn) continue;
+			}
+
+			CGameSceneNode.value = C_CSPlayerPawn.getCGameSceneNode();
+
 			localPlayer.getCameraPos();
 			localPlayer.getViewAngles();
 
