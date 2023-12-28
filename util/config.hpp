@@ -10,17 +10,17 @@ struct espConfig {
 
 	bool boundBox = true;
 	bool filledBox = true;
-	float filledBoxAlpha = 0.35f;
-	float boundBoxThickness = 1.f;
-	float spottedColours[3] = { 0.71f,1.f,0.f };
-	float notSpottedColours[3] = { 0.f,0.96f,1.f };
+	float filledBoxAlpha = 0.2f;
+	float boundBoxThickness = 1.5f;
+	float spottedColours[3] = { 0.f,1.f,0.75f };
+	float notSpottedColours[3] = { 0.f,1.f,0.75f };
 	float cornerColours[3] = { 1.f,1.f,1.f };
 	float width = 2.5f;
 
 	bool isPawnName;
 	std::string pawnName;
 
-	bool isPawnGun;
+	bool isPawnGun = true;
 	std::string pawnGun;
 
 	bool isHealthBar =  true;
