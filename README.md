@@ -7,7 +7,9 @@ CS2 external cheat
 Open `tim_apple.sln` in Visual Studio 2022, set build configuration to `Release | x64`.      
 Press Build solution and you should receive `tim_apple.exe` file.      
 
-## Controls
+## Usage
+*The cheat will **NOT** start if the game is not running.*
+### Controls
 Press the `INSERT` key to toggle the menu.     
 Press the `END` key to end the cheat.
 
@@ -21,7 +23,7 @@ Run the `offset_download.ps1` in the same folder as you're executable is
 ## Features
 *Most features have visibility check*
 ### ESP
-- Health bar
+- Health bar (+ HP counter)
 - Player name
 - Weapon icons / names
 - Skeleton
@@ -29,10 +31,9 @@ Run the `offset_download.ps1` in the same folder as you're executable is
 - Snap lines
 - Distance
 ### Aim
-- Aimbot
+- Aimbot (+ Player lock)
 - Recoil control system
 - Trigger bot
-- Player lock
 ### Misc
 - Bunny hop
 - Anti flash
