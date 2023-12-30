@@ -279,20 +279,39 @@ void imGuiMenu::miscRender() {
 	}
 }
 
+void imGuiMenu::aboutMeRender() {
+	if (tabCount == 4) {
+		ImGui::BeginChild("About the project", ImVec2(0, 0), true);
+		ImGui::PushFont(imGuiMenu::titleText);
+		ImGui::Text("Github");
+		ImGui::PopFont();
+		ImGui::Text("https://github.com/kristofhracza/tim_apple");
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::PushFont(imGuiMenu::titleText);
+		ImGui::Text("UnknownCheats");
+		ImGui::PopFont();
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::PushFont(imGuiMenu::subTitleText);
+		ImGui::Text("Release thread");
+		ImGui::PopFont();
+		ImGui::Text("https://www.unknowncheats.me/forum/counter-strike-2-releases/609206-cs2-external-cheat-tim-apple.html");
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::PushFont(imGuiMenu::subTitleText);
+		ImGui::Text("Developer Profile");
+		ImGui::PopFont();
+		ImGui::Text("https://www.unknowncheats.me/forum/members/5680770.html");
+		ImGui::EndChild();
+	}
+}
+
 void imGuiMenu::menuBar() {
 	ImGui::BeginMenuBar();
 
-	if (ImGui::MenuItem("ESP")) {
-		tabCount = 1;
-	}
-
-	if (ImGui::MenuItem("Aim")) {
-		tabCount = 2;
-	}
-
-	if (ImGui::MenuItem("Misc")) {
-		tabCount = 3;
-	}
+	if (ImGui::MenuItem("ESP")) tabCount = 1;
+	if (ImGui::MenuItem("Aim")) tabCount = 2;
+	if (ImGui::MenuItem("Misc")) tabCount = 3;
+	if (ImGui::MenuItem("About")) tabCount = 4;
 
 	ImGui::EndMenuBar();
 }
@@ -311,6 +330,7 @@ void imGuiMenu::renderMenu(bool state) {
 	espRender();
 	aimRender();
 	miscRender();
+	aboutMeRender();
 
 	ImGui::PopFont();
 	ImGui::End();
