@@ -17,6 +17,7 @@ void misc::droppedItem(C_CSPlayerPawn C_CSPlayerPawn, CGameSceneNode CGameSceneN
 		C_CSPlayerPawn.getListEntry();
 		if (C_CSPlayerPawn.listEntry == 0) continue;
 		C_CSPlayerPawn.getPlayerPawn();
+		if (C_CSPlayerPawn.playerPawn == 0) continue;
 		if (C_CSPlayerPawn.getOwner() != -1) continue;
 
 		// Entity name
