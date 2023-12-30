@@ -18,6 +18,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 	DWORD_PTR baseViewAnglesAddy = client.base + offsets::clientDLL["dwViewAngles"]["value"];
 	uintptr_t entityList = MemMan.ReadMem<uintptr_t>(client.base + offsets::clientDLL["dwEntityList"]["value"]);
 
+
 	// NOTE: Cheats that only need local player / visuals that don't relate to gameplay
 	localPlayer.getPlayerPawn();
 	// Aimbot FOV circle
@@ -29,24 +30,16 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		ImGui::GetBackgroundDrawList()->AddCircle({ screenMidX ,screenMidY }, (aimConf.fov * 10), ImColor(1.f, 1.f, 1.f, 1.f), 0, 1.f);
 	}
 	// Recoil control
-	if (aimConf.rcs) {
-		aim::recoilControl(localPlayer, baseViewAnglesAddy);
-	}
+	if (aimConf.rcs) aim::recoilControl(localPlayer, baseViewAnglesAddy);
 
 	// Bunny hop
-	if (miscConf.bunnyHop) {
-		misc::bunnyHop(client.base, localPlayer.getFlags());
-	}
+	if (miscConf.bunnyHop) misc::bunnyHop(client.base, localPlayer.getFlags());
 
 	// Flash
-	if (miscConf.flash){
-		localPlayer.noFlash();
-	}
+	if (miscConf.flash) localPlayer.noFlash();
 
 	// Tigger
-	if (aimConf.trigger) {
-		aim::triggerBot(localPlayer, client.base);
-	}
+	if (aimConf.trigger) aim::triggerBot(localPlayer, client.base);
 
 
 	// Main loop
@@ -57,6 +50,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		CCSPlayerController.getListEntry();
 		CCSPlayerController.getController();
 		if (CCSPlayerController.value == 0) continue;
+		CCSPlayerController.getPawnName();
 
 		// Player pawn
 		C_CSPlayerPawn.value = CCSPlayerController.getC_CSPlayerPawn();
@@ -65,8 +59,8 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		C_CSPlayerPawn.getPawnHealth();
 
 		// Checks
-		if (aim::lockedPlayer == C_CSPlayerPawn.playerPawn && C_CSPlayerPawn.getPawnHealth() <= 0) aim::lockedPlayer = 0;;
-		if ((C_CSPlayerPawn.getPawnHealth() <= 0 || C_CSPlayerPawn.getPawnHealth() > 100) || localPlayer.getTeam() == CCSPlayerController.getPawnTeam() || strcmp(CCSPlayerController.getPawnName().c_str(), "DemoRecorder") == 0) continue;
+		if (aim::lockedPlayer == C_CSPlayerPawn.playerPawn && C_CSPlayerPawn.pawnHealth <= 0) aim::lockedPlayer = 0;
+		if ((C_CSPlayerPawn.pawnHealth <= 0 || C_CSPlayerPawn.pawnHealth > 100) || localPlayer.getTeam() == CCSPlayerController.getPawnTeam() || strcmp(CCSPlayerController.pawnName.c_str(), "DemoRecorder") == 0) continue;
 
 
 		// Game scene node
@@ -80,13 +74,16 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 			esp::sharedData::entityOrigin = C_CSPlayerPawn.getOrigin();
 			esp::sharedData::distance = (int)(utils::getDistance(esp::sharedData::localOrigin, esp::sharedData::entityOrigin)) / 100;
 
+			C_CSPlayerPawn.getOrigin();
+			CGameSceneNode.getBoneArray();
+
 			if (espConf.checkSpotted) {
 				if (SharedFunctions::spottedCheck(C_CSPlayerPawn, localPlayer)) {
-					esp::boundingBox(C_CSPlayerPawn.getOrigin(), viewMatrix, CCSPlayerController.getPawnName(), C_CSPlayerPawn.pawnHealth, CGameSceneNode.getBoneArray(),true);
+					esp::boundingBox(C_CSPlayerPawn.origin, viewMatrix, CCSPlayerController.pawnName, C_CSPlayerPawn.pawnHealth, CGameSceneNode.boneArray,true);
 				}
 			}
 			else {
-				esp::boundingBox(C_CSPlayerPawn.getOrigin(), viewMatrix, CCSPlayerController.getPawnName(), C_CSPlayerPawn.pawnHealth, CGameSceneNode.getBoneArray(),SharedFunctions::spottedCheck(C_CSPlayerPawn, localPlayer));
+				esp::boundingBox(C_CSPlayerPawn.origin, viewMatrix, CCSPlayerController.pawnName, C_CSPlayerPawn.pawnHealth, CGameSceneNode.boneArray,SharedFunctions::spottedCheck(C_CSPlayerPawn, localPlayer));
 			}
 		}
 
@@ -100,17 +97,18 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 			}
 
 			CGameSceneNode.value = C_CSPlayerPawn.getCGameSceneNode();
+			CGameSceneNode.getBoneArray();
 
 			localPlayer.getCameraPos();
 			localPlayer.getViewAngles();
 
 			if (aimConf.checkSpotted) {
 				if (SharedFunctions::spottedCheck(C_CSPlayerPawn, localPlayer)) {
-					aim::aimBot(localPlayer, baseViewAngles, baseViewAnglesAddy, CGameSceneNode.getBoneArray());
+					aim::aimBot(localPlayer, baseViewAngles, baseViewAnglesAddy, CGameSceneNode.boneArray);
 				}
 			}
 			else {
-				aim::aimBot(localPlayer, baseViewAngles, baseViewAnglesAddy, CGameSceneNode.getBoneArray());
+				aim::aimBot(localPlayer, baseViewAngles, baseViewAnglesAddy, CGameSceneNode.boneArray);
 			}
 		}
 	}

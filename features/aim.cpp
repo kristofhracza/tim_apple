@@ -3,9 +3,10 @@
 void aim::aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, DWORD_PTR baseViewAnglesAddy, uintptr_t boneArray) {
 	Vector3 aimPos;
 	Vector3 newAngle;
+	Vector3 angle;
 
 	aimPos = MemMan.ReadMem<Vector3>(boneArray + aimConf.boneMap[aimConf.bones[aimConf.boneSelect]] * 32);
-	Vector3 angle = CalculateAngle(localPlayer.cameraPos, aimPos, localPlayer.viewAngles);
+	angle = CalculateAngle(localPlayer.cameraPos, aimPos, localPlayer.viewAngles);
 	newAngle = calculateBestAngle(angle, aimConf.fov);
 	newAngle = clampAngles(newAngle);
 
