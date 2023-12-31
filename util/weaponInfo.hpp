@@ -123,7 +123,6 @@ inline const char* gunIcon(const std::string& weapon){
     std::map<std::string, const char*> gunIcons = {
         {"ak47", "W"},
         {"m4a4", "M"},
-        {"deagle", "F"},
         {"mp9", "R"},
         {"famas", "H"},
         {"ump45", "b"},
