@@ -121,7 +121,6 @@ inline const char* getWeaponFromID(uint16_t id) {
 // Thread: https://www.unknowncheats.me/forum/counter-strike-2-a/608799-weapon-icon-esp.html
 inline const char* gunIcon(const std::string& weapon){
     std::map<std::string, const char*> gunIcons = {
-        {"nova", "T"},
         {"ak47", "W"},
         {"m4a4", "M"},
         {"deagle", "F"},
@@ -158,6 +157,7 @@ inline const char* gunIcon(const std::string& weapon){
         {"scar20", "Y"},
         {"awp", "Z"},
         {"ssg08", "a"},
+        {"ssg-08", "a"},
         {"xm1014", "b"},
         {"sawedoff", "c"},
         {"mag7", "d"},
