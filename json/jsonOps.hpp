@@ -10,6 +10,6 @@ namespace json {
 	inline std::wstring clientDLLFile = L"\\client.dll.json";
 	inline std::wstring offsetFile = L"\\offsets.json";
 	inline std::wstring buttonsFile = L"\\buttons.json";
-c
+
 	nlohmann::json readFromJsonFile(std::wstring fileName);
 }
