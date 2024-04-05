@@ -17,7 +17,7 @@ Press the `END` key to end the cheat.
 ### Script download
 Run the `offset_download.ps1` in the same folder as you're executable is
 ### Manual download
-1. Download [client.dll.json](https://github.com/a2x/cs2-dumper/tree/main/output/client.dll.json) and [offsets.json](https://github.com/a2x/cs2-dumper/tree/main/output/offsets.json)    
+1. Download [client.dll.json](https://github.com/a2x/cs2-dumper/tree/main/output/client.dll.json), [offsets.json](https://github.com/a2x/cs2-dumper/tree/main/output/offsets.json) and [buttons.json](https://github.com/a2x/cs2-dumper/tree/main/output/offsets.json) 
 2. Place these files in the same folder as the executable file `tim_apple.exe` is    
 
 ## Features
