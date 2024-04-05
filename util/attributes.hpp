@@ -45,6 +45,8 @@ namespace offsets {
 };
 
 
+inline nlohmann::json buttons = json::readFromJsonFile(json::buttonsFile)["client.dll"];
+
 
 class CCSPlayerController{
 public:

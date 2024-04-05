@@ -51,7 +51,7 @@ void aim::recoilControl(LocalPlayer localPlayer, DWORD_PTR baseViewAnglesAddy) {
 
 
 void aim::triggerBot(LocalPlayer localPlayer, DWORD_PTR base) {
-	int crossHairEntity = MemMan.ReadMem<int>(localPlayer.getPlayerPawn() + clientDLL::C_CSPlayerPawnBase_["m_iIDEntIndex"]["value"]);
+	int crossHairEntity = MemMan.ReadMem<int>(localPlayer.getPlayerPawn() + clientDLL::C_CSPlayerPawnBase_["m_iIDEntIndex"]);
 	if (!crossHairEntity) return;
 
 	C_CSPlayerPawn crossHairPawn(base);

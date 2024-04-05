@@ -13,10 +13,10 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 
 
 	// Shared variables (between features)
-	view_matrix_t viewMatrix = MemMan.ReadMem<view_matrix_t>(client.base + offsets::clientDLL["dwViewMatrix"]["value"]);
-	Vector3 baseViewAngles = MemMan.ReadMem<Vector3>(client.base + offsets::clientDLL["dwViewAngles"]["value"]);
-	DWORD_PTR baseViewAnglesAddy = client.base + offsets::clientDLL["dwViewAngles"]["value"];
-	uintptr_t entityList = MemMan.ReadMem<uintptr_t>(client.base + offsets::clientDLL["dwEntityList"]["value"]);
+	view_matrix_t viewMatrix = MemMan.ReadMem<view_matrix_t>(client.base + offsets::clientDLL["dwViewMatrix"]);
+	Vector3 baseViewAngles = MemMan.ReadMem<Vector3>(client.base + offsets::clientDLL["dwViewAngles"]);
+	DWORD_PTR baseViewAnglesAddy = client.base + offsets::clientDLL["dwViewAngles"];
+	uintptr_t entityList = MemMan.ReadMem<uintptr_t>(client.base + offsets::clientDLL["dwEntityList"]);
 
 
 	// NOTE: Cheats that only need local player / visuals that don't relate to gameplay

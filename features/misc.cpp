@@ -3,10 +3,10 @@
 
 void misc::bunnyHop(DWORD_PTR base, int flags) {
 	if (GetAsyncKeyState(VK_SPACE) && flags & bhopInAir) {
-		MemMan.WriteMem<int>(base + offsets::clientDLL["dwForceJump"]["value"], 65537);
+		MemMan.WriteMem<int>(base + offsets::buttonsFile["jump"], 65537);
 	}
 	else {
-		MemMan.WriteMem<int>(base + offsets::clientDLL["dwForceJump"]["value"], 256);
+		MemMan.WriteMem<int>(base + offsets::buttonsFile["jump"], 256);
 	}
 }
 
