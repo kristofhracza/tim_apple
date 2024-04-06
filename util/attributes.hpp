@@ -21,7 +21,7 @@ struct C_UTL_VECTOR
 inline MemoryManagement MemMan;
 
 namespace clientDLL {
-	inline nlohmann::json clientDLLOffsets = json::readFromJsonFile(json::clientDLLFile)["classes"];
+	inline nlohmann::json clientDLLOffsets = json::readFromJsonFile(json::clientDLLFile)["client.dll"]["classes"];
 
 	inline nlohmann::json C_BaseEntity_ = clientDLLOffsets["C_BaseEntity"]["fields"];
 	inline nlohmann::json CCSPlayerController_ = clientDLLOffsets["CCSPlayerController"]["fields"];
@@ -34,7 +34,7 @@ namespace clientDLL {
 	inline nlohmann::json C_EconEntity_ = clientDLLOffsets["C_EconEntity"]["fields"];
 	inline nlohmann::json CSkeletonInstance_ = clientDLLOffsets["CSkeletonInstance"]["fields"];
 	inline nlohmann::json CGameSceneNode_ = clientDLLOffsets["CGameSceneNode"]["fields"];
-	inline nlohmann::json EntitySpottedState_t_ = clientDLLOffsets["EntitySpottedState_t"]["dafieldsta"];
+	inline nlohmann::json EntitySpottedState_t_ = clientDLLOffsets["EntitySpottedState_t"]["fields"];
 	inline nlohmann::json C_CSGameRules_= clientDLLOffsets["C_CSGameRules"]["fields"];
 	inline nlohmann::json CCSWeaponBaseVData_ = clientDLLOffsets["CCSWeaponBaseVData"]["fields"];
 };
