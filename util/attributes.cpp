@@ -119,7 +119,7 @@ uintptr_t C_CSPlayerPawn::getPawnTeam() {
 }
 
 int C_CSPlayerPawn::getEntitySpotted() {
-	spotted = MemMan.ReadMem<DWORD_PTR>(playerPawn + clientDLL::C_CSPlayerPawnBase_["m_entitySpottedState"] + clientDLL::EntitySpottedState_t_["m_bSpottedByMask"]);
+	spotted = MemMan.ReadMem<DWORD_PTR>(playerPawn + clientDLL::C_CSPlayerPawn_["m_entitySpottedState"] + clientDLL::EntitySpottedState_t_["m_bSpottedByMask"]);
 	return spotted;
 }
 
@@ -177,7 +177,7 @@ Vector2 LocalPlayer::getAimPunchAngle() {
 }
 
 int LocalPlayer::getShotsFired() {
-	shotsFired = MemMan.ReadMem<int>(playerPawn + clientDLL::C_CSPlayerPawnBase_["m_iShotsFired"]);
+	shotsFired = MemMan.ReadMem<int>(playerPawn + clientDLL::C_CSPlayerPawn_["m_iShotsFired"]);
 	return shotsFired;
 }
 
@@ -186,12 +186,12 @@ void LocalPlayer::noFlash() {
 }
 
 int LocalPlayer::getEntitySpotted() {
-	spotted = MemMan.ReadMem<DWORD_PTR>(playerPawn + clientDLL::C_CSPlayerPawnBase_["m_entitySpottedState"] + clientDLL::EntitySpottedState_t_["m_bSpottedByMask"]);
+	spotted = MemMan.ReadMem<DWORD_PTR>(playerPawn + clientDLL::C_CSPlayerPawn_["m_entitySpottedState"] + clientDLL::EntitySpottedState_t_["m_bSpottedByMask"]);
 	return spotted;
 }
 
 bool LocalPlayer::getIsScoped() {
-	isScoped = MemMan.ReadMem<DWORD_PTR>(playerPawn + clientDLL::C_CSPlayerPawnBase_["m_bIsScoped"]);
+	isScoped = MemMan.ReadMem<DWORD_PTR>(playerPawn + clientDLL::C_CSPlayerPawn_["m_bIsScoped"]);
 	return isScoped;
 }
 
