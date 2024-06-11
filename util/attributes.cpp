@@ -198,7 +198,7 @@ bool LocalPlayer::getIsScoped() {
 
 
 uintptr_t CGameSceneNode::getBoneArray() {
-	boneArray = MemMan.ReadMem<uintptr_t>(value + clientDLL::CSkeletonInstance_["m_modelState"] + clientDLL::CGameSceneNode_["m_vecOrigin"]);
+	boneArray = MemMan.ReadMem<uintptr_t>(value + clientDLL::CSkeletonInstance_["m_modelState"] + 0x80);
 	return boneArray;
 }
 
