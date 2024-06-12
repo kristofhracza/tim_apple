@@ -134,6 +134,7 @@
     <ClInclude Include="features\aim.hpp" />
     <ClInclude Include="features\entry.hpp" />
     <ClInclude Include="features\esp.hpp" />
+    <ClInclude Include="features\fov.hpp" />
     <ClInclude Include="features\include.hpp" />
     <ClInclude Include="features\misc.hpp" />
     <ClInclude Include="gui\menu.hpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="features\aim.cpp" />
     <ClCompile Include="features\entry.cpp" />
     <ClCompile Include="features\esp.cpp" />
+    <ClCompile Include="features\fov.cpp" />
     <ClCompile Include="features\misc.cpp" />
     <ClCompile Include="gui\menu.cpp" />
     <ClCompile Include="gui\overlay.cpp" />

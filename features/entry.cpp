@@ -1,5 +1,6 @@
 #include "esp.hpp"
 #include "aim.hpp"
+#include "fov.hpp"
 #include "misc.hpp"
 
 #include "../util/config.hpp"
@@ -38,6 +39,9 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 
 	// Flash
 	if (miscConf.flash) localPlayer.noFlash();
+
+	// Fov
+	if (miscConf.fovCheck) fov::setFov(miscConf.fov, localPlayer);
 
 	// Tigger
 	if (aimConf.trigger) aim::triggerBot(localPlayer, client.base);

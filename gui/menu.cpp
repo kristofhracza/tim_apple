@@ -179,7 +179,7 @@ void imGuiMenu::aimRender() {
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("FOV", &aimConf.fov, 1.f, 25.f);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::SliderFloat("Smoothing", &aimConf.smoothing, 0.1f, 5.f);
+		ImGui::SliderFloat("Smoothing", &aimConf.smoothing, 1.f, 5.f);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("Aim Sensibility", &aimConf.sens, 0.1f, 8.f);
 		ImGui::EndChild();
@@ -280,6 +280,12 @@ void imGuiMenu::miscRender() {
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Anti flash", &miscConf.flash);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Checkbox("Fov Changer", &miscConf.fovCheck);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		if (miscConf.fovCheck) {
+			ImGui::SliderInt("FOV", &miscConf.fov, 30, 140);
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		}
 		ImGui::Checkbox("DeathMatch Mode", &miscConf.deathmatchMode);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Dropped Item ESP", &miscConf.itemESP);
@@ -295,6 +301,8 @@ void imGuiMenu::aboutMeRender() {
 		ImGui::PopFont();
 		ImGui::Text("https://github.com/kristofhracza/tim_apple");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Text("https://github.com/Skwrr");
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::PushFont(imGuiMenu::titleText);
 		ImGui::Text("UnknownCheats");
@@ -309,11 +317,6 @@ void imGuiMenu::aboutMeRender() {
 		ImGui::Text("Developer Profile");
 		ImGui::PopFont();
 		ImGui::Text("https://www.unknowncheats.me/forum/members/5680770.html");
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::PushFont(imGuiMenu::subTitleText);
-		ImGui::Text("Some random guy's github who helped with the project");
-		ImGui::PopFont();
-		ImGui::Text("https://github.com/Skwrr/");
 		ImGui::EndChild();
 	}
 }

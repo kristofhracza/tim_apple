@@ -24,6 +24,7 @@
     <ClInclude Include="features\misc.hpp" />
     <ClInclude Include="json\json.hpp" />
     <ClInclude Include="json\jsonOps.hpp" />
+    <ClInclude Include="features\fov.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="timapple.cpp" />
@@ -42,6 +43,7 @@
     <ClCompile Include="features\aim.cpp" />
     <ClCompile Include="features\misc.cpp" />
     <ClCompile Include="json\jsonOps.cpp" />
+    <ClCompile Include="features\fov.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
