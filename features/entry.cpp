@@ -60,7 +60,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		C_CSPlayerPawn.getPawnHealth();
 
 		// Checks
-		if (aim::lockedPlayer == C_CSPlayerPawn.playerPawn && C_CSPlayerPawn.pawnHealth <= 0) aim::lockedPlayer = 0;
+		if (aim::lockedPlayer == C_CSPlayerPawn.playerPawn && (C_CSPlayerPawn.pawnHealth <= 0 || (aimConf.checkSpotted && !C_CSPlayerPawn.getEntitySpotted()))) aim::lockedPlayer = 0;
 		if ((C_CSPlayerPawn.pawnHealth <= 0 || C_CSPlayerPawn.pawnHealth > 100) || (localPlayer.getTeam() == CCSPlayerController.getPawnTeam() && !miscConf.deathmatchMode) || strcmp(CCSPlayerController.pawnName.c_str(), "DemoRecorder") == 0) continue;
 
 
@@ -69,6 +69,9 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 
 		// ESP
 		if (espConf.state) {
+
+			if (CCSPlayerController.getC_CSPlayerPawn() == localPlayer.getPlayerPawn()) continue;
+
 			esp::sharedData::weaponID = C_CSPlayerPawn.getWeaponID();
 			esp::sharedData::weaponName = C_CSPlayerPawn.getWeaponName();
 			esp::sharedData::localOrigin = localPlayer.getOrigin();
