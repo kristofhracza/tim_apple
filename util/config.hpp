@@ -17,45 +17,44 @@ struct espConfig {
 	float cornerColours[3] = { 1.f,1.f,1.f };
 	float width = 2.5f;
 
-	bool isPawnName = true;
+	bool isPawnName = false;
 	std::string pawnName;
 
-	bool isPawnGun = true;
+	bool isPawnGun = false;
 	std::string pawnGun;
 
 	bool isHealthBar =  true;
-	bool hpCounter = true;
+	bool hpCounter = false;
 	float health[3];
 
 	float attributeColours[3] = { 1.f,1.f,1.f };
 
-	bool skeleton = true;
+	bool skeleton = false;
 	float skeletonColours[3] = { 1.f,1.f,1.f };
 
-	bool head = true;
+	bool head = false;
 	float headColours[3] = { 1.f,1.f,1.f };
 
-	bool joint = true;
+	bool joint = false;
 	float jointColours[3] = { 1.f,1.f,1.f };
 
-	bool snapLines = true;
+	bool snapLines = false;
 
-	bool distance = true;
+	bool distance = false;
 };
 espConfig espConf = {};
 
 
 struct aimConfig {
-	bool state = true;
+	bool state = false;
 	bool rcs;
-	bool trigger = true;
+	bool trigger = false;
 
 	bool checkSpotted = true;
 	float smoothing = 3.2f;
 
 	float fov = 2.5;
-	bool fovCircle = true;
-	bool fovCircleVisibility = true;
+	bool fovCircle = false;
 
 	int bone;
 	int boneSelect = 0;
@@ -72,7 +71,7 @@ struct aimConfig {
 	int hotSelectTrigger = 0;
 	int hotTrigger;
 
-	bool playerLock = true;
+	bool playerLock = false;
 
 	std::vector<std::string> hotKey = {"SHIFT","ALT","CTRL","Left mouse","Right mouse"};
 	std::map <std::string, int> hotKeyMap = { {"SHIFT",VK_SHIFT}, {"ALT",VK_MENU},{"CTRL",VK_CONTROL},{"Left mouse",VK_LBUTTON},{"Right mouse",VK_RBUTTON}};
@@ -82,7 +81,7 @@ aimConfig aimConf;
 
 struct miscConfig{
 	bool bunnyHop;
-	bool flash = true;
+	bool flash;
 	bool itemESP;
 	bool deathmatchMode = false;
 };
