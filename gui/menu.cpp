@@ -181,7 +181,7 @@ void imGuiMenu::aimRender() {
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("Smoothing", &aimConf.smoothing, 0.1f, 5.f);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::SliderFloat("Aim Sesibility", &aimConf.sens, 0.1f, 8.f);
+		ImGui::SliderFloat("Aim Sensibility", &aimConf.sens, 0.1f, 8.f);
 		ImGui::EndChild();
 
 		verticalSplitter(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt);
