@@ -38,6 +38,7 @@ Run the `updateoffset.cmd` in the same folder as your executable is
 ### Misc
 - Bunny hop
 - Anti flash
+- Deathmatch Mode
 - Dropped item ESP **(PERFORMANCE ISSUES)**
 
 ## FAQ
