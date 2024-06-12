@@ -70,7 +70,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		// ESP
 		if (espConf.state) {
 
-			if (CCSPlayerController.getC_CSPlayerPawn() == localPlayer.getPlayerPawn()) continue;
+			if (C_CSPlayerPawn.getPlayerPawn() == localPlayer.getPlayerPawn()) continue;
 
 			esp::sharedData::weaponID = C_CSPlayerPawn.getWeaponID();
 			esp::sharedData::weaponName = C_CSPlayerPawn.getWeaponName();
