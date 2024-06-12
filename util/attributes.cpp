@@ -193,7 +193,7 @@ int LocalPlayer::getShotsFired() {
 }
 
 void LocalPlayer::noFlash() {
-	MemMan.WriteMem<float>(playerPawn + clientDLL::C_CSPlayerPawnBase_["m_flFlashDuration"], 0.125f);
+	MemMan.WriteMem<float>(playerPawn + clientDLL::C_CSPlayerPawnBase_["m_flFlashDuration"], 0.f);
 }
 
 int LocalPlayer::getEntitySpotted() {
