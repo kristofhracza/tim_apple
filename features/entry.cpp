@@ -28,9 +28,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		float screenMidX = GetSystemMetrics(SM_CXSCREEN) / 2.f;
 		float screenMidY = GetSystemMetrics(SM_CYSCREEN) / 2.f;
 
-		if (aimConf.fovCircleVisibility) {
-			ImGui::GetBackgroundDrawList()->AddCircle({ screenMidX ,screenMidY }, (aimConf.fov * 10), ImColor(1.f, 1.f, 1.f, 1.f), 0, 1.f);
-		}
+		ImGui::GetBackgroundDrawList()->AddCircle({ screenMidX ,screenMidY }, (aimConf.fov * 10), ImColor(1.f, 1.f, 1.f, 1.f), 0, 1.f);
 	}
 	// Recoil control
 	if (aimConf.rcs) aim::recoilControl(localPlayer, baseViewAnglesAddy);
