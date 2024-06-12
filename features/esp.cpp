@@ -33,7 +33,7 @@ void esp::makeSkeleton(view_matrix_t viewMatrix, uintptr_t boneArray) {
 		if (espConf.head) {
 			Vector3 headBone = MemMan.ReadMem<Vector3>(boneArray + bones::head * 32);
 			Vector3 headBonePos = headBone.worldToScreen(viewMatrix);
-			ImGui::GetBackgroundDrawList()->AddCircleFilled({ headBonePos.x,headBonePos.y }, getJointSize(7.f, distance), headColour);
+			ImGui::GetBackgroundDrawList()->AddCircleFilled({ headBonePos.x,headBonePos.y }, getJointSize(10.f, distance), headColour);
 		}
 
 		if (espConf.joint) ImGui::GetBackgroundDrawList()->AddCircleFilled({ b1.x, b1.y }, getJointSize(5.f, distance), jointColour);
@@ -135,9 +135,5 @@ void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name
 		if (espConf.distance) {
 			makeDistance();
 		}
-
-		/*if (espConf.head) {
-			drawHead();
-		}*/
 	}
 }
