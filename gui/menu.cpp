@@ -12,7 +12,7 @@ void imGuiMenu::setStyle() {
 	style->FramePadding = ImVec2(5,5);
 	style->FrameBorderSize = 1.f;
 	style->FrameRounding = 0.f;
-
+	
 	style->WindowPadding = ImVec2(6, 6);
 	
 	style->GrabRounding = 0.f;
@@ -309,6 +309,11 @@ void imGuiMenu::aboutMeRender() {
 		ImGui::Text("Developer Profile");
 		ImGui::PopFont();
 		ImGui::Text("https://www.unknowncheats.me/forum/members/5680770.html");
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::PushFont(imGuiMenu::subTitleText);
+		ImGui::Text("Some random guy's github who helped with the project");
+		ImGui::PopFont();
+		ImGui::Text("https://github.com/Skwrr/");
 		ImGui::EndChild();
 	}
 }
