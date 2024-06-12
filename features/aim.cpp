@@ -16,6 +16,10 @@ void aim::aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, uintptr_t enem
 	Vector3 angle;
 
 	if (lockedPlayer != 0 && lockedPlayer != enemyPlayer) return;
+	if (enemyPlayer == localPlayer.getPlayerPawn()) {
+		lockedPlayer = 0;
+		return;
+	}
 
 	aimPos = MemMan.ReadMem<Vector3>(boneArray + aimConf.boneMap[aimConf.bones[aimConf.boneSelect]] * 32);
 	angle = CalculateAngle(localPlayer.eyepos, aimPos, localPlayer.viewAngles);
