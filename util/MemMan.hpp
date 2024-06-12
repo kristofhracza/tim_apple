@@ -8,6 +8,11 @@
 #include <TlHelp32.h>
 #include <tchar.h>
 
+#include <locale>
+#include <iostream>
+#include <string>
+#include <sstream>
+
 
 class MemoryManagement {
 public:
@@ -98,6 +103,15 @@ public:
         return 0;
     }
 
+    std::wstring widen(const std::string& str)
+    {
+        std::wostringstream wstm;
+        const std::ctype<wchar_t>& ctfacet = use_facet<std::ctype<wchar_t>>(wstm.getloc());
+        for (size_t i = 0; i < str.size(); ++i)
+            wstm << ctfacet.widen(str[i]);
+        return wstm.str();
+    }
+
 
     DWORD_PTR getModuleBase(DWORD pid, const char* name) {
         DWORD_PTR dwBase = 0;
@@ -107,7 +121,7 @@ public:
 
         if (Module32First(hSnapshot, &ModuleEntry32)) {
             do {
-                if (_tcsicmp(ModuleEntry32.szModule, name) == 0) {
+                if (_tcsicmp(ModuleEntry32.szModule, widen(name).c_str()) == 0) {
                     dwBase = (DWORD_PTR)ModuleEntry32.modBaseAddr;
                 }
             } while (Module32Next(hSnapshot, &ModuleEntry32));
