@@ -15,7 +15,7 @@ Press the `END` key to end the cheat.
 
 ## Offsets
 ### Script download
-Run the `offset_download.ps1` in the same folder as you're executable is
+Run the `updateoffset.cmd` in the same folder as your executable is
 ### Manual download
 1. Download [client.dll.json](https://github.com/a2x/cs2-dumper/tree/main/output/client.dll.json), [offsets.json](https://github.com/a2x/cs2-dumper/tree/main/output/offsets.json) and [buttons.json](https://github.com/a2x/cs2-dumper/tree/main/output/buttons.json) 
 2. Place these files in the same folder as the executable file `tim_apple.exe` is    
@@ -28,12 +28,13 @@ Run the `offset_download.ps1` in the same folder as you're executable is
 - Weapon icons / names
 - Skeleton
 - Joints
+- Head
 - Snap lines
 - Distance
 ### Aim
 - Aimbot (+ Player lock)
 - Recoil control system
-- Trigger bot
+- Trigger bot (random click delay)
 ### Misc
 - Bunny hop
 - Anti flash
@@ -47,7 +48,8 @@ Run the `offset_download.ps1` in the same folder as you're executable is
 
 ### Is this cheat read-only?
 It can be if you use the features that don't write to the game's memory.     
-Namely: All ESP, Bunny Hop and Trigger Bot
+Namely: All ESP, Bunny Hop, Aim Bot and Trigger Bot
+I'll be working on try to make everything read-only (Anti-Flash aside because it's impossible to make it external)
 
 ## Credits
 - [ocornut/imgui](https://github.com/ocornut/imgui)

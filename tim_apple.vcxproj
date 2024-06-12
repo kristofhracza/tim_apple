@@ -175,8 +175,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
-    <None Include="offset_download.ps1" />
     <None Include="README.md" />
+    <None Include="updateoffset.cmd" />
     <None Include="x64\Release\client.dll.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

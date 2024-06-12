@@ -47,6 +47,6 @@
     <None Include="README.md" />
     <None Include=".gitignore" />
     <None Include="x64\Release\client.dll.json" />
-    <None Include="offset_download.ps1" />
+    <None Include="updateoffset.cmd" />
   </ItemGroup>
 </Project>
