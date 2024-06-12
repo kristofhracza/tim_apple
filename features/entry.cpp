@@ -49,6 +49,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		// Player controller
 		CCSPlayerController.id = i;
 		CCSPlayerController.getListEntry();
+		if (!CCSPlayerController.listEntry) continue;
 		CCSPlayerController.getController();
 		if (CCSPlayerController.value == 0) continue;
 		CCSPlayerController.getPawnName();
