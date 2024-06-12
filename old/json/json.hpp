@@ -8165,7 +8165,7 @@ class lexer : public lexer_base<BasicJsonType>
             }
 
             // multi-line comments skip input until */ is read
-            case '*': 
+            case '*':
             {
                 while (true)
                 {

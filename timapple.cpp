@@ -30,10 +30,15 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	// Memory and game related vars (used in entry and passed through overlay)
 	int procId = MemMan.getPid(L"cs2.exe");
 	if (procId == 0) exit(-1);
+
+	/*AllocConsole();
+	freopen("CONOUT$", "w", stdout);
+	printf("Console Testing");
+	//*/
 	
 	MemoryManagement::moduleData client;
 	client.module = MemMan.getModule(procId, L"client.dll");
-	client.base = MemMan.getModuleBase(procId, L"client.dll");
+	client.base = MemMan.getModuleBase(procId, "client.dll");
 
 	// Overlay
 	overlayESP overlayClass;

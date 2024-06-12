@@ -95,8 +95,6 @@ void imGuiMenu::espRender() {
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Skeleton", &espConf.skeleton);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Head", &espConf.head);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Joints", &espConf.joint);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Distance", &espConf.distance);
@@ -156,8 +154,6 @@ void imGuiMenu::espRender() {
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::ColorEdit3("Skeleton colour", (float*)&espConf.skeletonColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::ColorEdit3("Head colours", (float*)&espConf.headColours);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::ColorEdit3("Joint colours", (float*)&espConf.jointColours);
 		ImGui::EndChild();
 	}
@@ -179,9 +175,7 @@ void imGuiMenu::aimRender() {
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("FOV", &aimConf.fov, 1.f, 25.f);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::SliderFloat("Smoothing", &aimConf.smoothing, 0.1f, 5.f);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::SliderFloat("Aim Sesibility", &aimConf.sens, 0.1f, 8.f);
+		ImGui::SliderFloat("Smoothing", &aimConf.smoothing, 1.f, 5.f);
 		ImGui::EndChild();
 
 		verticalSplitter(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt);
@@ -279,8 +273,6 @@ void imGuiMenu::miscRender() {
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Anti flash", &miscConf.flash);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("DeathMatch Mode", &miscConf.deathmatchMode);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Dropped Item ESP", &miscConf.itemESP);
 		ImGui::EndChild();

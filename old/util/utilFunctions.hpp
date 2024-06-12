@@ -3,7 +3,6 @@
 #include <string>
 #include <vector>
 #include <tuple>
-#include <Windows.h>
 
 #include "Vectors.h"
 
@@ -15,8 +14,8 @@ inline namespace utils {
 	};
 
 	inline std::wstring getExePath() {
-		WCHAR buffer[MAX_PATH] = { 0 };
-		GetModuleFileNameW(NULL, buffer, MAX_PATH);
+		TCHAR buffer[MAX_PATH] = { 0 };
+		GetModuleFileName(NULL, buffer, MAX_PATH);
 		std::wstring::size_type pos = std::wstring(buffer).find_last_of(L"\\/");
 		return std::wstring(buffer).substr(0, pos);
 	}

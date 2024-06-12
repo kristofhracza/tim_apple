@@ -68,12 +68,6 @@ Vector3 C_CSPlayerPawn::getCameraPos() {
 	return cameraPos;
 }
 
-Vector3 C_CSPlayerPawn::getEyePos() {
-	eyePos = MemMan.ReadMem<Vector3>(playerPawn + clientDLL::C_BasePlayerPawn_["m_vOldOrigin"]) +
-		MemMan.ReadMem<Vector3>(playerPawn + clientDLL::C_BaseModelEntity_["m_vecViewOffset"]);
-	return eyePos;
-}
-
 uintptr_t C_CSPlayerPawn::getCGameSceneNode() {
 	CGameSceneNode = MemMan.ReadMem<uintptr_t>(playerPawn + clientDLL::C_BaseEntity_["m_pGameSceneNode"]);
 	return CGameSceneNode;
@@ -167,11 +161,6 @@ Vector3 LocalPlayer::getOrigin() {
 	return origin;
 }
 
-Vector3 LocalPlayer::getEyePos() {
-	eyepos = this->getOrigin() + MemMan.ReadMem<Vector3>(playerPawn + clientDLL::C_BaseModelEntity_["m_vecViewOffset"]);
-	return eyepos;
-}
-
 int LocalPlayer::getFlags() {
 	flags = MemMan.ReadMem<int>(playerPawn + clientDLL::C_BaseEntity_["m_fFlags"]);
 	return flags;
@@ -193,7 +182,7 @@ int LocalPlayer::getShotsFired() {
 }
 
 void LocalPlayer::noFlash() {
-	MemMan.WriteMem<float>(playerPawn + clientDLL::C_CSPlayerPawnBase_["m_flFlashDuration"], 0.125f);
+	MemMan.WriteMem<float>(playerPawn + clientDLL::C_CSPlayerPawnBase_["m_flFlashDuration"], 0.f);
 }
 
 int LocalPlayer::getEntitySpotted() {
@@ -209,7 +198,7 @@ bool LocalPlayer::getIsScoped() {
 
 
 uintptr_t CGameSceneNode::getBoneArray() {
-	boneArray = MemMan.ReadMem<uintptr_t>(value + clientDLL::CSkeletonInstance_["m_modelState"] + 0x80);
+	boneArray = MemMan.ReadMem<uintptr_t>(value + clientDLL::CSkeletonInstance_["m_modelState"] + clientDLL::CGameSceneNode_["m_vecOrigin"]);
 	return boneArray;
 }
 

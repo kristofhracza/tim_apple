@@ -18,35 +18,34 @@ struct C_UTL_VECTOR
 };
 
 
-MemoryManagement MemMan;
+inline MemoryManagement MemMan;
 
 namespace clientDLL {
-	nlohmann::json clientDLLOffsets = json::readFromJsonFile(json::clientDLLFile)["client.dll"]["classes"];
+	inline nlohmann::json clientDLLOffsets = json::readFromJsonFile(json::clientDLLFile)["client.dll"]["classes"];
 
-	nlohmann::json C_BaseEntity_ = clientDLLOffsets["C_BaseEntity"]["fields"];
-	nlohmann::json C_BaseModelEntity_ = clientDLLOffsets["C_BaseModelEntity"]["fields"];
-	nlohmann::json CCSPlayerController_ = clientDLLOffsets["CCSPlayerController"]["fields"];
-	nlohmann::json C_BasePlayerPawn_ = clientDLLOffsets["C_BasePlayerPawn"]["fields"];
-	nlohmann::json C_CSPlayerPawn_ = clientDLLOffsets["C_CSPlayerPawn"]["fields"];
-	nlohmann::json C_CSPlayerPawnBase_ = clientDLLOffsets["C_CSPlayerPawnBase"]["fields"];
-	nlohmann::json CBaseAnimGraph_ = clientDLLOffsets["CBaseAnimGraph"]["fields"];
-	nlohmann::json C_EconItemView_ = clientDLLOffsets["C_EconItemView"]["fields"];
-	nlohmann::json C_AttributeContainer_ = clientDLLOffsets["C_AttributeContainer"]["fields"];
-	nlohmann::json C_EconEntity_ = clientDLLOffsets["C_EconEntity"]["fields"];
-	nlohmann::json CSkeletonInstance_ = clientDLLOffsets["CSkeletonInstance"]["fields"];
-	nlohmann::json CGameSceneNode_ = clientDLLOffsets["CGameSceneNode"]["fields"];
-	nlohmann::json EntitySpottedState_t_ = clientDLLOffsets["EntitySpottedState_t"]["fields"];
-	nlohmann::json C_CSGameRules_= clientDLLOffsets["C_CSGameRules"]["fields"];
-	nlohmann::json CCSWeaponBaseVData_ = clientDLLOffsets["CCSWeaponBaseVData"]["fields"];
+	inline nlohmann::json C_BaseEntity_ = clientDLLOffsets["C_BaseEntity"]["fields"];
+	inline nlohmann::json CCSPlayerController_ = clientDLLOffsets["CCSPlayerController"]["fields"];
+	inline nlohmann::json C_BasePlayerPawn_ = clientDLLOffsets["C_BasePlayerPawn"]["fields"];
+	inline nlohmann::json C_CSPlayerPawn_ = clientDLLOffsets["C_CSPlayerPawn"]["fields"];
+	inline nlohmann::json C_CSPlayerPawnBase_ = clientDLLOffsets["C_CSPlayerPawnBase"]["fields"];
+	inline nlohmann::json CBaseAnimGraph_ = clientDLLOffsets["CBaseAnimGraph"]["fields"];
+	inline nlohmann::json C_EconItemView_ = clientDLLOffsets["C_EconItemView"]["fields"];
+	inline nlohmann::json C_AttributeContainer_ = clientDLLOffsets["C_AttributeContainer"]["fields"];
+	inline nlohmann::json C_EconEntity_ = clientDLLOffsets["C_EconEntity"]["fields"];
+	inline nlohmann::json CSkeletonInstance_ = clientDLLOffsets["CSkeletonInstance"]["fields"];
+	inline nlohmann::json CGameSceneNode_ = clientDLLOffsets["CGameSceneNode"]["fields"];
+	inline nlohmann::json EntitySpottedState_t_ = clientDLLOffsets["EntitySpottedState_t"]["fields"];
+	inline nlohmann::json C_CSGameRules_= clientDLLOffsets["C_CSGameRules"]["fields"];
+	inline nlohmann::json CCSWeaponBaseVData_ = clientDLLOffsets["CCSWeaponBaseVData"]["fields"];
 };
 
 
 namespace offsets {
-	nlohmann::json clientDLL = json::readFromJsonFile(json::offsetFile)["client.dll"];
+	inline nlohmann::json clientDLL = json::readFromJsonFile(json::offsetFile)["client.dll"];
 };
 
 
-nlohmann::json buttons = json::readFromJsonFile(json::buttonsFile)["client.dll"];
+inline nlohmann::json buttons = json::readFromJsonFile(json::buttonsFile)["client.dll"];
 
 
 class CCSPlayerController{
@@ -108,9 +107,6 @@ public:
 	Vector3 position;
 	Vector3 getPosition();
 
-	Vector3 eyePos;
-	Vector3 getEyePos();
-
 	int pawnHealth;
 	int getPawnHealth();
 
@@ -168,9 +164,6 @@ public:
 
 	Vector3 origin;
 	Vector3 getOrigin();
-
-	Vector3 eyepos;
-	Vector3 getEyePos();
 
 	Vector3 viewAngles;
 	Vector3 getViewAngles();

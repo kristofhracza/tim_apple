@@ -2,7 +2,6 @@
 #include "aim.hpp"
 #include "misc.hpp"
 
-#include "../util/config.hpp"
 #include "../util/utilFunctions.hpp"
 
 void mainLoop(bool state, MemoryManagement::moduleData client) {
@@ -28,9 +27,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		float screenMidX = GetSystemMetrics(SM_CXSCREEN) / 2.f;
 		float screenMidY = GetSystemMetrics(SM_CYSCREEN) / 2.f;
 
-		if (aimConf.fovCircleVisibility) {
-			ImGui::GetBackgroundDrawList()->AddCircle({ screenMidX ,screenMidY }, (aimConf.fov * 10), ImColor(1.f, 1.f, 1.f, 1.f), 0, 1.f);
-		}
+		ImGui::GetBackgroundDrawList()->AddCircle({ screenMidX ,screenMidY }, (aimConf.fov * 10), ImColor(1.f, 1.f, 1.f, 1.f), 0, 1.f);
 	}
 	// Recoil control
 	if (aimConf.rcs) aim::recoilControl(localPlayer, baseViewAnglesAddy);
@@ -63,7 +60,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 
 		// Checks
 		if (aim::lockedPlayer == C_CSPlayerPawn.playerPawn && C_CSPlayerPawn.pawnHealth <= 0) aim::lockedPlayer = 0;
-		if ((C_CSPlayerPawn.pawnHealth <= 0 || C_CSPlayerPawn.pawnHealth > 100) || (localPlayer.getTeam() == CCSPlayerController.getPawnTeam() && !miscConf.deathmatchMode) || strcmp(CCSPlayerController.pawnName.c_str(), "DemoRecorder") == 0) continue;
+		if ((C_CSPlayerPawn.pawnHealth <= 0 || C_CSPlayerPawn.pawnHealth > 100) || localPlayer.getTeam() == CCSPlayerController.getPawnTeam() || strcmp(CCSPlayerController.pawnName.c_str(), "DemoRecorder") == 0) continue;
 
 
 		// Game scene node
@@ -95,23 +92,23 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 
 			// Player lock
 			if (aimConf.playerLock) {
-				if (aim::lockedPlayer != C_CSPlayerPawn.playerPawn && aim::lockedPlayer != 0) continue;
+				if (aim::lockedPlayer == 0) aim::lockedPlayer = C_CSPlayerPawn.playerPawn;
+				if (aim::lockedPlayer != C_CSPlayerPawn.playerPawn) continue;
 			}
 
 			CGameSceneNode.value = C_CSPlayerPawn.getCGameSceneNode();
 			CGameSceneNode.getBoneArray();
 
 			localPlayer.getCameraPos();
-			localPlayer.getEyePos();
 			localPlayer.getViewAngles();
 
 			if (aimConf.checkSpotted) {
 				if (SharedFunctions::spottedCheck(C_CSPlayerPawn, localPlayer)) {
-					aim::aimBot(localPlayer, baseViewAngles, C_CSPlayerPawn.playerPawn, CGameSceneNode.boneArray, client);
+					aim::aimBot(localPlayer, baseViewAngles, baseViewAnglesAddy, CGameSceneNode.boneArray);
 				}
 			}
 			else {
-				aim::aimBot(localPlayer, baseViewAngles, C_CSPlayerPawn.playerPawn, CGameSceneNode.boneArray, client);
+				aim::aimBot(localPlayer, baseViewAngles, baseViewAnglesAddy, CGameSceneNode.boneArray);
 			}
 		}
 	}

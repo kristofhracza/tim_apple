@@ -99,7 +99,7 @@ public:
     }
 
 
-    DWORD_PTR getModuleBase(DWORD pid, const char* name) {
+    DWORD_PTR getModuleBase(DWORD pid, LPCTSTR name) {
         DWORD_PTR dwBase = 0;
         HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, pid);
         MODULEENTRY32 ModuleEntry32;

@@ -93,7 +93,7 @@ inline constexpr Vector3 CalculateAngle(
 	const Vector3& enemyPosition,
 	const Vector3& viewAngles) noexcept
 {
-	return (enemyPosition - localPosition).ToAngle() - viewAngles;
+	return ((enemyPosition - localPosition).ToAngle() - viewAngles);
 };
 
 
@@ -148,7 +148,7 @@ inline Vector3 calculateBestAngle(Vector3 angle,float configFov) {
 	float fov = configFov;
 
 	if (calcFov < fov) {
-		calcFov = fov;
+		fov = calcFov;
 		newAngle = angle;
 	}
 	return newAngle;

@@ -17,14 +17,14 @@ struct espConfig {
 	float cornerColours[3] = { 1.f,1.f,1.f };
 	float width = 2.5f;
 
-	bool isPawnName;
+	bool isPawnName = true;
 	std::string pawnName;
 
 	bool isPawnGun = true;
 	std::string pawnGun;
 
 	bool isHealthBar =  true;
-	bool hpCounter;
+	bool hpCounter = true;
 	float health[3];
 
 	float attributeColours[3] = { 1.f,1.f,1.f };
@@ -32,26 +32,30 @@ struct espConfig {
 	bool skeleton = true;
 	float skeletonColours[3] = { 1.f,1.f,1.f };
 
-	bool joint;
+	bool head = true;
+	float headColours[3] = { 1.f,1.f,1.f };
+
+	bool joint = true;
 	float jointColours[3] = { 1.f,1.f,1.f };
 
-	bool snapLines;
+	bool snapLines = true;
 
-	bool distance;
+	bool distance = true;
 };
-inline espConfig espConf = {};
+espConfig espConf = {};
 
 
 struct aimConfig {
-	bool state = false;
+	bool state = true;
 	bool rcs;
-	bool trigger;
+	bool trigger = true;
 
-	bool checkSpotted;
-	float smoothing = 1.f;
+	bool checkSpotted = true;
+	float smoothing = 3.2f;
 
 	float fov = 2.5;
-	bool fovCircle;
+	bool fovCircle = true;
+	bool fovCircleVisibility = true;
 
 	int bone;
 	int boneSelect = 0;
@@ -62,6 +66,8 @@ struct aimConfig {
 	int hotSelectAim = 0;
 	int hotAim;
 
+	float sens = 1.25f;
+
 	bool isHotTrigger;
 	int hotSelectTrigger = 0;
 	int hotTrigger;
@@ -71,44 +77,64 @@ struct aimConfig {
 	std::vector<std::string> hotKey = {"SHIFT","ALT","CTRL","Left mouse","Right mouse"};
 	std::map <std::string, int> hotKeyMap = { {"SHIFT",VK_SHIFT}, {"ALT",VK_MENU},{"CTRL",VK_CONTROL},{"Left mouse",VK_LBUTTON},{"Right mouse",VK_RBUTTON}};
 };
-inline aimConfig aimConf;
+aimConfig aimConf;
 
 
 struct miscConfig{
 	bool bunnyHop;
-	bool flash;
+	bool flash = true;
 	bool itemESP;
+	bool deathmatchMode = false;
 };
-inline miscConfig miscConf;
+miscConfig miscConf;
 
 
 enum bones : int {
-	head = 6,
-	neck = 5,
-	chest = 4,
-	shoulderRight = 8,
-	shoulderLeft = 13,
-	elbowRight = 9,
-	elbowLeft = 14,
-	handRight = 11,
-	handLeft = 16,
-	crotch = 0,
-	kneeRight = 23,
-	kneeLeft = 26,
-	ankleRight = 24,
-	ankleLeft = 27,
+	head            = 6,
+	neck            = 5,
+	chest           = 4,
+	chest_1         = 2,
+	shoulderRight   = 8,
+	shoulderLeft    = 13,
+	elbowRight      = 9,
+	elbowLeft       = 14,
+	handRight       = 11,
+	handLeft        = 16,
+	crotch          = 0,
+	leftCrotch      = 22,
+	rightCrotch     = 25,
+	kneeRight       = 26,
+	kneeLeft        = 23,
+	ankleRight      = 27,
+	ankleLeft       = 24,
 };
 
+struct BoneConnection {
+	int bone1;
+	int bone2;
 
-inline namespace boneGroups {
-	inline std::vector<int> mid = {bones::head,bones::neck,bones::chest,bones::crotch};
-	inline std::vector<int> leftArm = { bones::neck,bones::shoulderLeft,bones::elbowLeft,bones::handLeft};
-	inline std::vector<int> righttArm = { bones::neck,bones::shoulderRight,bones::elbowRight,bones::handRight };
-	inline std::vector<int> leftLeg = {bones::crotch,bones::kneeLeft,bones::ankleLeft};
-	inline std::vector<int> rightLeg = { bones::crotch,bones::kneeRight,bones::ankleRight};
-	inline std::vector<std::vector<int>> allGroups = {mid,leftArm,righttArm,leftLeg,rightLeg};
+	BoneConnection(int b1, int b2) : bone1(b1), bone2(b2) {}
 };
 
-inline namespace timAppleSystem {
-	inline std::string weaponIconsTTF = ".\\fonts\\weaponIcons.ttf";
+BoneConnection boneConnections[] = {
+	BoneConnection(bones::head, bones::neck),
+	BoneConnection(bones::neck, bones::chest),
+	BoneConnection(bones::chest,bones::crotch),
+	BoneConnection(bones::chest, bones::shoulderRight),
+	BoneConnection(bones::shoulderRight, bones::elbowRight),
+	BoneConnection(bones::elbowRight, bones::handRight),
+	BoneConnection(bones::chest, bones::shoulderLeft),
+	BoneConnection(bones::shoulderLeft, bones::elbowLeft),
+	BoneConnection(bones::elbowLeft, bones::handLeft),
+	BoneConnection(bones::chest, bones::chest_1),
+	BoneConnection(bones::crotch, bones::leftCrotch),
+	BoneConnection(bones::crotch, bones::rightCrotch),
+	BoneConnection(bones::leftCrotch, bones::kneeLeft),
+	BoneConnection(bones::kneeLeft,bones::ankleLeft),
+	BoneConnection(bones::rightCrotch, bones::kneeRight),
+	BoneConnection(bones::kneeRight, bones::ankleRight)
+};
+
+namespace timAppleSystem {
+	std::string weaponIconsTTF = ".\\fonts\\weaponIcons.ttf";
 }

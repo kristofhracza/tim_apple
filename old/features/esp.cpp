@@ -19,26 +19,34 @@ void esp::makeHealthBar(float health) {
 void esp::makeSkeleton(view_matrix_t viewMatrix, uintptr_t boneArray) {
 	ImColor skeletonColour = ImColor(espConf.skeletonColours[0], espConf.skeletonColours[1], espConf.skeletonColours[2]);
 	ImColor jointColour = ImColor(espConf.jointColours[0], espConf.jointColours[1], espConf.jointColours[2]);
-	ImColor headColour = ImColor(espConf.headColours[0], espConf.headColours[1], espConf.headColours[2]);
-	for (int i = 0; i < sizeof(boneConnections) / sizeof(boneConnections[0]); i++) {
-		int bone1 = boneConnections[i].bone1;
-		int bone2 = boneConnections[i].bone2;
+	Vector3 previous, current;
 
-		Vector3 VectorBone1 = MemMan.ReadMem<Vector3>(boneArray + bone1 * 32);
-		Vector3 VectorBone2 = MemMan.ReadMem<Vector3>(boneArray + bone2 * 32);
+	if (espConf.joint) {
+		Vector3 headBone = MemMan.ReadMem<Vector3>(boneArray + 6 * 32);
+		Vector3 headBonePos = headBone.worldToScreen(viewMatrix);
+		ImGui::GetBackgroundDrawList()->AddCircleFilled({ headBonePos.x,headBonePos.y }, getJointSize(5.f, distance), jointColour);
+	}
 
-		Vector3 b1 = VectorBone1.worldToScreen(viewMatrix);
-		Vector3 b2 = VectorBone2.worldToScreen(viewMatrix);
+	for (std::vector<int> currentGroup : boneGroups::allGroups) {
+		previous = { 0.f,0.f,0.f };
 
-		if (espConf.head) {
-			Vector3 headBone = MemMan.ReadMem<Vector3>(boneArray + bones::head * 32);
-			Vector3 headBonePos = headBone.worldToScreen(viewMatrix);
-			ImGui::GetBackgroundDrawList()->AddCircleFilled({ headBonePos.x,headBonePos.y }, getJointSize(7.f, distance), headColour);
+		for (int currentBone : currentGroup) {
+			current = MemMan.ReadMem<Vector3>(boneArray + currentBone * 32);
+
+			if (previous.IsZero()) {
+				previous = current;
+				continue;
+			}
+
+			Vector3 currentScreenPos = current.worldToScreen(viewMatrix);
+			Vector3 previousScreenPos = previous.worldToScreen(viewMatrix);
+
+			ImGui::GetBackgroundDrawList()->AddLine({ previousScreenPos.x,previousScreenPos.y }, { currentScreenPos.x,currentScreenPos.y }, skeletonColour,1.5f);
+
+			if (espConf.joint) ImGui::GetBackgroundDrawList()->AddCircleFilled({ currentScreenPos.x,currentScreenPos.y }, getJointSize(5.f, distance), jointColour);
+			
+			previous = current;
 		}
-
-		if (espConf.joint) ImGui::GetBackgroundDrawList()->AddCircleFilled({ b1.x, b1.y }, getJointSize(5.f, distance), jointColour);
-
-		Render::Line(b1.x, b1.y, b2.x, b2.y, skeletonColour, 1.5);
 	}
 }
 
@@ -135,9 +143,5 @@ void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name
 		if (espConf.distance) {
 			makeDistance();
 		}
-
-		/*if (espConf.head) {
-			drawHead();
-		}*/
 	}
 }
