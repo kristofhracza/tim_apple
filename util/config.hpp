@@ -1,8 +1,11 @@
 #pragma once
 
+#include <fstream>
 #include <string>
 #include <vector>
 #include <map>
+
+#include "../json/jsonOps.hpp"
 
 struct espConfig {
 	bool state;
@@ -41,6 +44,9 @@ struct espConfig {
 	bool snapLines;
 
 	bool distance;
+
+	inline nlohmann::json to_json();
+	inline bool from_json(nlohmann::json json);
 };
 espConfig espConf = {};
 
@@ -58,8 +64,8 @@ struct aimConfig {
 
 	int bone;
 	int boneSelect = 0;
-	std::vector<std::string> bones = { "Head", "Neck","Chest", "Crotch"};
-	std::map <std::string, int> boneMap = { {"Head",6},{"Neck",5},{"Chest",4},{"Crotch",0}};
+	std::vector<std::string> bones = { "Head", "Neck","Chest", "Crotch" };
+	std::map <std::string, int> boneMap = { {"Head",6},{"Neck",5},{"Chest",4},{"Crotch",0} };
 
 	bool isHotAim;
 	int hotSelectAim = 0;
@@ -73,22 +79,37 @@ struct aimConfig {
 
 	bool playerLock;
 
-	std::vector<std::string> hotKey = {"SHIFT","ALT","CTRL","Left mouse","Right mouse"};
-	std::map <std::string, int> hotKeyMap = { {"SHIFT",VK_SHIFT}, {"ALT",VK_MENU},{"CTRL",VK_CONTROL},{"Left mouse",VK_LBUTTON},{"Right mouse",VK_RBUTTON}};
+	std::vector<std::string> hotKey = { "SHIFT","ALT","CTRL","Left mouse","Right mouse" };
+	std::map <std::string, int> hotKeyMap = { {"SHIFT",VK_SHIFT}, {"ALT",VK_MENU},{"CTRL",VK_CONTROL},{"Left mouse",VK_LBUTTON},{"Right mouse",VK_RBUTTON} };
+
+	inline nlohmann::json to_json();
+	inline bool from_json(nlohmann::json json);
 };
-aimConfig aimConf;
+aimConfig aimConf = {};
 
 
-struct miscConfig{
+struct miscConfig {
 	bool bunnyHop;
 	bool flash;
 	bool itemESP;
 	bool deathmatchMode;
-	bool fovCheck = true;
+	bool fovCheck = false;
 	int fov = 90;
+
+	inline nlohmann::json to_json();
+	inline bool from_json(nlohmann::json json);
 };
 miscConfig miscConf = {};
 
+inline namespace config {
+	inline nlohmann::json configFile = json::readFromJsonFile(json::configFile);
+
+	nlohmann::json to_json();
+	void load();
+	void save();
+	void create();
+	bool exists();
+}
 
 enum bones : int {
 	head            = 6,
