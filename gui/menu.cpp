@@ -321,6 +321,20 @@ void imGuiMenu::aboutMeRender() {
 	}
 }
 
+void imGuiMenu::configRender() {
+	if (tabCount == 5) {
+		ImGui::BeginChild("Configuration File", ImVec2(0, 0), true);
+		if (ImGui::Button("Save", ImVec2(50, 20))) {
+			config::save();
+		}
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		if (ImGui::Button("Load", ImVec2(50, 20))) {
+			config::load();
+		}
+		ImGui::EndChild();
+	}
+}
+
 void imGuiMenu::menuBar() {
 	ImGui::BeginMenuBar();
 
@@ -328,6 +342,7 @@ void imGuiMenu::menuBar() {
 	if (ImGui::MenuItem("Aim")) tabCount = 2;
 	if (ImGui::MenuItem("Misc")) tabCount = 3;
 	if (ImGui::MenuItem("About")) tabCount = 4;
+	if (ImGui::MenuItem("Config")) tabCount = 5;
 
 	ImGui::EndMenuBar();
 }
@@ -347,6 +362,7 @@ void imGuiMenu::renderMenu(bool state) {
 	aimRender();
 	miscRender();
 	aboutMeRender();
+	configRender();
 
 	ImGui::PopFont();
 	ImGui::End();
