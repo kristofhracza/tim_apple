@@ -7,8 +7,15 @@ CS2 external cheat
 Open `tim_apple.sln` in Visual Studio 2022, set build configuration to `Release | x64`.      
 Press Build solution and you should receive `tim_apple.exe` file.      
 
-## Usage
-*The cheat will **NOT** start if the game is not running.*
+## Usage #1
+1. Run `tim_apple.exe` before opening Counter Strike 2.
+2. Open Counter Strike 2.
+3. Wait for everything to load.
+4. Enjoy cheating!
+## Usage #2
+1. Open Counter Strike 2.
+2. Run `tim_apple.exe` when CS2 is COMPLETELY LOADED.
+3. Enjoy cheating!
 ### Controls
 Press the `INSERT` key to toggle the menu.     
 Press the `END` key to end the cheat.
