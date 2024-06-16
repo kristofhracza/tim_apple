@@ -35,17 +35,17 @@ void aim::aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, uintptr_t enem
 	
 	if (aimConf.isHotAim) {
 		if (GetAsyncKeyState(aimConf.hotKeyMap[aimConf.hotKey[aimConf.hotSelectAim]])) {
-			aim::moveMouseToPlayer(newAngle);
+			aim::moveMouseToLocation(newAngle);
 		}
 	}
 	else {
-		aim::moveMouseToPlayer(newAngle);
+		aim::moveMouseToLocation(newAngle);
 	}
 
 	lockedPlayer = enemyPlayer;
 }
 
-void aim::moveMouseToPlayer(Vector3 pos) {
+void aim::moveMouseToLocation(Vector3 pos) {
 	if (pos.x == 0.f && pos.y == 0.f && pos.z == 0.f) return;
 
 	auto new_x = -pos.y;
@@ -58,21 +58,23 @@ void aim::recoilControl(LocalPlayer localPlayer, DWORD_PTR baseViewAnglesAddy) {
 	localPlayer.getAimPunchCache();
 	localPlayer.getViewAngles();
 
-	static Vector3 oldPunch;
-	Vector3 aimPunchAngle = MemMan.ReadMem<Vector3>(localPlayer.aimPunchCache.data + (localPlayer.aimPunchCache.count - 1) * sizeof(Vector3));
+	static Vector3 oldAngles = { 0, 0, 0 };
+	Vector3 newAngles = { 0, 0, 0 };
+
+	if (localPlayer.getShotsFired() == 54587654) return; // Spectator check
 
 	if (localPlayer.getShotsFired() > 1) {
+		Vector3 aimPunch = MemMan.ReadMem<Vector3>(localPlayer.getPlayerPawn() + clientDLL::C_CSPlayerPawn_["m_aimPunchAngle"]);
+		newAngles.x = (aimPunch.x - oldAngles.x) * 2.f / (0.022f * aimConf.sens);
+		newAngles.y = (aimPunch.y - oldAngles.y) * 2.f / (0.022f * aimConf.sens);
 
-		Vector3 recoilVector = {
-			localPlayer.viewAngles.x + oldPunch.x - aimPunchAngle.x * 2.f,
-			localPlayer.viewAngles.y + oldPunch.y - aimPunchAngle.y * 2.f
-		};
-		recoilVector = clampAngles(recoilVector);
+		aim::moveMouseToLocation(newAngles * -1);
 
-		MemMan.WriteMem<Vector3>(baseViewAnglesAddy, recoilVector);
+		oldAngles = aimPunch;
 	}
-	oldPunch.x = aimPunchAngle.x * 2.f;
-	oldPunch.y = aimPunchAngle.y * 2.f;
+	else {
+		oldAngles = { 0, 0, 0 };
+	}
 }
 
 bool clicked = false;
