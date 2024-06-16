@@ -25,6 +25,7 @@
     <ClInclude Include="json\json.hpp" />
     <ClInclude Include="json\jsonOps.hpp" />
     <ClInclude Include="features\fov.hpp" />
+    <ClInclude Include="imgui\render.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="timapple.cpp" />
