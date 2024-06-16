@@ -64,6 +64,7 @@ inline nlohmann::json espConfig::to_json() {
 	json["skeleton"] = skeleton;
 	json["pawnName"] = pawnName;
 	json["boundBox"] = boundBox;
+	json["gradient"] = gradient;
 	json["snapLines"] = snapLines;
 	json["hpCounter"] = hpCounter;
 	json["isPawnGun"] = isPawnGun;
@@ -76,6 +77,7 @@ inline nlohmann::json espConfig::to_json() {
 	json["cornerColours"] = cornerColours;
 	json["filledBoxAlpha"] = filledBoxAlpha;
 	json["spottedColours"] = spottedColours;
+	json["cornerGradient"] = cornerGradient;
 	json["skeletonColours"] = skeletonColours;
 	json["attributeColours"] = attributeColours;
 	json["boundBoxThickness"] = boundBoxThickness;
@@ -96,9 +98,13 @@ inline bool espConfig::from_json(nlohmann::json json) {
 	skeleton = json["skeleton"];
 	pawnName = json["pawnName"];
 	boundBox = json["boundBox"];
+	gradient = json["gradient"];
 	snapLines = json["snapLines"];
 	hpCounter = json["hpCounter"];
 	isPawnGun = json["isPawnGun"];
+	cornerGradient[0] = json["cornerGradient"][0];
+	cornerGradient[1] = json["cornerGradient"][1];
+	cornerGradient[2] = json["cornerGradient"][2];
 	filledBox = json["filledBox"];
 	isPawnName = json["isPawnName"];
 	headColours[0] = json["headColours"][0];
