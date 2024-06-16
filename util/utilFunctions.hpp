@@ -3,8 +3,10 @@
 #include <string>
 #include <vector>
 #include <tuple>
+#include <iostream>
 #include <Windows.h>
 
+#include "../imgui/imgui.h"
 #include "Vectors.h"
 
 inline namespace utils {
@@ -19,6 +21,15 @@ inline namespace utils {
 		GetModuleFileNameW(NULL, buffer, MAX_PATH);
 		std::wstring::size_type pos = std::wstring(buffer).find_last_of(L"\\/");
 		return std::wstring(buffer).substr(0, pos);
+	}
+
+	inline namespace Drawing {
+		inline void DrawGradientLine(ImVec2 start, ImVec2 end, ImColor start_color, ImColor end_color, float thickness) {
+			ImGui::GetBackgroundDrawList()->AddRectFilledMultiColor(ImVec2(start.x, start.y + thickness), ImVec2(end.x, start.y), start_color, start_color, start_color, start_color);
+			ImGui::GetBackgroundDrawList()->AddRectFilledMultiColor(ImVec2(start.x - thickness, start.y), ImVec2(start.x, end.y), start_color, start_color, end_color, end_color);
+			ImGui::GetBackgroundDrawList()->AddRectFilledMultiColor(ImVec2(end.x - thickness, start.y), ImVec2(end.x, end.y), start_color, start_color, end_color, end_color);
+			ImGui::GetBackgroundDrawList()->AddRectFilledMultiColor(ImVec2(end.x, end.y + thickness), ImVec2(start.x, end.y), end_color, end_color, end_color, end_color);
+		}
 	}
 
 

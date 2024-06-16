@@ -85,23 +85,27 @@ void imGuiMenu::espRender() {
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("ESP toggle", &espConf.state);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Bounding Box", &espConf.boundBox);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Player name", &espConf.isPawnName);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Weapon name", &espConf.isPawnGun);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Health bar", &espConf.isHealthBar);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Skeleton", &espConf.skeleton);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Head", &espConf.head);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Joints", &espConf.joint);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Distance", &espConf.distance);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Snap lines", &espConf.snapLines);
+		if (espConf.state) {
+			ImGui::Checkbox("Gradient Line", &espConf.gradient);
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+			ImGui::Checkbox("Bounding Box", &espConf.boundBox);
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+			ImGui::Checkbox("Player name", &espConf.isPawnName);
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+			ImGui::Checkbox("Weapon name", &espConf.isPawnGun);
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+			ImGui::Checkbox("Health bar", &espConf.isHealthBar);
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+			ImGui::Checkbox("Skeleton", &espConf.skeleton);
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+			ImGui::Checkbox("Head", &espConf.head);
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+			ImGui::Checkbox("Joints", &espConf.joint);
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+			ImGui::Checkbox("Distance", &espConf.distance);
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+			ImGui::Checkbox("Snap lines", &espConf.snapLines);
+		}
 		ImGui::EndChild();
 
 		verticalSplitter(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt);
@@ -154,6 +158,10 @@ void imGuiMenu::espRender() {
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::ColorEdit3("Corner colours", (float*)&espConf.cornerColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		if (espConf.gradient) {
+			ImGui::ColorEdit3("Corner gradient", (float*)&espConf.cornerGradient);
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		}
 		ImGui::ColorEdit3("Skeleton colour", (float*)&espConf.skeletonColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::ColorEdit3("Head colours", (float*)&espConf.headColours);
@@ -301,7 +309,7 @@ void imGuiMenu::aboutMeRender() {
 		ImGui::PopFont();
 		ImGui::Text("https://github.com/kristofhracza/tim_apple");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Text("https://github.com/Skwrr");
+		ImGui::Text("https://github.com/Skwrr/tim_apple");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::PushFont(imGuiMenu::titleText);

@@ -33,7 +33,7 @@ void esp::makeSkeleton(view_matrix_t viewMatrix, uintptr_t boneArray) {
 		if (espConf.head) {
 			Vector3 headBone = MemMan.ReadMem<Vector3>(boneArray + bones::head * 32);
 			Vector3 headBonePos = headBone.worldToScreen(viewMatrix);
-			ImGui::GetBackgroundDrawList()->AddCircleFilled({ headBonePos.x,headBonePos.y }, getJointSize(10.f, distance), headColour);
+			ImGui::GetBackgroundDrawList()->AddCircle({ headBonePos.x,headBonePos.y }, 40.f/(distance == 0 ? 1 : distance), headColour);
 		}
 
 		if (espConf.joint) ImGui::GetBackgroundDrawList()->AddCircleFilled({ b1.x, b1.y }, getJointSize(5.f, distance), jointColour);
@@ -108,7 +108,8 @@ void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name
 			ImColor filledBoxcolour;
 			isSpotted == true ? filledBoxcolour = ImColor(espConf.spottedColours[0], espConf.spottedColours[1], espConf.spottedColours[2], espConf.filledBoxAlpha) : filledBoxcolour = ImColor(espConf.notSpottedColours[0], espConf.notSpottedColours[1], espConf.notSpottedColours[2], espConf.filledBoxAlpha);
 
-			ImGui::GetBackgroundDrawList()->AddRect({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, ImColor(espConf.cornerColours[0], espConf.cornerColours[1], espConf.cornerColours[2], 1.f), 0.f, 0.f, espConf.boundBoxThickness);
+			if (!espConf.gradient) ImGui::GetBackgroundDrawList()->AddRect({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, ImColor(espConf.cornerColours[0], espConf.cornerColours[1], espConf.cornerColours[2], 1.f), 0.f, 0.f, espConf.boundBoxThickness);
+			else Drawing::DrawGradientLine({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, ImColor(espConf.cornerColours[0], espConf.cornerColours[1], espConf.cornerColours[2], 1.f), ImColor(espConf.cornerGradient[0], espConf.cornerGradient[1], espConf.cornerGradient[2], 1.f), espConf.boundBoxThickness);
 			if (espConf.filledBox) ImGui::GetBackgroundDrawList()->AddRectFilled({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, filledBoxcolour, 0.f, 0.f);
 		}
 		

@@ -12,12 +12,14 @@ struct espConfig {
 	bool checkSpotted;
 
 	bool boundBox = true;
+	bool gradient;
 	bool filledBox = true;
 	float filledBoxAlpha = 0.2f;
 	float boundBoxThickness = 1.5f;
 	float spottedColours[3] = { 0.f,1.f,0.75f };
 	float notSpottedColours[3] = { 0.f,1.f,0.75f };
 	float cornerColours[3] = { 1.f,1.f,1.f };
+	float cornerGradient[3] = { 1.f,1.f,1.f };
 	float width = 2.5f;
 
 	bool isPawnName;
