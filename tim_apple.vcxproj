@@ -171,6 +171,7 @@
     <ClCompile Include="json\jsonOps.cpp" />
     <ClCompile Include="timapple.cpp" />
     <ClCompile Include="util\attributes.cpp" />
+    <ClCompile Include="util\config.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />

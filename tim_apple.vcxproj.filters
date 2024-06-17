@@ -42,6 +42,7 @@
     <ClCompile Include="features\aim.cpp" />
     <ClCompile Include="features\misc.cpp" />
     <ClCompile Include="json\jsonOps.cpp" />
+    <ClCompile Include="util\config.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

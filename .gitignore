@@ -3,5 +3,6 @@ Debug/
 x64/
 .vs/
 .git/
-
+*.json
+*.exe
 imgui.ini
