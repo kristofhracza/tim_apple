@@ -79,6 +79,7 @@ void overlayESP::makeDeviceAndSwapChain() {
 };
 
 void overlayESP::initWindow(int nShowCmd) {
+	config_LoadFromJson(espConf, aimConf, miscConf);
 	ShowWindow(window, nShowCmd);
 	UpdateWindow(window);
 
@@ -105,6 +106,9 @@ void overlayESP::renderLoop(MemoryManagement::moduleData client) {
 	while (state){
 		if (GetAsyncKeyState(VK_INSERT) & 1){
 			menutoggle = !menutoggle;
+			if (!menutoggle) {
+				config_PutToJson(espConf, aimConf, miscConf);
+			}
 		}
 
 		MSG msg;
@@ -155,6 +159,7 @@ void overlayESP::renderLoop(MemoryManagement::moduleData client) {
 }
 
 void overlayESP::destroyWindow() {
+	config_PutToJson(espConf, aimConf, miscConf);
 	ImGui_ImplDX11_Shutdown();
 	ImGui_ImplWin32_Shutdown();
 	ImGui::DestroyContext();

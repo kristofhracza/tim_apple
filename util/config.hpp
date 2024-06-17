@@ -112,3 +112,10 @@ inline namespace boneGroups {
 inline namespace timAppleSystem {
 	inline std::string weaponIconsTTF = ".\\fonts\\weaponIcons.ttf";
 }
+
+typedef struct espConfig tEspConfig;
+typedef struct aimConfig tAimConfig;
+typedef struct miscConfig tMiscConfig;
+
+int config_LoadFromJson(tEspConfig& stEsp, tAimConfig& stAim, tMiscConfig& stMisc);
+int config_PutToJson(tEspConfig& stEsp, tAimConfig& stAim, tMiscConfig& stMisc);
