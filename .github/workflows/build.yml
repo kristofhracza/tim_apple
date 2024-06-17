@@ -46,5 +46,5 @@ jobs:
         upload_url: ${{ steps.release.outputs.upload_url }}
         asset_path: ./x64/Release/tim_apple.exe
         asset_name: Tim Apple v{{ github.run_number }}.exe
-        aaset_content_type: application/exe
+        asset_content_type: application/exe
         
