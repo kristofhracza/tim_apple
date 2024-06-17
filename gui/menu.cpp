@@ -206,8 +206,8 @@ void imGuiMenu::aimRender() {
 		ImGui::Checkbox("Trigger Bot", &aimConf.trigger);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Trigger bot hot key", &aimConf.isHotTrigger);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		if (aimConf.isHotTrigger) {
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 			if (ImGui::BeginCombo("Hot key", aimConf.hotKey[aimConf.hotSelectTrigger].c_str())) {
 				for (int i = 0; i < aimConf.hotKey.size(); ++i) {
 					const bool isSelected = (aimConf.hotTrigger == i);
@@ -222,6 +222,21 @@ void imGuiMenu::aimRender() {
 				}
 				ImGui::EndCombo();
 			}
+		}
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		if (ImGui::BeginCombo("Aimbot Preference", aimConf.aimModes[aimConf.defaultAimMode].c_str())) {
+			for (int i = 0; i < aimConf.aimModes.size(); ++i) {
+				const bool isSelected = (aimConf.aimMode == i);
+
+				if (ImGui::Selectable(aimConf.aimModes[i].c_str(), isSelected)) {
+					aimConf.defaultAimMode = i;
+				}
+
+				if (isSelected) {
+					ImGui::SetItemDefaultFocus();
+				}
+			}
+			ImGui::EndCombo();
 		}
 		ImGui::EndChild();
 

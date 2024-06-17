@@ -69,6 +69,11 @@ struct aimConfig {
 	std::vector<std::string> bones = { "Head", "Neck","Chest", "Crotch" };
 	std::map <std::string, int> boneMap = { {"Head",6},{"Neck",5},{"Chest",4},{"Crotch",0} };
 
+	int aimMode;
+	int defaultAimMode = 3;
+	std::vector<std::string> aimModes = { "Closest to Player", "Closest to Crosshair", "Furthest from crosshair", "No preference" };
+	std::map <std::string, int> aimModeMap = { {"Closest to Player",0},{"Closest to Crosshair",1},{"Furthest from crosshair",2},{"No preference",3} };
+
 	bool isHotAim;
 	int hotSelectAim = 0;
 	int hotAim;
