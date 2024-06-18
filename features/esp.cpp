@@ -88,10 +88,8 @@ void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name
 	sharedData::originalPosToScreen = originalPosToScreen;
 	sharedData::origin = origin;
 
-	Vector3 headPos;
-	headPos.x = origin.x;
-	headPos.y = origin.y;
-	headPos.z = origin.z + 75.f;
+	Vector3 headPos = MemMan.ReadMem<Vector3>(boneArray + aimConf.boneMap[aimConf.bones[aimConf.boneSelect]] * 32);
+	headPos.z = headPos.z + 15.f;
 	sharedData::headPos = headPos;
 
 	Vector3 headPosToScreen = headPos.worldToScreen(viewMatrix);
