@@ -37,4 +37,6 @@ namespace esp {
 	void makeDistance();
 
 	void boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name, int health, uintptr_t boneArray,bool isSpotted = false);
+
+	void drawC4(Vector3 origin, view_matrix_t viewMatrix, LocalPlayer localPlayer, bool planted);
 }

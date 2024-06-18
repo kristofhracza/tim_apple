@@ -80,6 +80,24 @@ void esp::makeDistance() {
 	ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::espNameText, getFontSize(sideESPText, distance), { sharedData::headPosToScreen.x - horizontalOffset, sharedData::headPosToScreen.y - verticalOffset - 12}, ImColor(espConf.attributeColours[0], espConf.attributeColours[1], espConf.attributeColours[2]), distanceText.c_str());
 }
 
+void esp::drawC4(Vector3 origin, view_matrix_t viewMatrix, LocalPlayer localPlayer, bool planted) {
+	if (!planted) return;
+
+	Vector3 c4PosToScreen = origin.worldToScreen(viewMatrix);
+
+	float distance = utils::getDistance(localPlayer.getOrigin(), origin);
+
+	if (c4PosToScreen.z <= 0.f) return; // Check if C4 is behind the player
+	
+	float height = 5000 / distance;
+	float width = height * 1.2f;
+
+	float boxX = c4PosToScreen.x - width / 2;
+	float boxY = c4PosToScreen.y - height / 2;
+
+	Render::DrawGradientLine({ boxX, boxY }, { width + boxX, height + boxY }, ImColor(espConf.c4Colors[0], espConf.c4Colors[1], espConf.c4Colors[2], 1.f), (espConf.c4Gradient ? ImColor(espConf.c4ColorsGradient[0], espConf.c4ColorsGradient[1], espConf.c4ColorsGradient[2], 1.f) : ImColor(espConf.c4Colors[0], espConf.c4Colors[1], espConf.c4Colors[2], 1.f)), espConf.c4Thickness);
+}
+
 
 void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name, int health, uintptr_t boneArray, bool isSpotted) {
 	if (origin.IsZero()) return;
@@ -107,7 +125,7 @@ void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name
 			isSpotted == true ? filledBoxcolour = ImColor(espConf.spottedColours[0], espConf.spottedColours[1], espConf.spottedColours[2], espConf.filledBoxAlpha) : filledBoxcolour = ImColor(espConf.notSpottedColours[0], espConf.notSpottedColours[1], espConf.notSpottedColours[2], espConf.filledBoxAlpha);
 
 			if (!espConf.gradient) ImGui::GetBackgroundDrawList()->AddRect({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, ImColor(espConf.cornerColours[0], espConf.cornerColours[1], espConf.cornerColours[2], 1.f), 0.f, 0.f, espConf.boundBoxThickness);
-			else Drawing::DrawGradientLine({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, ImColor(espConf.cornerColours[0], espConf.cornerColours[1], espConf.cornerColours[2], 1.f), ImColor(espConf.cornerGradient[0], espConf.cornerGradient[1], espConf.cornerGradient[2], 1.f), espConf.boundBoxThickness);
+			else Render::DrawGradientLine({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, ImColor(espConf.cornerColours[0], espConf.cornerColours[1], espConf.cornerColours[2], 1.f), ImColor(espConf.cornerGradient[0], espConf.cornerGradient[1], espConf.cornerGradient[2], 1.f), espConf.boundBoxThickness);
 			if (espConf.filledBox) ImGui::GetBackgroundDrawList()->AddRectFilled({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, filledBoxcolour, 0.f, 0.f);
 		}
 		

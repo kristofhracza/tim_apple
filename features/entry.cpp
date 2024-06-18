@@ -6,6 +6,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 	C_CSPlayerPawn			C_CSPlayerPawn(client.base);
 	CGameSceneNode			CGameSceneNode;
 	LocalPlayer				localPlayer(client.base);
+	C_C4					C_C4(client.base);
 
 
 	// Shared variables (between features)
@@ -90,6 +91,15 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 			}
 		}
 
+		// C4 ESP
+		if (espConf.c4State) {
+
+			CGameSceneNode.value = C_C4.getCGameSceneNode();
+			CGameSceneNode.getOrigin();
+
+			esp::drawC4(CGameSceneNode.origin, viewMatrix, localPlayer, C_C4.isPlanted());
+		}
+
 		// Aim
 		if (aimConf.state) {
 
@@ -144,8 +154,8 @@ C_CSPlayerPawn doPreferred(C_CSPlayerPawn C_CSPlayerPawn_, CGameSceneNode CGameS
 
 	switch (mode) {
 	case 0: {
-		if (utils::getDistance(localPlayer.getPosition(), target.getPosition()) >
-			utils::getDistance(localPlayer.getPosition(), C_CSPlayerPawn_.getPosition()))
+		if (utils::getDistance(localPlayer.getOrigin(), target.getOrigin()) >
+			utils::getDistance(localPlayer.getOrigin(), C_CSPlayerPawn_.getOrigin()))
 			return C_CSPlayerPawn_;
 		else return target;
 	}
