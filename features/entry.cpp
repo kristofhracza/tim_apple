@@ -1,10 +1,4 @@
-#include "esp.hpp"
-#include "aim.hpp"
-#include "fov.hpp"
-#include "misc.hpp"
-
-#include "../util/config.hpp"
-#include "../util/utilFunctions.hpp"
+#include "entry.hpp"
 
 void mainLoop(bool state, MemoryManagement::moduleData client) {
 	// Classes
@@ -19,7 +13,6 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 	Vector3 baseViewAngles = MemMan.ReadMem<Vector3>(client.base + offsets::clientDLL["dwViewAngles"]);
 	DWORD_PTR baseViewAnglesAddy = client.base + offsets::clientDLL["dwViewAngles"];
 	uintptr_t entityList = MemMan.ReadMem<uintptr_t>(client.base + offsets::clientDLL["dwEntityList"]);
-
 
 	// NOTE: Cheats that only need local player / visuals that don't relate to gameplay
 	localPlayer.getPlayerPawn();
@@ -100,9 +93,23 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		// Aim
 		if (aimConf.state) {
 
+			if (C_CSPlayerPawn.getPlayerPawn() == localPlayer.getPlayerPawn()) continue;
+			
 			// Player lock
 			if (aimConf.playerLock) {
 				if (aim::lockedPlayer != C_CSPlayerPawn.playerPawn && aim::lockedPlayer != 0) continue;
+				if (aim::preferredAimbot == 0) aim::preferredAimbot = doPreferred(C_CSPlayerPawn, CGameSceneNode, localPlayer, aim::preferredAimbot, viewMatrix, aimConf.aimModeMap[aimConf.aimModes[aimConf.aimMode]], client).playerPawn;;
+			}
+			else {
+				aim::preferredAimbot = doPreferred(C_CSPlayerPawn, CGameSceneNode, localPlayer, aim::preferredAimbot, viewMatrix, aimConf.aimModeMap[aimConf.aimModes[aimConf.aimMode]], client).playerPawn;
+			}
+
+			C_CSPlayerPawn.playerPawn = aim::preferredAimbot;
+
+			if (C_CSPlayerPawn.getPawnHealth() <= 0 || C_CSPlayerPawn.pawnHealth > 100) {
+				aim::preferredAimbot = 0;
+				std::cout << "Player dead, switching" << std::endl;
+				continue;
 			}
 
 			CGameSceneNode.value = C_CSPlayerPawn.getCGameSceneNode();
@@ -125,4 +132,77 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 
 	// Dropped Item
 	if (miscConf.itemESP) misc::droppedItem(C_CSPlayerPawn, CGameSceneNode,viewMatrix);
+}
+
+C_CSPlayerPawn doPreferred(C_CSPlayerPawn C_CSPlayerPawn_, CGameSceneNode CGameSceneNode, LocalPlayer localPlayer, uintptr_t preferredTarget, view_matrix_t viewMatrix, int mode, MemoryManagement::moduleData client) {
+	C_CSPlayerPawn target(client.base);
+	if (preferredTarget == 0) return C_CSPlayerPawn_;
+	target.playerPawn = preferredTarget;
+
+	if (target.getPawnHealth() <= 0 || target.pawnHealth > 100)
+		return C_CSPlayerPawn_;
+
+	switch (mode) {
+	case 0: {
+		if (utils::getDistance(localPlayer.getPosition(), target.getPosition()) >
+			utils::getDistance(localPlayer.getPosition(), C_CSPlayerPawn_.getPosition()))
+			return C_CSPlayerPawn_;
+		else return target;
+	}
+	case 1: {
+		// C_CSPlayerPawn_ (Next player in entity list)
+		Vector3 newOrigin = C_CSPlayerPawn_.getOrigin();
+		Vector3 newOriginalPosToScreen = newOrigin.worldToScreen(viewMatrix);
+
+		Vector3 newHeadPos = MemMan.ReadMem<Vector3>(CGameSceneNode.getBoneArray() + aimConf.boneMap[aimConf.bones[aimConf.boneSelect]] * 32);
+
+		Vector3 newHeadPosToScreen = newHeadPos.worldToScreen(viewMatrix);
+
+		// preferredAimbot (Last potential target)
+		CGameSceneNode.value = target.getCGameSceneNode();
+
+		Vector3 oldOrigin = target.getOrigin();
+		Vector3 oldOriginalPosToScreen = oldOrigin.worldToScreen(viewMatrix);
+
+		Vector3 oldHeadPos = MemMan.ReadMem<Vector3>(CGameSceneNode.getBoneArray() + aimConf.boneMap[aimConf.bones[aimConf.boneSelect]] * 32);
+
+		Vector3 oldHeadPosToScreen = oldHeadPos.worldToScreen(viewMatrix);
+
+		std::cout << utils::getDistance({ newHeadPosToScreen.x, newHeadPosToScreen.y }, { (float)GetSystemMetrics(SM_CXSCREEN) / 2, (float)GetSystemMetrics(SM_CYSCREEN) / 2 }) << " , "
+			<< utils::getDistance({ oldHeadPosToScreen.x, oldHeadPosToScreen.y }, { (float)GetSystemMetrics(SM_CXSCREEN) / 2, (float)GetSystemMetrics(SM_CYSCREEN) / 2 })
+			<< " | WTS: " << newHeadPosToScreen.x << " , " << oldHeadPosToScreen.x << " : " << newHeadPosToScreen.y << " , " << oldHeadPosToScreen.y << " : " << newHeadPosToScreen.z << " , " << oldHeadPosToScreen.z << std::endl;
+		if (utils::getDistance({ oldHeadPosToScreen.x, oldHeadPosToScreen.y }, { (float)GetSystemMetrics(SM_CXSCREEN) / 2, (float)GetSystemMetrics(SM_CYSCREEN) / 2 }) >
+			utils::getDistance({ newHeadPosToScreen.x, newHeadPosToScreen.y }, { (float)GetSystemMetrics(SM_CXSCREEN) / 2, (float)GetSystemMetrics(SM_CYSCREEN) / 2 }))
+			return C_CSPlayerPawn_;
+		else return target;
+	}
+	case 2: {
+		// C_CSPlayerPawn_ (Next player in entity list)
+		Vector3 newOrigin = C_CSPlayerPawn_.getOrigin();
+		Vector3 newOriginalPosToScreen = newOrigin.worldToScreen(viewMatrix);
+
+		Vector3 newHeadPos = MemMan.ReadMem<Vector3>(CGameSceneNode.getBoneArray() + aimConf.boneMap[aimConf.bones[aimConf.boneSelect]] * 32);
+
+		Vector3 newHeadPosToScreen = newHeadPos.worldToScreen(viewMatrix);
+
+		// preferredAimbot (Last potential target)
+		CGameSceneNode.value = target.getCGameSceneNode();
+
+		Vector3 oldOrigin = target.getOrigin();
+		Vector3 oldOriginalPosToScreen = oldOrigin.worldToScreen(viewMatrix);
+
+		Vector3 oldHeadPos = MemMan.ReadMem<Vector3>(CGameSceneNode.getBoneArray() + aimConf.boneMap[aimConf.bones[aimConf.boneSelect]] * 32);
+
+		Vector3 oldHeadPosToScreen = oldHeadPos.worldToScreen(viewMatrix);
+
+		if (utils::getDistance({ oldHeadPosToScreen.x, oldHeadPosToScreen.y }, { (float)GetSystemMetrics(SM_CXSCREEN) / 2, (float)GetSystemMetrics(SM_CYSCREEN) / 2 }) >
+			utils::getDistance({ newHeadPosToScreen.x, newHeadPosToScreen.y }, { (float)GetSystemMetrics(SM_CXSCREEN) / 2, (float)GetSystemMetrics(SM_CYSCREEN) / 2 }))
+			return target;
+		else return C_CSPlayerPawn_;
+	}
+	case 3: {
+		return C_CSPlayerPawn_;
+	}
+	default: return C_CSPlayerPawn_;
+	}
 }

@@ -15,9 +15,11 @@ void aim::aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, uintptr_t enem
 	Vector3 newAngle;
 	Vector3 angle;
 
-	if (lockedPlayer != 0 && lockedPlayer != enemyPlayer) return;
+	if (aimConf.playerLock)
+		if (lockedPlayer != 0 && lockedPlayer != enemyPlayer) return;
 	if (enemyPlayer == localPlayer.getPlayerPawn()) {
 		lockedPlayer = 0;
+		preferredAimbot = 0;
 		return;
 	}
 
@@ -30,6 +32,7 @@ void aim::aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, uintptr_t enem
 
 	if (newAngle.IsZero()) {
 		lockedPlayer = 0;
+		preferredAimbot = 0;
 		return;
 	}
 	

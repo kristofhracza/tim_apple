@@ -13,4 +13,5 @@ namespace aim {
 	void triggerBot(LocalPlayer localPlayer, DWORD_PTR base);
 
 	uintptr_t lockedPlayer = 0;
+	uintptr_t preferredAimbot = 0;
 }
