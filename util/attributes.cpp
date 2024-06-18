@@ -234,3 +234,13 @@ bool SharedFunctions::inGame(DWORD_PTR base) {
 
 	return match;
 }
+
+bool C_C4::isPlanted() {
+	planted = MemMan.ReadMem<bool>(base + offsets::clientDLL["dwPlantedC4"] - 0x8);
+	return planted;
+}
+
+uintptr_t C_C4::getCGameSceneNode() {
+	scene = MemMan.ReadMem<uintptr_t>(c4 + offsets::clientDLL["m_pGameSceneNode"]);
+	return scene;
+}

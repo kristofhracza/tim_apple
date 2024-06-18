@@ -147,6 +147,22 @@ public:
 	Vector3 getOrigin();
 };
 
+class C_C4 {
+public:
+	uintptr_t c4;
+	uintptr_t base;
+
+	C_C4(uintptr_t baseAddy) {
+		base = baseAddy;
+		c4 = MemMan.ReadMem<uintptr_t>(MemMan.ReadMem<uintptr_t>(baseAddy + offsets::clientDLL["dwPlantedC4"]));
+	}
+
+	bool planted;
+	bool isPlanted();
+
+	uintptr_t scene;
+	uintptr_t getCGameSceneNode();
+};
 
 class LocalPlayer {
 public:
