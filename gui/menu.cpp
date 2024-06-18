@@ -224,12 +224,12 @@ void imGuiMenu::aimRender() {
 			}
 		}
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		if (ImGui::BeginCombo("Aimbot Preference", aimConf.aimModes[aimConf.defaultAimMode].c_str())) {
+		if (ImGui::BeginCombo("Aimbot Preference", aimConf.aimModes[aimConf.aimMode].c_str())) {
 			for (int i = 0; i < aimConf.aimModes.size(); ++i) {
 				const bool isSelected = (aimConf.aimMode == i);
 
 				if (ImGui::Selectable(aimConf.aimModes[i].c_str(), isSelected)) {
-					aimConf.defaultAimMode = i;
+					aimConf.aimMode = i;
 				}
 
 				if (isSelected) {
