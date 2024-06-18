@@ -105,6 +105,13 @@ void imGuiMenu::espRender() {
 			ImGui::Checkbox("Distance", &espConf.distance);
 			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 			ImGui::Checkbox("Snap lines", &espConf.snapLines);
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		}
+		ImGui::Checkbox("C4 ESP Toggle", &espConf.c4State);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		if (espConf.c4State) {
+			ImGui::Checkbox("Gradient", &espConf.c4Gradient);
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		}
 		ImGui::EndChild();
 
@@ -167,6 +174,15 @@ void imGuiMenu::espRender() {
 		ImGui::ColorEdit3("Head colours", (float*)&espConf.headColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::ColorEdit3("Joint colours", (float*)&espConf.jointColours);
+		if (espConf.c4State) {
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+			ImGui::ColorEdit3("C4 Colors", (float*)&espConf.c4Colors);
+			if (espConf.c4Gradient) {
+				ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+				ImGui::ColorEdit3("C4 Gradient", (float*)&espConf.c4ColorsGradient);
+			}
+		}
+
 		ImGui::EndChild();
 	}
 }

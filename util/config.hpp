@@ -8,6 +8,7 @@
 #include "../json/jsonOps.hpp"
 
 struct espConfig {
+	// *--*--*--*--*--*Player ESP*--*--*--*--*--* \\ 
 	bool state;
 	bool checkSpotted;
 
@@ -46,6 +47,12 @@ struct espConfig {
 	bool snapLines;
 
 	bool distance;
+	// *--*--*--*--*--*C4 ESP*--*--*--*--*--* \\ 
+	bool c4State;
+	bool c4Gradient;
+
+	float c4Colors[3] = { 1.f, 0.f, 0.f };
+	float c4ColorsGradient[3] = { 1.f, 0.f, 0.f };
 
 	inline nlohmann::json to_json();
 	inline bool from_json(nlohmann::json json);

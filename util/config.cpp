@@ -66,15 +66,18 @@ inline nlohmann::json espConfig::to_json() {
 	json["width"] = width;
 	json["health"] = health;
 	json["pawnGun"] = pawnGun;
+	json["c4State"] = c4State;
 	json["distance"] = distance;
 	json["skeleton"] = skeleton;
 	json["pawnName"] = pawnName;
 	json["boundBox"] = boundBox;
 	json["gradient"] = gradient;
+	json["c4Colors"] = c4Colors;
 	json["snapLines"] = snapLines;
 	json["hpCounter"] = hpCounter;
 	json["isPawnGun"] = isPawnGun;
 	json["filledBox"] = filledBox;
+	json["c4Gradient"] = c4Gradient;
 	json["isPawnName"] = isPawnName;
 	json["headColours"] = headColours;
 	json["isHealthBar"] = isHealthBar;
@@ -86,8 +89,10 @@ inline nlohmann::json espConfig::to_json() {
 	json["cornerGradient"] = cornerGradient;
 	json["skeletonColours"] = skeletonColours;
 	json["attributeColours"] = attributeColours;
+	json["c4ColorsGradient"] = c4ColorsGradient;
 	json["boundBoxThickness"] = boundBoxThickness;
 	json["notSpottedColours"] = notSpottedColours;
+
 	return json;
 }
 
@@ -100,6 +105,7 @@ inline bool espConfig::from_json(nlohmann::json json) {
 	health[1] = json["health"][1];
 	health[2] = json["health"][2];
 	pawnGun = json["pawnGun"];
+	c4State = json["c4State"];
 	distance = json["distance"];
 	skeleton = json["skeleton"];
 	pawnName = json["pawnName"];
@@ -108,6 +114,7 @@ inline bool espConfig::from_json(nlohmann::json json) {
 	snapLines = json["snapLines"];
 	hpCounter = json["hpCounter"];
 	isPawnGun = json["isPawnGun"];
+	c4Gradient = json["c4Gradient"];
 	cornerGradient[0] = json["cornerGradient"][0];
 	cornerGradient[1] = json["cornerGradient"][1];
 	cornerGradient[2] = json["cornerGradient"][2];
@@ -120,6 +127,9 @@ inline bool espConfig::from_json(nlohmann::json json) {
 	jointColours[0] = json["jointColours"][0];
 	jointColours[1] = json["jointColours"][1];
 	jointColours[2] = json["jointColours"][2];
+	c4Colors[0] = json["c4Colors"][0];
+	c4Colors[1] = json["c4Colors"][1];
+	c4Colors[2] = json["c4Colors"][2];
 	checkSpotted = json["checkSpotted"];
 	cornerColours[0] = json["cornerColours"][0];
 	cornerColours[1] = json["cornerColours"][1];
@@ -138,6 +148,9 @@ inline bool espConfig::from_json(nlohmann::json json) {
 	notSpottedColours[0] = json["notSpottedColours"][0];
 	notSpottedColours[1] = json["notSpottedColours"][1];
 	notSpottedColours[2] = json["notSpottedColours"][2];
+	c4ColorsGradient[0] = json["c4ColorsGradient"][0];
+	c4ColorsGradient[1] = json["c4ColorsGradient"][1];
+	c4ColorsGradient[2] = json["c4ColorsGradient"][2];
 
 	return true;
 }
