@@ -241,6 +241,6 @@ bool C_C4::isPlanted() {
 }
 
 uintptr_t C_C4::getCGameSceneNode() {
-	scene = MemMan.ReadMem<uintptr_t>(c4 + offsets::clientDLL["m_pGameSceneNode"]);
+	scene = MemMan.ReadMem<uintptr_t>(c4 + clientDLL::C_BaseEntity_["m_pGameSceneNode"]);
 	return scene;
 }
