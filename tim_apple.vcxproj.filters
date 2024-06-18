@@ -47,10 +47,4 @@
     <ClCompile Include="features\fov.cpp" />
     <ClCompile Include="util\config.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="README.md" />
-    <None Include=".gitignore" />
-    <None Include="x64\Release\client.dll.json" />
-    <None Include="updateoffset.cmd" />
-  </ItemGroup>
 </Project>

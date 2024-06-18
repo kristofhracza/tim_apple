@@ -1,7 +1,9 @@
 # :apple: Tim Apple
-CS2 external cheat
+CS2 Semi External Cheat
 
 ![Preview](screenshots/preview.png)
+![Preview1](screenshots/preview0.png)
+![Preview2](screenshots/preview1.png)
 
 ## Compiling from source
 Open `tim_apple.sln` in Visual Studio 2022, set build configuration to `Release | x64`.      
@@ -56,10 +58,11 @@ Run the `updateoffset.cmd` in the same folder as your executable is
 
 ### Is this cheat read-only?
 It can be if you use the features that don't write to the game's memory.     
-Namely: All ESP, Bunny Hop, Aim Bot and Trigger Bot
+Namely: All ESP, Bunny Hop, Aim Bot, RCS and Trigger Bot
 I'll be working on try to make everything read-only (Anti-Flash aside because it's impossible to make it external)
 
 ## Credits
 - [ocornut/imgui](https://github.com/ocornut/imgui)
 - [nlohmann/json](https://github.com/nlohmann/json)
 - [a2x/cs2-dumper](https://github.com/a2x/cs2-dumper)
+- [kristofhracza/tim_apple](https://github.com/kristofhracza/tim_apple) (Original tim_apple)

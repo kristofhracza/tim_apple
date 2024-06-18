@@ -177,12 +177,6 @@
     <ClCompile Include="util\attributes.cpp" />
     <ClCompile Include="util\config.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include=".gitignore" />
-    <None Include="README.md" />
-    <None Include="updateoffset.cmd" />
-    <None Include="x64\Release\client.dll.json" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
