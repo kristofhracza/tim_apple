@@ -147,6 +147,10 @@ void imGuiMenu::espRender() {
 		ImGui::SliderFloat("Width", &espConf.width, 1.f, 5.f);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("Thickness", &espConf.boundBoxThickness, 1.f, 3.f);
+		if (espConf.c4State) {
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+			ImGui::SliderFloat("C4 Thickness", &espConf.c4Thickness, 1.f, 3.f);
+		}
 		ImGui::EndChild();
 
 		horizontalSplitter(HEIGHT);
