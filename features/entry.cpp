@@ -168,9 +168,6 @@ C_CSPlayerPawn doPreferred(C_CSPlayerPawn C_CSPlayerPawn_, CGameSceneNode CGameS
 
 		Vector3 oldHeadPosToScreen = oldHeadPos.worldToScreen(viewMatrix);
 
-		std::cout << utils::getDistance({ newHeadPosToScreen.x, newHeadPosToScreen.y }, { (float)GetSystemMetrics(SM_CXSCREEN) / 2, (float)GetSystemMetrics(SM_CYSCREEN) / 2 }) << " , "
-			<< utils::getDistance({ oldHeadPosToScreen.x, oldHeadPosToScreen.y }, { (float)GetSystemMetrics(SM_CXSCREEN) / 2, (float)GetSystemMetrics(SM_CYSCREEN) / 2 })
-			<< " | WTS: " << newHeadPosToScreen.x << " , " << oldHeadPosToScreen.x << " : " << newHeadPosToScreen.y << " , " << oldHeadPosToScreen.y << " : " << newHeadPosToScreen.z << " , " << oldHeadPosToScreen.z << std::endl;
 		if (utils::getDistance({ oldHeadPosToScreen.x, oldHeadPosToScreen.y }, { (float)GetSystemMetrics(SM_CXSCREEN) / 2, (float)GetSystemMetrics(SM_CYSCREEN) / 2 }) >
 			utils::getDistance({ newHeadPosToScreen.x, newHeadPosToScreen.y }, { (float)GetSystemMetrics(SM_CXSCREEN) / 2, (float)GetSystemMetrics(SM_CYSCREEN) / 2 }))
 			return C_CSPlayerPawn_;
