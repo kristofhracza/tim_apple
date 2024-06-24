@@ -19,7 +19,6 @@ void aim::aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, uintptr_t enem
 		if (lockedPlayer != 0 && lockedPlayer != enemyPlayer) return;
 	if (enemyPlayer == localPlayer.getPlayerPawn()) {
 		lockedPlayer = 0;
-		preferredAimbot = 0;
 		return;
 	}
 
@@ -32,9 +31,22 @@ void aim::aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, uintptr_t enem
 
 	if (newAngle.IsZero()) {
 		lockedPlayer = 0;
-		preferredAimbot = 0;
 		return;
 	}
+
+	if (aimConf.rcs) {
+		static Vector3 oldAngles = { 0, 0, 0 };
+		Vector3 rcs = { 0, 0, 0 };
+
+		if (localPlayer.getShotsFired() > 1 && localPlayer.shotsFired < 9999 /* Spectator check */) {
+			Vector3 aimPunch = MemMan.ReadMem<Vector3>(localPlayer.getPlayerPawn() + clientDLL::C_CSPlayerPawn_["m_aimPunchAngle"]);
+			rcs.x = (aimPunch.x - oldAngles.x) * 2.f / (0.022f * aimConf.sens);
+			rcs.y = (aimPunch.y - oldAngles.y) * 2.f / (0.022f * aimConf.sens);
+
+			oldAngles = aimPunch;
+		}
+		newAngle = newAngle - rcs;
+	};
 	
 	if (aimConf.isHotAim) {
 		if (GetAsyncKeyState(aimConf.hotKeyMap[aimConf.hotKey[aimConf.hotSelectAim]])) {
@@ -57,26 +69,28 @@ void aim::moveMouseToLocation(Vector3 pos) {
 	mouse_event(MOUSEEVENTF_MOVE, new_x, new_y, 0, 0);
 }
 
-void aim::recoilControl(LocalPlayer localPlayer, DWORD_PTR baseViewAnglesAddy) {
+Vector3 aim::recoilControl(LocalPlayer localPlayer, bool move) {
 	localPlayer.getAimPunchCache();
 	localPlayer.getViewAngles();
 
 	static Vector3 oldAngles = { 0, 0, 0 };
 	Vector3 newAngles = { 0, 0, 0 };
 
-	if (localPlayer.getShotsFired() == 54587654) return; // Spectator check
+	if (localPlayer.getShotsFired() == 54587654) return newAngles; // Spectator check
 
-	if (localPlayer.getShotsFired() > 1) {
+	if (localPlayer.getShotsFired() > 1 && lockedPlayer == 0) {
 		Vector3 aimPunch = MemMan.ReadMem<Vector3>(localPlayer.getPlayerPawn() + clientDLL::C_CSPlayerPawn_["m_aimPunchAngle"]);
 		newAngles.x = (aimPunch.x - oldAngles.x) * 2.f / (0.022f * aimConf.sens);
 		newAngles.y = (aimPunch.y - oldAngles.y) * 2.f / (0.022f * aimConf.sens);
 
-		aim::moveMouseToLocation(newAngles * -1);
+		if (move) aim::moveMouseToLocation(newAngles * -1);
 
 		oldAngles = aimPunch;
+		return newAngles;
 	}
 	else {
 		oldAngles = { 0, 0, 0 };
+		return newAngles;
 	}
 }
 

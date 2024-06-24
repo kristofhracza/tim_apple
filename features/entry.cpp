@@ -26,7 +26,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		ImGui::GetBackgroundDrawList()->AddCircle({ screenMidX ,screenMidY }, (aimConf.fov * 10), ImColor(1.f, 1.f, 1.f, 1.f), 0, 1.f);
 	}
 	// Recoil control
-	if (aimConf.rcs) aim::recoilControl(localPlayer, baseViewAnglesAddy);
+	if (aimConf.rcs) aim::recoilControl(localPlayer, true);
 
 	// Bunny hop
 	if (miscConf.bunnyHop) misc::bunnyHop(client.base, localPlayer.getFlags());
@@ -107,18 +107,13 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 			
 			// Player lock
 			if (aimConf.playerLock) {
-				if (aim::lockedPlayer != C_CSPlayerPawn.playerPawn && aim::lockedPlayer != 0) continue;
-				if (aim::preferredAimbot == 0) aim::preferredAimbot = doPreferred(C_CSPlayerPawn, CGameSceneNode, localPlayer, aim::preferredAimbot, viewMatrix, aimConf.aimModeMap[aimConf.aimModes[aimConf.aimMode]], client).playerPawn;;
+				aim::lockedPlayer = doPreferred(C_CSPlayerPawn, CGameSceneNode, localPlayer, aim::lockedPlayer, viewMatrix, aimConf.aimModeMap[aimConf.aimModes[aimConf.aimMode]], client).playerPawn;
+				if (aim::lockedPlayer != C_CSPlayerPawn.playerPawn) continue;
+				C_CSPlayerPawn.playerPawn = aim::lockedPlayer;
 			}
-			else {
-				aim::preferredAimbot = doPreferred(C_CSPlayerPawn, CGameSceneNode, localPlayer, aim::preferredAimbot, viewMatrix, aimConf.aimModeMap[aimConf.aimModes[aimConf.aimMode]], client).playerPawn;
-			}
-
-			C_CSPlayerPawn.playerPawn = aim::preferredAimbot;
 
 			if (C_CSPlayerPawn.getPawnHealth() <= 0 || C_CSPlayerPawn.pawnHealth > 100) {
-				aim::preferredAimbot = 0;
-				std::cout << "Player dead, switching" << std::endl;
+				aim::lockedPlayer = 0;
 				continue;
 			}
 
@@ -208,7 +203,7 @@ C_CSPlayerPawn doPreferred(C_CSPlayerPawn C_CSPlayerPawn_, CGameSceneNode CGameS
 		else return C_CSPlayerPawn_;
 	}
 	case 3: {
-		return C_CSPlayerPawn_;
+		return target;
 	}
 	default: return C_CSPlayerPawn_;
 	}
