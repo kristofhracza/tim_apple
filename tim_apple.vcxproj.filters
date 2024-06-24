@@ -24,6 +24,8 @@
     <ClInclude Include="features\misc.hpp" />
     <ClInclude Include="json\json.hpp" />
     <ClInclude Include="json\jsonOps.hpp" />
+    <ClInclude Include="features\fov.hpp" />
+    <ClInclude Include="imgui\render.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="timapple.cpp" />
@@ -42,11 +44,7 @@
     <ClCompile Include="features\aim.cpp" />
     <ClCompile Include="features\misc.cpp" />
     <ClCompile Include="json\jsonOps.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="README.md" />
-    <None Include=".gitignore" />
-    <None Include="x64\Release\client.dll.json" />
-    <None Include="offset_download.ps1" />
+    <ClCompile Include="features\fov.cpp" />
+    <ClCompile Include="util\config.cpp" />
   </ItemGroup>
 </Project>

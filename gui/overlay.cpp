@@ -1,5 +1,6 @@
 #include "overlay.hpp"
 #include "menu.hpp"
+#include "thread";
 
 #include "../util/Vectors.h"
 #include "../util/MemMan.hpp"
@@ -28,6 +29,9 @@ HWND overlayESP::createWindow(int horizontalSize, int verticallSize) {
 	SetLayeredWindowAttributes(window, RGB(0, 0, 0), BYTE(255), LWA_ALPHA);
 
 	this->window = window;
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+	printf("[overlay.cpp] Overlay Created Succesfully!\n");
 
 	return window;
 }
@@ -96,6 +100,9 @@ void overlayESP::initWindow(int nShowCmd) {
 
 	ImGui_ImplWin32_Init(window);
 	ImGui_ImplDX11_Init(device, deviceContext);
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+	printf("[overlay.cpp] Overlay Drew Succesfully!\n");
 }
 
 void overlayESP::renderLoop(MemoryManagement::moduleData client) {
@@ -150,7 +157,7 @@ void overlayESP::renderLoop(MemoryManagement::moduleData client) {
 
 		loadedSwapChain->Present(1, 0);
 
-		Sleep(1);
+		std::this_thread::sleep_for(std::chrono::milliseconds(1/100));
 	}
 }
 

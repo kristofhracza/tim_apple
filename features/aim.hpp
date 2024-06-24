@@ -7,9 +7,10 @@
 
 
 namespace aim {
-	void aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles,DWORD_PTR baseViewAnglesAddy,uintptr_t boneArray);
-	void recoilControl(LocalPlayer localPlayer, DWORD_PTR baseViewAnglesAddy);
+	Vector3 recoilControl(LocalPlayer localPlayer, bool move);
+	void aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, uintptr_t enemyPlayer, uintptr_t boneArray, MemoryManagement::moduleData client);
+	void moveMouseToLocation(Vector3 pos);
 	void triggerBot(LocalPlayer localPlayer, DWORD_PTR base);
 
-	inline uintptr_t lockedPlayer = 0;
+	uintptr_t lockedPlayer = 0;
 }

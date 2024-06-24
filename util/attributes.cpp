@@ -68,6 +68,12 @@ Vector3 C_CSPlayerPawn::getCameraPos() {
 	return cameraPos;
 }
 
+Vector3 C_CSPlayerPawn::getEyePos() {
+	eyePos = MemMan.ReadMem<Vector3>(playerPawn + clientDLL::C_BasePlayerPawn_["m_vOldOrigin"]) +
+		MemMan.ReadMem<Vector3>(playerPawn + clientDLL::C_BaseModelEntity_["m_vecViewOffset"]);
+	return eyePos;
+}
+
 uintptr_t C_CSPlayerPawn::getCGameSceneNode() {
 	CGameSceneNode = MemMan.ReadMem<uintptr_t>(playerPawn + clientDLL::C_BaseEntity_["m_pGameSceneNode"]);
 	return CGameSceneNode;
@@ -161,6 +167,11 @@ Vector3 LocalPlayer::getOrigin() {
 	return origin;
 }
 
+Vector3 LocalPlayer::getEyePos() {
+	eyepos = this->getOrigin() + MemMan.ReadMem<Vector3>(playerPawn + clientDLL::C_BaseModelEntity_["m_vecViewOffset"]);
+	return eyepos;
+}
+
 int LocalPlayer::getFlags() {
 	flags = MemMan.ReadMem<int>(playerPawn + clientDLL::C_BaseEntity_["m_fFlags"]);
 	return flags;
@@ -222,4 +233,14 @@ bool SharedFunctions::inGame(DWORD_PTR base) {
 	bool freeze = MemMan.ReadMem<bool>(gameRules + clientDLL::C_CSGameRules_["m_bFreezePeriod"]);
 
 	return match;
+}
+
+bool C_C4::isPlanted() {
+	planted = MemMan.ReadMem<bool>(base + offsets::clientDLL["dwPlantedC4"] - 0x8);
+	return planted;
+}
+
+uintptr_t C_C4::getCGameSceneNode() {
+	scene = MemMan.ReadMem<uintptr_t>(c4 + clientDLL::C_BaseEntity_["m_pGameSceneNode"]);
+	return scene;
 }

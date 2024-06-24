@@ -3,7 +3,10 @@
 #include <string>
 #include <vector>
 #include <tuple>
+#include <iostream>
+#include <Windows.h>
 
+#include "../imgui/imgui.h"
 #include "Vectors.h"
 
 inline namespace utils {
@@ -14,12 +17,11 @@ inline namespace utils {
 	};
 
 	inline std::wstring getExePath() {
-		TCHAR buffer[MAX_PATH] = { 0 };
-		GetModuleFileName(NULL, buffer, MAX_PATH);
+		WCHAR buffer[MAX_PATH] = { 0 };
+		GetModuleFileNameW(NULL, buffer, MAX_PATH);
 		std::wstring::size_type pos = std::wstring(buffer).find_last_of(L"\\/");
 		return std::wstring(buffer).substr(0, pos);
 	}
-
 
 	inline namespace espF {
 		inline float fixFontSize(float size) {

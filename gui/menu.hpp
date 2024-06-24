@@ -33,4 +33,5 @@ namespace imGuiMenu {
 	void aimRender();
 	void miscRender();
 	void aboutMeRender();
+	void configRender();
 }
